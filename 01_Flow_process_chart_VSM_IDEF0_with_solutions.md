@@ -1474,7 +1474,7 @@ PURPOSE: Hospital breakfast distribution process
 
 VIEWPOlNT: Responsible for managing hospital meals
 
-# Solution (AO)
+# Solution (A0)
 
 ### Visual Diagram: IDEF0 Functional Decomposition (A0) - Breakfast Distribution
 - **Node**: A0
@@ -1553,7 +1553,7 @@ From this moment the company is formally engaged in the fulfillment of the order
 #### 2. Functional Meaning
 - Represents the high-level transformation of raw materials into a finished product and invoice based on customer requirements and orders, utilizing specialized company departments.
 
-# Solution (AO)
+# Solution (A0)
 
 ### Visual Diagram: IDEF0 First-Level Decomposition (A0)
 - **Node**: A0

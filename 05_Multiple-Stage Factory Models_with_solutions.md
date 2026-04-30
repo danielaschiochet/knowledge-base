@@ -10,10 +10,10 @@ giulia.bruno@polito.it
 
 # Flow Variability
 
-V Till now, our attention was on the analysis of a single workstation   
+> Till now, our attention was on the analysis of a single workstation   
 >The workstation impact on the output flow of jobs from the workstations was not considered as this information was not needed to study the performance of a single workstation   
-V But the variability of a station has effects on the behaviour of the next Station on the line and, when the output from a WS becomes the input to the next one, this aspect can be no more neglected: this generates the so-called flow variability   
-V Flow: transfer of a job or a part from one machine to the other
+> But the variability of a station has effects on the behaviour of the next Station on the line and, when the output from a WS becomes the input to the next one, this aspect can be no more neglected: this generates the so-called flow variability   
+> Flow: transfer of a job or a part from one machine to the other
 
 # Flow Variability
 
@@ -24,14 +24,14 @@ E[Ta] → mean time between two arrivals
 
 # V Process:
 
-E[Tel → effective process time   
-V c² → squared coefficient of variation of the effective process time   
+E[Te] → effective process time   
+>c²e → squared coefficient of variation of the effective process time   
 E[Te] < E[Ta] → otherwise, the station would be overloaded
 
 # Departures:
 
 E[Td]→ mean time between two departures/releases   
-c²d → squared coefficient of variation of the mean time between two departures
+>c²d → squared coefficient of variation of the mean time between two departures
 
 # Conservation of flow
 
@@ -54,21 +54,41 @@ $$
 > For non-exponential systems, instead,itisa bit more involving toobtain the Cd² value
 
 V If the WS is extremely busy, the distribution of time between departures is expected to be very close to the process time distribution, so that cd² should be similar to ce²   
-> If the WS is lightly loaded, instead, the inter-departure time distribution should be similar to the inter-arrival time distribution,so that cd² should be similar to ca2
+> If the WS is lightly loaded, instead, the inter-departure time distribution should be similar to the inter-arrival time distribution,so that cd² should be similar to ca² 
 
 # Variability of departures
 
-# High-usage station
+### Diagram Description: Signal Processing Logic (LV vs HV)
 
-![](images/467df6fbd6cd0060bcf1bae2daee44c9279706b22a6de777ab9e476932c1c376.jpg)
+1.  **Top Row (LV to HV Transition):** 
+    *   **Input:** Labeled "LV" (Low Value/Volatility) with sparse pink dots along the line.
+    *   **Process:** Passes through a central orange box labeled **"HV"**.
+    *   **Output:** Results in an **"HV"** state with a higher density of dots.
+
+2.  **Second Row (HV Maintenance):** 
+    *   **Input:** Labeled "HV" with a high density of pink dots.
+    *   **Process:** Passes through a central orange box labeled **"HV"**.
+    *   **Output:** Remains an **"HV"** state with maintained high density.
+
+3.  **Third Row (LV Maintenance):** 
+    *   **Input:** Labeled "LV" with sparse pink dots.
+    *   **Process:** Passes through a central orange box labeled **"LV"**.
+    *   **Output:** Remains an **"LV"** state with sparse dots.
+
+4.  **Bottom Row (HV to LV Transition):** 
+    *   **Input:** Labeled "HV" with high dot density.
+    *   **Process:** Passes through a central orange box labeled **"LV"**.
+    *   **Output:** Results in an **"LV"** state where the density of dots is reduced.
+
+**Core Logic:** The diagram demonstrates that the central processing block (the box) determines the final output state (HV or LV), effectively acting as a filter or a state-assigner regardless of the initial input density.
+
+# High-usage station
 
 >Theflow variability out of a high-usage station is mainly determined by the process variability of the station itself
 
 # Variability of departures
 
 # Low-usage station
-
-![](images/89d35bfd37647ace7ea525e85a063ff91ee9cf8c45f3750622e65770b95e601d.jpg)
 
 >The flow variability out of a low-usage station is mainly determined by the arrival variability
 
@@ -84,14 +104,14 @@ $$
 C _ {d} ^ {2} (G / G / c) \approx \left(1 - u ^ {2}\right) C _ {a} ^ {2} + u ^ {2} \frac {C _ {s} ^ {2} + \sqrt {c} - 1}{\sqrt {c}}
 $$
 
-> u~1 : the station is almost always busy, thus c²d~c²s   
-> u~0 : the station is almost never busy, thus c²d~c²a a
+* $u \sim 1$: the station is almost always busy, thus $c_d^2 \sim c_s^2$
+* $u \sim 0$: the station is almost never busy, thus $c_d^2 \sim c_a^2$
 
 # Example
 
 For a single server workstation, the inter-arrival distribution parameters are E[Ta] = 20 min and C²a = 1/2.The service time distribution parameters are E[T] = 15 min and C²= 1/3   
-V Then λ= 3/hr and μ = 4/hr, and the system utilization factor U= ^ / = 3/4   
-V The squared coeffcient of variation of the inter-departure times is given by
+> Then λ= 3/hr and μ = 4/hr, and the system utilization factor u  = λ/μ = 3/4   
+> The squared coeffcient of variation of the inter-departure times is given by
 
 $$
 C _ {d} ^ {2} = \left(1 - \left(\frac {3}{4}\right) ^ {2}\right) \frac {1}{2} + \left(\frac {3}{4}\right) ^ {2} \frac {1}{3} = \frac {1 3}{3 2} = 0. 4 0 6 2 5
@@ -104,7 +124,7 @@ A two-machine workstation has a utilization factor of 8o%. The arrival SCV is 2.
 
 # Solution (1)
 
-Y A workstation has a workload that uses 85% of its single machine capacity. Arrivals to the workstation are exponentially distributed and the service time SCV is 1.5. What is the estimated SCV of the departure stream?
+> A workstation has a workload that uses 85% of its single machine capacity. Arrivals to the workstation are exponentially distributed and the service time SCV is 1.5. What is the estimated SCV of the departure stream?
 
 $$
 \mathsf {G} / \mathsf {G} / 1
@@ -128,7 +148,7 @@ $$
 
 # Solution (2)
 
-A two-machine workstation has a utilization factor of 8o%. The arrival SCV is 2.0 and the service time follows an Erlang-2 distribution. What is the estimated SCV of the departure stream?
+> A two-machine workstation has a utilization factor of 8o%. The arrival SCV is 2.0 and the service time follows an Erlang-2 distribution. What is the estimated SCV of the departure stream?
 
 $$
 \mathrm {G / G / 2}
@@ -156,11 +176,21 @@ $$
 
 # Serial system
 
-![](images/e2701c5b20fef6495ba795311d8ab7c61a628bb1ae563663aa0e1251a0d12bea.jpg)
+### Diagram Description: Linear 3-Stage Process Flow
+
+Basic sequential system or a tandem queueing model. It consists of three primary components arranged in a horizontal linear progression.
+
+*   **Components:** Three square blocks numbered sequentially as **1**, **2**, and **3**.
+*   **Connectivity:** 
+    *   An incoming arrow from the left enters **Block 1**, representing the system input.
+    *   A connecting arrow leads from **Block 1** to **Block 2**.
+    *   A connecting arrow leads from **Block 2** to **Block 3**.
+    *   An outgoing arrow exits **Block 3** to the right, representing the system output or finished state.
+*   **Logic:** This diagram represents a **tandem configuration** where work, data, or signals must pass through each stage in a fixed order. In the context of operations management or queueing theory, this depicts a three-station production line or service chain.
 
 > In a serial ine having a constant flow with no losses or reworks,anything that comes out of a station enters the following one   
-V This system is treated as a series of G/G/c queues with specified service parameters (E[T()], C², (), Ci) for each workstation i   
-V Because of the serial nature of the system, the arrival stream for workstation iis the departure stream from workstation i-1
+> This system is treated as a series of G/G/c queues with specified service parameters (E[Ts(i)], C²s, (i), Ci) for each workstation i   
+> Because of the serial nature of the system, the arrival stream for workstation iis the departure stream from workstation i-1
 
 $$
 \triangleright \mathrm {C} ^ {2} _ {a} (i) = \mathrm {C} ^ {2} _ {d} (i - 1) \text {f o r} i = 2, \dots n
@@ -177,42 +207,46 @@ The approach to modeling the network composed of M/M/c systems is to model each 
 # Example
 
 > Patients arive to the emergency room according to Poisson process (i.e., with exponential inter-arrival times) with a mean rate of 4 per hour   
-V When they arrive, there is a single clerk who takes their information; this process takes an exponentially distributed length of time with an average of 4 minutes per patient   
-V There is a triage nurse who next sees the patient; the nurse takes an exponentially distributed length of time averaging 10 minutes per patient   
-Finally, one of two doctors sees the patient and each doctor takes an exponentially distributed amount of time with each patient averaging 24 minutes with the doctor   
+> When they arrive, there is a single clerk who takes their information; this process takes an exponentially distributed length of time with an average of 4 minutes per patient   
+> There is a triage nurse who next sees the patient; the nurse takes an exponentially distributed length of time averaging 10 minutes per patient   
+> Finally, one of two doctors sees the patient and each doctor takes an exponentially distributed amount of time with each patient averaging 24 minutes with the doctor   
 > We would like to know the average number of patients within the facility at any one time and the average time that a patient spends in the emergency room
 
 # Example
 
-V The emergency room system is composed of an M/M/1 system feding a ·/M/1 system feeding a ·/M/2 system   
-V Because of the property that M/M/c systems have exponential inter-departure times,the second and third nodes are an M/M/1 and M/M/2 system with an arrival rate of 4 per hour   
-The system can be analyzed as three independent single node systems   
-The first node has a utilization factor of u,= 4/15 and thus the average number of patients in the first node is WiP(1) = 4/11.   
-The second node has a utilization factor of uz= 2/3 yielding WiP(2) = 2
+> The emergency room system is composed of an M/M/1 system feding a ·/M/1 system feeding a ·/M/2 system   
+> Because of the property that M/M/c systems have exponential inter-departure times,the second and third nodes are an M/M/1 and M/M/2 system with an arrival rate of 4 per hour   
+> The system can be analyzed as three independent single node systems   
+> The first node has a utilization factor of u,= 4/15 and thus the average number of patients in the first node is WiP(1) = 4/11.   
+> The second node has a utilization factor of uz= 2/3 yielding WiP(2) = 2
 
 # Example
 
-> For the third node,we firstfind the time spent waiting for the doctor, i.e., CTq(3)= 42.67 min since U3= 0.8   
+> For the third node,we firstfind the time spent waiting for the doctor, i.e., CTq(3)= 42.67 min since u3= 0.8   
 > Adding the doctor's time to the wait time yields the time spent in third node as CT(3)= 1.11 hr   
-V Applying Litle's Law gives the average number of patients at the node as WIP(3) = 4.44   
-> Thus, the total number in the emergency room is WiP = 4/11 + 2 + 4.44 = 6.8   
+> Applying Litle's Law gives the average number of patients at the node as WIP(3) = 4.44   
+> Thus, the total number in the emergency room is WIP = 4/11 + 2 + 4.44 = 6.8   
 > Applying Litle's Law one more time, yields the average value for the total time a patient spends in the emergency room as CTs = 1.7 hr
 
 # Generalization
 
-V The analysis approach used in the Example is exact only under the assumptions of infinite capacity nodes and exponential distributions for inter-arrivals and processing times, but it provides the motivation for approximation schemes when these assumptions do not hold   
-The analysis approach for general systems is based on the concept that a system's performance can be adequately approximated by separating the system into individual workstations   
+> The analysis approach used in the Example is exact only under the assumptions of infinite capacity nodes and exponential distributions for inter-arrivals and processing times, but it provides the motivation for approximation schemes when these assumptions do not hold   
+> The analysis approach for general systems is based on the concept that a system's performance can be adequately approximated by separating the system into individual workstations   
 The performance characteristics of the individual workstations are computed separately and then these results recombined for the total system behavior   
-V This decomposition approach is fundamental to the approximation of general network configurations
+> This decomposition approach is fundamental to the approximation of general network configurations
 
 # Example
 
-Consider a three-workstation factory with serial flow   
+> Consider a three-workstation factory with serial flow   
 > Each workstation has a single machine with the service time distribution parameters as listed in the table   
 The inter-arrival time distribution for jobs to the factory has a mean of 15 minutes or a mean rate of 4 jobs per hour, and a squared coefficient of variation of 0.75   
 The system mean work-in-process,cycle time,and throughput are desired
 
-![](images/7d9e2b23cc6e06257d35e573c36d5bfef6a01943d1bafd6a259f3196c87ef223.jpg)
+| Workstation $i$ | $E[T_s(i)]$ | $C_s^2(i)$ |
+| :---: | :---: | :---: |
+| 1 | 12 min | 2.0 |
+| 2 | 9 min | 0.7 |
+| 3 | 13.2 min | 1.0 |
 
 > Since arrivals to the system occur at the first workstation, E[Ta(1)] = 15 min yielding a utilization factor of u = E[Ts(1)]/E[Ta(1)] = 0.8   
 V For the first workstation we have the following results
@@ -235,8 +269,8 @@ $$
 
 # Example
 
-V Because this is a pure serial network, the arrival rate and throughput rate will be the same for each workstation   
-V Thus,the utilization factors for the other two workstations are Uz = E[T(2)/E[T(1)]=0.6 and U3= E[T(3)]/E[Ta(1)]= 0.88
+> Because this is a pure serial network, the arrival rate and throughput rate will be the same for each workstation   
+> Thus,the utilization factors for the other two workstations are U2 = E[Ts(2)/E[Ta(1)]=0.6 and u3= E[Ts(3)]/E[Ta(1)]= 0.88
 
 $$
 C T (2) = \left(\frac {1 . 5 5 + 0 . 7}{2}\right) \frac {0 . 6}{0 . 4} (0. 1 5 \mathrm {h r}) + 0. 1 5 \mathrm {h r} = 0. 4 0 3 \mathrm {h r}
@@ -280,11 +314,15 @@ $$
 
 # Exercise 1
 
-V Find the system performance measures of CTs,WIPs,and throughput for a pure serial system consisting of three single capacity workstations   
+> Find the system performance measures of CTs,WIPs,and throughput for a pure serial system consisting of three single capacity workstations   
 > The arrival rate to the system is 3 jobs per hour, with the inter-arrival time being exponentially distributed   
 The processing time data are:
 
-![](images/a0598e8802e092f5966e287845e433f040fe481954ce6f07b9fb7eff7e29b005.jpg)
+| Workstation $i$ | $E[T_i]$ | $C^2[T_i]$ |
+| :---: | :---: | :---: |
+| 1 | 0.25 hr | 4 |
+| 2 | 0.29 hr | 3 |
+| 3 | 0.30 hr | 2 |
 
 # Exercise 1 Solution
 
@@ -352,8 +390,6 @@ $$
 c _ {d} ^ {2} (2) = u ^ {2} \cdot c _ {\mathrm {e}} ^ {2} + (1 - u ^ {2}) \cdot c _ {a} ^ {2} = 2, 9 2 = c _ {a 3} ^ {2}
 $$
 
-![](images/8c0da644cf74576c9141ef57bda912082997f470b658d1af1f8a512c58420343.jpg)
-
 WS3
 
 $$
@@ -369,11 +405,7 @@ u _ {3} = \frac {0 , 3 0}{1 / 3} = 0, 9 0
 $$
 
 $$
-C T _ {q 3} = \frac {c _ {a} ^ {2} + c _ {\mathrm {e 3}} ^ {2}}{2} \cdot \frac {u}{1 - u} \cdot
-$$
-
-$$
-\operatorname {E} \left[ \mathrm {T} _ {\mathrm {e}} (3) \right] = 6, 6 4 \mathrm {h}
+C T _ {q 3} = \frac {c _ {a} {} ^ {2} + c _ {e 3} {} ^ {2}}{2} \cdot \frac {u}{1 - u} \cdot \mathrm {E} [ \mathrm {T} _ {\mathrm {e}} (3) ] = 6, 64 \mathrm {h}
 $$
 
 $$
@@ -392,13 +424,28 @@ $$
 W I P _ {T O T} = 4 7
 $$
 
+### Image Description: Sequential Workstation Flow (WS1-WS3)
+
+The image depicts a standard linear or tandem process configuration, commonly used to model production lines or service sequences in engineering environments.
+
+*   **Workstation 1 (WS1)**: Represented as the starting blue rectangular block on the left.
+*   **Workstation 2 (WS2)**: The intermediate stage, connected to WS1 by a horizontal directional arrow.
+*   **Workstation 3 (WS3)**: The final stage in this sequence, connected to WS2 by a horizontal directional arrow.
+
+**System Logic**:
+The diagram illustrates a strictly serial flow where work or data moves sequentially from WS1 through WS2 and finally to WS3. This layout is typical for analyzing throughput, cycle times, and workstation utilization in a three-stage system.
+
 # Exercise 2
 
-V Find the system performance measures of CTs, WiPs, and throughput for a three-workstation pure serial system   
-Y The arrval rate to the system is one job every two hours with an SCV of 2.0.   
-V The machine data for the three single-capacity workstations are given below.
+> Find the system performance measures of CTs, WiPs, and throughput for a three-workstation pure serial system   
+> The arrval rate to the system is one job every two hours with an SCV of 2.0.   
+> The machine data for the three single-capacity workstations are given below.
 
-![](images/c1b11db2cdfdb13af6eddcf4a424dbbe273d49f566c084a538e7877a94ffc8b2.jpg)
+| Workstation $i$ | $E[T_i]$ | $C^2[T_i]$ | Availability | $E[R]$ | $C^2[R]$ |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| 1 | 1.6 hr | 0.75 | 0.85 | 2.0 hr | 1.30 |
+| 2 | 1.5 hr | 1.50 | 0.90 | 2.5 hr | 1.50 |
+| 3 | 1.7 hr | 2.00 | 0.90 | 3.0 hr | 1.75 |
 
 # Exercise 2- Solution (1)
 
@@ -409,11 +456,20 @@ $$
 WS1
 
 $$
-\begin{array}{l} \operatorname {E} \left[ \mathrm {T} _ {\mathrm {s}} (2) \right] = 1, 5 \mathrm {h}. \\ c _ {s 1} ^ {2} = 0, 7 5 \\ \mathbf {a} = 0, 8 5 \\ E _ {1} [ R ] = 2 h \\ c _ {1} ^ {2} [ R ] = 1, 3 \\ \mathrm {E} [ \mathrm {T} _ {\mathrm {e}} (1) ] = \frac {\mathrm {E} [ \mathrm {T} _ {\mathrm {s}} (1) ]}{a} = 1, 8 8 \mathrm {h} \\ c _ {\mathrm {e} 1} ^ {2} = c _ {\mathrm {s} 1} ^ {2} + \frac {(1 + c _ {1} ^ {2} [ R ]) a \cdot (1 - a) \cdot E _ {1} [ R ]}{\mathrm {E} [ \mathrm {T} _ {S} (1) ]} = 1, 1 2 \\ u _ {1} = \frac {\mathrm {E} [ \mathrm {T} _ {\mathrm {e}} (1) ]}{E [ T _ {a} ]} = 0, 9 4 \\ \end{array}
-$$
-
-$$
-\begin{array}{l} c _ {d} ^ {2} (1) = u ^ {2} \cdot c _ {\mathrm {e}} ^ {2} + (1 - u ^ {2}) \cdot c _ {a} ^ {2} = 1, 2 2 \\ C T _ {q 1} = \frac {c _ {a} {} ^ {2} + c _ {\mathrm {e 1}} {} ^ {2}}{2} \cdot \frac {u}{1 - u} \cdot \mathrm {E} [ \mathrm {T} _ {\mathrm {e}} (1) ] = 4 5, 9 4 \mathrm {h} \\ \mathbf {C T _ {1}} = \mathbf {C T _ {q 1}} + \mathbf {E} [ \mathbf {T _ {e}} (\mathbf {1}) ] = 4 7, 8 3 \mathrm {h} \\ W I P _ {1} = C T _ {1} \cdot \lambda_ {a} = 2 4 \\ \end{array}
+\begin{aligned}
+E[T_s(2)] &= 1,5 \text{ h.} \\
+c_{s1}^2 &= 0,75 \\
+a &= 0,85 \\
+E_1[R] &= 2 \text{ h} \\
+c_1^2[R] &= 1,3 \\
+E[T_e(1)] &= \frac{E[T_s(1)]}{a} = 1,88 \text{ h} \\
+c_{e1}^2 &= c_{s1}^2 + \frac{(1+c_1^2[R])a \cdot (1-a) \cdot E_1[R]}{E[T_s(1)]} = 1,12 \\
+u_1 &= \frac{E[T_e(1)]}{E[T_a]} = 0,94 \\
+c_d^2(1) &= u^2 \cdot c_e^2 + (1-u^2) \cdot c_a^2 = 1,22 \\
+CT_{q1} &= \frac{c_a^2 + c_{e1}^2}{2} \cdot \frac{u}{1-u} \cdot E[T_e(1)] = 45,94 \text{ h} \\
+CT_1 &= CT_{q1} + E[T_e(1)] = 47,83 \text{ h} \\
+WIP_1 &= CT_1 \cdot \lambda_a = 24
+\end{aligned}
 $$
 
 # Exercise 2- Solution (2)
@@ -433,51 +489,20 @@ $$
 WS2
 
 $$
-\operatorname {E} \left[ \mathrm {T} _ {s} (1) \right] = 1, 6 \mathrm {h}.
-$$
-
-$$
-c _ {s 2} ^ {2} = 1, 5 0
-$$
-
-$$
-a = 0, 9 0
-$$
-
-$$
-E _ {2} [ R ] = 2, 5 h
-$$
-
-$$
-c _ {2} ^ {2} [ R ] = 1, 5
-$$
-
-$$
-\mathrm {E} \left[ \mathrm {T} _ {\mathrm {e}} (2) \right] = \frac {\mathrm {E} \left[ \mathrm {T} _ {\mathrm {s}} (2) \right]}{a} = 1, 7 8 \mathrm {h}
-$$
-
-$$
-\mathsf {c} _ {\mathrm {e 2}} ^ {2} = \mathsf {c} _ {\mathrm {s 2}} ^ {2} + \frac {\left(1 + c _ {2} ^ {2} [ R ]\right) a \cdot (1 - a) \cdot E _ {2} [ R ]}{\operatorname {E} [ \mathrm {T} _ {\mathrm {s}} (2) ]} = 1, 8 5
-$$
-
-$$
-u _ {1} = \frac {\mathrm {E} [ \mathrm {T} _ {\mathrm {e}} (1) ]}{E [ T _ {a} ]} = 0, 8 9
-$$
-
-$$
-c _ {d} ^ {2} (2) = u ^ {2} \cdot c _ {\mathrm {e}} ^ {2} + (1 - u ^ {2}) \cdot c _ {a} ^ {2} = 1, 7 1
-$$
-
-$$
-C T _ {q 2} = \frac {c _ {a} ^ {2} + c _ {\mathrm {e} 2} ^ {2}}{2} \cdot \frac {u}{1 - u} \cdot \mathrm {E} [ \mathrm {T} _ {\mathrm {e}} (2) ] = 2 2, 1 0 \mathrm {h}
-$$
-
-$$
-\mathbf {C T} _ {2} = \mathbf {C T} _ {\mathbf {q} 2} + \mathbf {E} [ \mathbf {T} _ {\mathbf {e}} (2) ] = 2 3, 8 8 \mathrm {h}
-$$
-
-$$
-W I P _ {2} = C T _ {2} \cdot \lambda_ {a} = 1 2
+\begin{aligned}
+E[T_s(1)] &= 1,6 \text{ h.} \\
+c_{s2}^2 &= 1,50 \\
+a &= 0,90 \\
+E_2[R] &= 2,5 \text{ h} \\
+c_2^2[R] &= 1,5 \\
+E[T_e(2)] &= \frac{E[T_s(2)]}{a} = 1,78 \text{ h} \\
+c_{e2}^2 &= c_{s2}^2 + \frac{(1+c_2^2[R])a \cdot (1-a) \cdot E_2[R]}{E[T_s(2)]} = 1,85 \\
+u_1 &= \frac{E[T_e(1)]}{E[T_a]} = 0,89 \\
+c_d^2(2) &= u^2 \cdot c_e^2 + (1-u^2) \cdot c_a^2 = 1,71 \\
+CT_{q2} &= \frac{c_a^2 + c_{e2}^2}{2} \cdot \frac{u}{1-u} \cdot E[T_e(2)] = 22,10 \text{ h} \\
+CT_2 &= CT_{q2} + E[T_e(2)] = 23,88 \text{ h} \\
+WIP_2 &= CT_2 \cdot \lambda_a = 12
+\end{aligned}
 $$
 
 # Exercise 2 - Solution (3)
@@ -497,57 +522,26 @@ $$
 WS3
 
 $$
-\operatorname {E} \left[ \mathrm {T} _ {\mathrm {s}} (3) \right] = 1, 7 \mathrm {h}.
+\begin{aligned}
+E[T_s(3)] &= 1,7 \text{ h.} \\
+c_{s3}^2 &= 2,00 \\
+a &= 0,90 \\
+E_3[R] &= 3,0 \text{ h} \\
+c_3^2[R] &= 1,75 \\
+E[T_e(3)] &= \frac{E[T_s(3)]}{a} = 1,89 \text{ h} \\
+c_{e3}^2 &= c_{s3}^2 + \frac{(1+c_3^2[R])a \cdot (1-a) \cdot E_3[R]}{E[T_s(3)]} = 2,436 \\
+u_3 &= \frac{E[T_e(3)]}{E[T_a]} = 0,945 \\
+CT_{q3} &= \frac{c_a^2 + c_{e3}^2}{2} \cdot \frac{u}{1-u} \cdot E[T_e(3)] = 35,26 \text{ h} \\
+CT_3 &= CT_{q3} + E[T_e(3)] = 37,15 \text{ h} \\
+WIP_3 &= CT_3 \cdot \lambda_a = 19
+\end{aligned}
 $$
 
 $$
-c _ {s 3} ^ {2} = 2, 0 0
-$$
-
-$$
-a = 0, 9 0
-$$
-
-$$
-E _ {3} [ R ] = 3, 0 h
-$$
-
-$$
-c _ {3} ^ {2} [ R ] = 1, 7 5
-$$
-
-$$
-\mathrm {E} [ \mathrm {T} _ {\mathrm {e}} (3) ] = \frac {\mathrm {E} [ \mathrm {T} _ {\mathrm {s}} (3) ]}{a} = 1, 8 9 \mathrm {h}
-$$
-
-$$
-\mathsf {c} _ {\mathrm {e 3}} ^ {2} = \mathsf {c} _ {\mathrm {s 3}} ^ {2} + \frac {(1 + c _ {3} ^ {2} [ R ]) a \cdot (1 - a) \cdot E _ {3} [ R ]}{\mathrm {E} [ \mathrm {T} _ {\mathrm {s}} (3) ]} = 2, 4 3 6
-$$
-
-$$
-u _ {3} = \frac {\mathrm {E} [ \mathrm {T} _ {\mathrm {e}} (3) ]}{E [ T _ {a} ]} = 0, 9 4 5
-$$
-
-$$
-C T _ {q 3} = \frac {c _ {a} ^ {2} + c _ {\mathrm {e 3}} ^ {2}}{2} \cdot \frac {u}{1 - u} \cdot \mathrm {E} [ \mathrm {T} _ {\mathrm {e}} (3) ] = 3 5, 2 6 \mathrm {h}
-$$
-
-$$
-\mathbf {C T} _ {3} = \mathbf {C T} _ {\mathbf {q} 3} + \mathbf {E} [ \mathbf {T} _ {\mathbf {e}} (3) ] = 3 7, 1 5 \mathrm {h}
-$$
-
-$$
-W I P _ {3} = C T _ {3} \cdot \lambda_ {a} = 1 9
-$$
-
-![](images/ccbb4b75df669dc9a98241bea16077fa4e571a56738c6033ebc1ee6c68a901d7.jpg)
-
-$$
-C T _ {T O T} = 1 0 8, 8 6
-$$
-
-$$
-W I P _ {T O T} = 5 5
+\begin{aligned}
+CT_{TOT} &= 108,86 \\
+WIP_{TOT} &= 55
+\end{aligned}
 $$
 
 # Exercise 3
@@ -555,107 +549,136 @@ $$
 > Items arrive with interarrival times E[Ta]= 21 min,exponentially distributed   
 Let's consider the following stations:
 
-WSA:E[T:(a)] = 20 min (exponentially distributed)   
-WSB:E[Ts(b)]= 20 min, σs= 5
+WSA: E[T:(a)] = 20 min (exponentially distributed)   
+WSB: E[Ts(b)]= 20 min, σs= 5
 
 The product X needs to be processed by both WSA and WSB   
-V Having the possibility to choose the sequence, is it better to put WSA before WSB or WSB before WSA in the line?   
+> Having the possibility to choose the sequence, is it better to put WSA before WSB or WSB before WSA in the line?   
 > Motivate the answer by computing total CT and WIP on the line in both cases
 
 # Exercise 3 - Solution (1)
 
-![](images/1e876523097632dc60bd3fd83109bddb79f899d94db139af20b871f6027b49ad.jpg)
+### Diagram Description: Two-Stage Tandem Queueing System
 
-# Exercise 3 - Solution (2)
+This diagram illustrates the flow and parameters of a sequential two-station queueing model, commonly used in **Operations Research** and **Queueing Theory**.
 
-E[Ta] = 21 min
+**1. Input Parameters (Arrival Process):**
+*   **$E[T_a] = 21 \text{ min}$**: Mean interarrival time.
+*   **$c_a^2 = 1$**: Squared coefficient of variation of arrivals (indicating a Poisson arrival process).
+*   **$\lambda_a = \frac{1}{21} \text{ u/min}$**: Arrival rate to the system.
 
-入a 21 1 u/min
+**2. Workstation A (WSA):**
+*   **Model**: **M/M/1** (Markovian arrivals, Markovian service times, single server).
+*   **$E[T_e(a)] = 20 \text{ min}$**: Mean effective service time for Station A.
 
-M/G/1
+**3. Intermediate Flow Logic:**
+*   The connection between the stations follows the principle of flow conservation:
+    *   **$\lambda_d(a) = \lambda_a(b)$**: The departure rate from A is equal to the arrival rate at B.
+    *   **$c_d(a) = c_a(b)$**: The variability of departures from A becomes the variability of arrivals at B.
 
-WSB
+**4. Workstation B (WSB):**
+*   **Model**: **M/G/1** (Markovian arrivals, General service time distribution, single server).
+*   **$E[T_e(b)] = 20 \text{ min}$**: Mean effective service time for Station B.
 
-Cd(a)=Ca(b)
-
-𝜆a(a)=λa(b)
-
-G/M/1
+**Analytical Context**:
+This setup is a classic example for calculating system-wide performance metrics such as total cycle time ($CT_{tot}$) and total work-in-process ($WIP_{tot}$). Since both stations have a service time of 20 min and an arrival rate of $1/21$ u/min, the utilization ($u$) for both is approximately **0.95**, indicating a highly utilized system.
 
 WSA
 
-E[Te(b)] = 20 min
-
-E[Te(a)] = 20 min
-
 $$
-\sigma_ {e} = 5
-$$
-
-$$
-c _ {\mathrm {e}} ^ {2} = 1
-$$
-
-$$
-c _ {e} = \frac {\sigma_ {e}}{E [ T _ {e} (b) ]} = \frac {5}{2 0} = 0, 2 5
+\begin{aligned}
+E[T_e(a)] &= 20 \text{ min} \\
+c_e^2 &= 1 \\
+u_a &= \frac{20}{21} = 0,952 \\
+WIP(a) &= \frac{u}{1-u} = 19,8 \\
+CT(a) &= \frac{WIP}{\lambda_a} = 416 \text{ min} \\
+CT_q(a) &= CT - E[T_e(a)] = 396 \text{ min} \\
+WIP_q(a) &= \lambda_a \cdot CT_q(a) = 18,8 \\
+c_d^2(a) &= u^2 \cdot c_e^2 + (1-u^2) \cdot c_a^2 = 1
+\end{aligned}
 $$
 
-$$
-u _ {a} = \frac {2 0}{2 1} = 0, 9 5 2
-$$
+WSB
 
 $$
-u _ {b} = \frac {2 0}{2 1} = 0, 9 5 2
-$$
-
-$$
-W I P (a) = \frac {u}{1 - u} = 1 9, 8
-$$
-
-$$
-\mathrm {C T _ {q} (b)} = \frac {c _ {a +} ^ {2} c _ {e} {} ^ {2}}{2} \cdot \frac {\mathrm {u}}{1 - \mathrm {u}} \cdot E [ T _ {e} (b) ] = 2 1 0 \min
+\begin{aligned}
+E[T_e(b)] &= 20 \text{ min} \\
+\sigma_e &= 5 \\
+c_e &= \frac{\sigma_e}{E[T_e(b)]} = \frac{5}{20} = 0,25 \\
+u_b &= \frac{20}{21} = 0,952 \\
+CT_q(b) &= \frac{c_a^2 + c_e^2}{2} \cdot \frac{u}{1-u} \cdot E[T_e(b)] = 210 \text{ min} \\
+WIP_q(b) &= \lambda_b \cdot CT_q(b) = 10 \\
+CT(b) &= CT_q(b) + E[T_e(b)] = 230 \text{ min} \\
+WIP(b) &= \lambda_b \cdot CT(b) = 10,95
+\end{aligned}
 $$
 
 $$
-\mathrm {C T} _ {\mathrm {q}} (\mathrm {a}) = \frac {c _ {a +} ^ {2} c _ {\mathrm {e}} ^ {2}}{2} \cdot \frac {\mathrm {u}}{1 - \mathrm {u}} \cdot E [ T _ {e} (a) ] = 2 3 0 \mathrm {m i n}
+\begin{aligned}
+CT_{TOT} &= 416 + 230 = 646 \text{ min} \\
+WIP_{TOT} &= 19,8 + 10,95 = 31
+\end{aligned}
 $$
 
-$$
-\mathrm {W I P} _ {\mathrm {q}} (\mathrm {b}) = \lambda_ {b} \cdot \mathrm {C T} _ {\mathrm {q}} (\mathrm {b}) = 1 0
-$$
+# Exercise 3 - Solution (2)
+
+### Diagram Description: Reversed Two-Stage Tandem Queueing System
+
+This diagram illustrates a sequential two-station queueing model where the order of workstations is set as M/G/1 followed by G/M/1. 
+
+**1. Input Parameters (System Arrivals):**
+*   **$E[T_a] = 21 \text{ min}$**: Mean interarrival time.
+*   **$c_a^2 = 1$**: Squared coefficient of variation for arrivals, representing a Markovian (Poisson) external arrival process.
+*   **$\lambda_a = \frac{1}{21} \text{ u/min}$**: External arrival rate to the system.
+
+**2. First Stage: Workstation B (WSB)**
+*   **Queueing Model**: **M/G/1** (Markovian arrivals, General service time distribution).
+*   **$E[T_e(b)] = 20 \text{ min}$**: Mean effective service time for Station B.
+
+**3. Intermediate Flow Logic:**
+*   A directional arrow shows the flow of processed units from WSB to WSA.
+*   The diagram includes the flow linking equations: **$c_d(a) = c_a(b)$** and **$\lambda_d(a) = \lambda_a(b)$**. *(Technical note: While the notation uses specific indices, the logical rule shown is that the departure rate and variability from the first station become the arrival parameters for the second station).*
+
+**4. Second Stage: Workstation A (WSA)**
+*   **Queueing Model**: **G/M/1** (General arrivals derived from WSB's departures, Markovian service time).
+*   **$E[T_e(a)] = 20 \text{ min}$**: Mean effective service time for Station A.
+
+WSB
 
 $$
-\mathrm {W I P} _ {\mathrm {q}} (\mathrm {a}) = \lambda_ {a} \cdot \mathrm {C T} _ {\mathrm {q}} (\mathrm {a}) = 1 1
+\begin{aligned}
+\sigma_e &= 5 \\
+c_e &= \frac{\sigma_e}{E[T_e(b)]} = \frac{5}{20} = 0,25 \\
+u_b &= \frac{20}{21} = 0,952 \\
+CT_q(b) &= \frac{c_a^2 + c_e^2}{2} \cdot \frac{u}{1-u} \cdot E[T_e(b)] = 210 \text{ min} \\
+WIP_q(b) &= \lambda_b \cdot CT_q(b) = 10 \\
+CT(b) &= CT_q(b) + E[T_e(b)] = 230 \text{ min} \\
+WIP(b) &= \lambda_b \cdot CT(b) = 10,95 \\
+c_d^2(b) &= u^2 \cdot c_e^2 + (1-u^2) \cdot c_a^2 = 0,15
+\end{aligned}
 $$
 
-$$
-\mathrm {C T (b)} = \mathrm {C T _ {q} (b)} + E [ T _ {e} (b) ] = 2 3 0 \mathrm {m i n}
-$$
+WSA
 
 $$
-\mathrm {C T} (\mathsf {a}) = \mathrm {C T} _ {\mathsf {q}} (\mathsf {a}) + E [ T _ {e} (\mathsf {a}) ] = 2 5 0 \min
-$$
-
-$$
-\operatorname {W I P} (\mathsf {b}) = \lambda_ {b} \cdot \operatorname {C T} (\mathsf {b}) = 1 0, 9 5
-$$
-
-$$
-\mathsf {W I P} (\mathsf {b}) = \lambda_ {a} \cdot \mathsf {C T} (\mathsf {a}) = 1 2
-$$
-
-$$
-c _ {d} ^ {2} (a) = u ^ {2} \cdot c _ {\mathrm {e}} ^ {2} + (1 - u ^ {2}) \cdot c _ {a} ^ {2} = 0, 1 5
+\begin{aligned}
+c_e^2 &= 1 \\
+u_a &= \frac{20}{21} = 0,952 \\
+WIP(a) &= \frac{u}{1-u} = 19,8 \\
+CT_q(a) &= \frac{c_a^2 + c_e^2}{2} \cdot \frac{u}{1-u} \cdot E[T_e(a)] = 230 \text{ min} \\
+WIP_q(a) &= \lambda_a \cdot CT_q(a) = 11 \\
+CT(a) &= CT_q(a) + E[T_e(a)] = 250 \text{ min} \\
+WIP(a) &= \lambda_a \cdot CT(a) = 12
+\end{aligned}
 $$
 
 BETTER PERFORMANCE
 
 $$
-C T _ {T O T} = 2 3 0 + 2 5 0 = 4 8 0 \min
-$$
-
-$$
-\mathbf {W I P} _ {\mathrm {T O T}} = \mathbf {1 0}, 9 5 + \mathbf {1 2} = 2 3
+\begin{aligned}
+CT_{TOT} &= 230 + 250 = 480 \text{ min} \\
+WIP_{TOT} &= 10,95 + 12 = 23
+\end{aligned}
 $$
 
 # Nonserial Network Models
@@ -671,27 +694,41 @@ $$
 To study factory structures that are more realistic than pure serial systems, two additional structures must be studied to compute the squared coefficients of the various streams of jobs within the factory
 
 merging of streams entering a workstation   
-V spliting of output streams that come from a single workstation but are routed to more than one workstation
+> spliting of output streams that come from a single workstation but are routed to more than one workstation
 
-V These two processes,are firstly addressed separately, and then combined for a general network model
+> These two processes,are firstly addressed separately, and then combined for a general network model
 
 # Merging Inflow Streams
 
 When multiple inflow streams arrive at a workstation with difering interarrival time distributions, the composite inter-arrival time distribution parameters need be computed   
-V The process of merging inflow streams is technically called a superposition of the individual inter-arrval processes   
-V It is assumed that the individual input streams are independent of one another and that each has independent and identically distributed interarrival times
+> The process of merging inflow streams is technically called a superposition of the individual inter-arrval processes   
+> It is assumed that the individual input streams are independent of one another and that each has independent and identically distributed interarrival times
 
-each of these input streams is said to be a renewal process
+> each of these input streams is said to be a renewal process
 
-![](images/e348b652bf4d5c0d34f853243e8b5d5e13ac3762c9b480fc97e466347564960b.jpg)
+### Diagram Description: Superposition of Arrival Streams
+
+This diagram illustrates the **superposition** (or merging) of multiple independent arrival processes into a single, aggregate arrival stream. This is a fundamental concept in network queueing models for analyzing workstations that receive input from several different routing paths.
+
+**1. Incoming Streams (Inputs):**
+*   Three distinct arrows converge at a single central point, representing three separate sources of work or data.
+*   Each incoming stream $i$ (for $i = 1, 2, 3$) is characterized by two parameters:
+    *   **$\lambda_i$**: The specific arrival rate of that stream.
+    *   **$C_i^2$**: The squared coefficient of variation of the interarrival times for that stream, indicating its specific variability.
+
+**2. Aggregate Stream (Output):**
+*   A single arrow departs from the convergence point to the right, representing the combined flow of all incoming units.
+*   **$\lambda$**: The total aggregate arrival rate. In standard queueing theory, this is the sum of the individual rates ($\lambda = \lambda_1 + \lambda_2 + \lambda_3$).
+*   **$C_a^2$**: The squared coefficient of variation for the new, merged arrival process.
+
+**System Logic:**
+When multiple product types or data streams converge at a single processing unit, the total arrival rate is additive. However, calculating the new combined variability ($C_a^2$) requires specific approximations to accurately model the queueing behavior and delays at the receiving workstation.
 
 # Merging Inflow Streams
 
 Consider an arrival stream that is formed by merging n individual arrival processes   
-The individual streams have mean arrival rates given by >; = 1/E[Ti] and squared coefcients of variation denoted by C2; for i= 1.,., n   
-The mean arival rate, ^a, and the squared coefficient of variation, C²a, for a renewal process used to approximate the merged arival process are given by:
-
-![](images/df4ef5ce05e340d8a5ce9b4ccb708c7bd32138c1ee8a32c31415bec35ec2a1f1.jpg)
+The individual streams have mean arrival rates given by λ = 1/E[Ti] and squared coefcients of variation denoted by C2; for i= 1,..., n   
+The mean arival rate, λa, and the squared coefficient of variation, C²a, for a renewal process used to approximate the merged arival process are given by:
 
 $$
 \lambda_ {a} = \sum_ {i = 1} ^ {n} \lambda_ {i} = \sum_ {i = 1} ^ {n} \frac {1}{E [ T _ {i} ]}
@@ -703,19 +740,19 @@ $$
 
 # Example
 
-V An automated lubricating facility is located in the center of a manufacturing plant   
-Y Arrivals of parts needing lubrication come from three sources: manufactured parts needing assembly, defective parts that have been disassembled and willbe returned for reassembly, and parts coming from a sister manufacturing facility in another part of the town   
+> An automated lubricating facility is located in the center of a manufacturing plant   
+> Arrivals of parts needing lubrication come from three sources: manufactured parts needing assembly, defective parts that have been disassembled and willbe returned for reassembly, and parts coming from a sister manufacturing facility in another part of the town   
 The three arrval streams have been analyzed separately
 
->The mean arrival rates for the three streams are given by the vector (1,A2λ3) = (13.2/hr, 3.6/r,6.0/hr)   
->The squared coeficients of variation for the three inflow streams are (C2, C22, C²3) = (5.0, 3.0, 2.2)
+>The mean arrival rates for the three streams are given by the vector (λ1,λ2,λ3) = (13.2/hr, 3.6/r,6.0/hr)   
+>The squared coeficients of variation for the three inflow streams are (C²1, C²2, C²3) = (5.0, 3.0, 2.2)
 
 Find the inter-arrival time distribution parameters
 
 # Example
 
-V The total inflow into the workstation is the sum of the individual inflows so that ^a = 22.8/hr   
-V The relative weights, 13.2/22.8, 3.6/22.8,and 6.0/22.8,are thus used to determine the composite inflow stream's squared coefficient of variation as
+> The total inflow into the workstation is the sum of the individual inflows so that λa = 22.8/hr   
+> The relative weights, 13.2/22.8, 3.6/22.8,and 6.0/22.8, are thus used to determine the composite inflow stream's squared coefficient of variation as
 
 $$
 C _ {a} ^ {2} = \frac {1 3 . 2}{2 2 . 8} 5. 0 + \frac {3 . 6}{2 2 . 8} 3. 0 + \frac {6 . 0}{2 2 . 8} 2. 2 = 3. 9 4 7
@@ -729,11 +766,26 @@ $$
 
 > Find the inter-arrival time distribution parameters for the following system:
 
-![](images/445fe41313dd461b37ad98fd62f706d9cdad30c6b874df071cc222265ef14089.jpg)
+### Diagram Description: Merge Node Calculation
+
+This diagram presents a practical exercise in queueing theory, specifically focusing on the superposition (merging) of two independent arrival streams into a single node.
+
+**1. Input Streams:**
+*   **Stream 1 (Top):**
+    *   Arrival Rate ($\lambda_1$): **1 j/h** (jobs/hour)
+    *   Squared Coefficient of Variation ($C_1^2$): **1.365**
+*   **Stream 2 (Bottom):**
+    *   Arrival Rate ($\lambda_2$): **3 j/h**
+    *   Squared Coefficient of Variation ($C_2^2$): **2.095**
+
+**2. Merge Process:**
+*   The two streams converge into a central oval labeled **"Merge"**, representing the aggregation of the workloads.
+
+**3. Output Stream (To be calculated):**
+*   **$\lambda = ?$**: The total aggregate arrival rate.
+*   **$C_a^2 \text{ (merged)} = ?$**: The squared coefficient of variation for the new merged arrival process.
 
 # Solution
-
-![](images/15af0aefc85e6f8341db2c68f9b1a46d5dcff04de7a3908a54088dbe000ac346.jpg)
 
 $$
 \lambda_ {\mathrm {a}} = \sum_ {n} \lambda_ {\mathrm {i}} = 1 + 3 = 4 j / h
@@ -764,13 +816,25 @@ $$
 C _ {a} ^ {2} = p C _ {d} ^ {2} + 1 - p.
 $$
 
-> The fifth workstation within a manufacturing facility performs a quality control check on partially manufactured items   
-V Parts receive an unqualified pass from the inspector with probability 0.8 and they are then sent to Workstation 6 to continue the manufacturing process   
-V Approximately 18% of the time, a part has a partial pass of the quality check and is sent to Workstation 10 for rework   
-V And approximately 2% of the time, a part completely fails the test and is sent to the hazardous waste station for disposal which is designated as Workstation 99   
-V The throughput rate for Workstation 5 is 7 jobs per hour and the coefficient of variation for the inter-departure times is 3
+> The fifth workstation within a manufacturing facility performs a quality control check on partially manufactured items
+> Parts receive an unqualified pass from the inspector with probability 0.8 and they are then sent to Workstation 6 to continue the manufacturing process   
+> Approximately 18% of the time, a part has a partial pass of the quality check and is sent to Workstation 10 for rework
+>  And approximately 2% of the time, a part completely fails the test and is sent to the hazardous waste station for disposal which is designated as Workstation 99
+>  The throughput rate for Workstation 5 is 7 jobs per hour and the coefficient of variation for the inter-departure times is 3
 
-![](images/527519f3e0e90697c104a57f5d1d90e00550ac0c3e32d5666a5e4f874c853be0.jpg)
+### Diagram Description: Routing (Splitting) Node Calculation
+
+This diagram illustrates a **splitting** process within a queueing network. The output of one workstation is probabilistically distributed to multiple subsequent stations, a critical concept in industrial operations and network analysis.
+
+**1. Source Stream (Departures from Node 5):**
+*   Departure Rate ($\lambda$): **7**
+*   Squared Coefficient of Variation ($C_d^2$): **3**
+
+**2. Routing Probabilities:**
+The departure stream is split into three distinct paths, with the sum of all probabilities equaling 1 ($0.8 + 0.18 + 0.02 = 1$):
+*   To Node 6: $p = 0.8$
+*   To Node 10: $p = 0.18$
+*   To Node 99: $p = 0.02$
 
 # The results are the following
 
@@ -800,9 +864,32 @@ $$
 C _ {a} ^ {2} (5, 9 9) = 0. 0 2 \times 3 + 0. 9 8 = 1. 0 4.
 $$
 
+# Exercise
+
 > Analyze the network reported in the figure and find the arrival parameters at workstations 2, 3, and 4
 
-![](images/a3698a28ff368332e06f023ab9f547123f5094338227de22f2067f881f5b1214.jpg)
+### Diagram Description: Queueing Network (Splitting and Merging)
+
+This diagram illustrates a multi-node queueing network, representing a system where workstation outputs are probabilistically routed and multiple arrival streams are merged.
+
+**1. Node 1 (Source Departures):**
+*   Departure Rate ($\lambda_d(1)$): **6 j/h**
+*   Squared Coefficient of Variation ($C_d^2(1)$): **3**
+
+**2. Routing (Splitting) from Node 1:**
+*   The flow from Node 1 is split equally between Node 2 and Node 3.
+*   Probability to Node 2: **0.5**
+*   Probability to Node 3: **0.5**
+
+**3. Node 2 (Merge and Process):**
+*   **External Arrivals**: Rate $\gamma = 2 \text{ j/h}$, Variability $C_a^2 = 1$.
+*   **Workstation Parameters**: Utilization $u_2 = 0.8$, Service Variability $C_s^2(2) = 1$.
+
+**4. Node 3 (Process):**
+*   **Workstation Parameters**: Utilization $u_3 = 0.8$, Service Variability $C_s^2(3) = 1$.
+
+**5. Node 4 (Destination):**
+*   Receives the converging departure streams from both Node 2 and Node 3.
 
 $$
 \lambda_ {a} = p \lambda_ {d}
@@ -830,7 +917,6 @@ $$
 \begin{array}{l} \lambda_ {a} = p \lambda_ {d} \\ C _ {a} ^ {2} = p C _ {d} ^ {2} + 1 - p \\ \end{array}
 $$
 
-![](images/4b3b391f35c9a9392056afb588415ef3b2dd64ea84884fa7850320a551ae62c8.jpg)
 
 $$
 \lambda_ {a} = \sum_ {i = 1} ^ {n} \lambda_ {i}
@@ -841,10 +927,20 @@ C _ {a} ^ {2} = \sum_ {i = 1} ^ {n} \frac {\lambda_ {i}}{\lambda_ {a}} C _ {i} ^
 $$
 
 $$
-\begin{array}{l} \lambda (2) = 2 + 3 = 5 \mathrm {j} / \mathrm {h} \\ C _ {a} ^ {2} (2) = 2 / 5 * 1 + 3 / 5 * 2 = 1. 6 \\ C ^ {2} _ {d} (2) = (1 - 0. 8 ^ {2}) ^ {*} 1. 6 + 0. 8 ^ {2} * 1 = 1. 2 2 \\ C _ {d} ^ {2} (G / G / 1) \approx \left(1 - u ^ {2}\right) C _ {a} ^ {2} + u ^ {2} C _ {s} ^ {2} \\ \end{array}
+\lambda (2) = 2 + 3 = 5 \text{ j/h}
 $$
 
-# Solution
+$$
+C _ {a} ^ {2} (2) = \frac{2}{5} \cdot 1 + \frac{3}{5} \cdot 2 = 1.6
+$$
+
+$$
+C _ {d} ^ {2} (2) = \left(1 - 0.8 ^ {2}\right) \cdot 1.6 + 0.8 ^ {2} \cdot 1 = 1.22
+$$
+
+$$
+C _ {d} ^ {2} (G / G / 1) \approx \left(1 - u ^ {2}\right) C _ {a} ^ {2} + u ^ {2} C _ {s} ^ {2}
+$$
 
 > Workstations 3 analysis: only one flow split from workstation 2 and departure variability computation
 
@@ -852,10 +948,16 @@ $$
 \begin{array}{l} \lambda_ {a} = p \lambda_ {d} \\ C _ {a} ^ {2} = p C _ {d} ^ {2} + 1 - p \\ \end{array}
 $$
 
-![](images/be9607925d5a5c5bfca560bd9aaf684e62e3215aa6afac66360cab9303916e77.jpg)
+$$
+\lambda (3) = 3 \text{ j/h}
+$$
 
 $$
-\begin{array}{l} \lambda (3) = 3 \mathrm {j / h} \\ \mathrm {C} _ {\mathrm {a}} ^ {2} (3) = 2 \\ C _ {d} ^ {2} (3) = (1 - 0. 8 ^ {2}) ^ {*} 2 + 0. 8 ^ {2 *} 1 = 1. 3 6 \\ \end{array}
+C _ {a} ^ {2} (3) = 2
+$$
+
+$$
+C _ {d} ^ {2} (3) = \left(1 - 0.8 ^ {2}\right) \cdot 2 + 0.8 ^ {2} \cdot 1 = 1.36
 $$
 
 $$
@@ -863,8 +965,6 @@ C _ {d} ^ {2} (G / G / 1) \approx \left(1 - u ^ {2}\right) C _ {a} ^ {2} + u ^ {
 $$
 
 Workstations 4 analysis: merging two input flows
-
-![](images/2a60150b56c9af53d258275a93e043cf3e4050ee9d14f206d64ae8f748be7aed.jpg)
 
 $$
 \lambda_ {a} = \sum_ {i = 1} ^ {n} \lambda_ {i} \quad C _ {a} ^ {2} = \sum_ {i = 1} ^ {n} \frac {\lambda_ {i}}{\lambda_ {a}} C _ {i} ^ {2}
@@ -875,25 +975,41 @@ $$
 $$
 
 $$
-\mathrm {C} _ {\mathrm {a}} ^ {2} (4) = 5 / 8 ^ {*} 1. 2 2 + 3 / 8 ^ {*} 1. 3 6 = 1. 2 7
+C _ {a} ^ {2} (4) = \frac{5}{8} \cdot 1.22 + \frac{3}{8} \cdot 1.36 = 1.27
 $$
 
 # General Network Approximation Model
 
-V To address a general factory network connection topology, the possibilities of external flows into any one of the workstations must be considered along with job branching for rework purposes,splitting of the output from a workstation to different next workstations, etc.
+To address a general factory network connection topology, the possibilities of external flows into any one of the workstations must be considered along with job branching for rework purposes,splitting of the output from a workstation to different next workstations, etc.
 
->Workstation inflows can come from a variety of sources, external as well as other workstations within the factory,and this is handled by the flow merging mechanism   
+> Workstation inflows can come from a variety of sources, external as well as other workstations within the factory,and this is handled by the flow merging mechanism   
 > Probabilistic branching of workstation outflow requires departure stream splitting mechanics
 
 Since there is no longer sequential flows, parameter dependencies are also not sequential so that equations relating the parameters will have to be solved simultaneously instead of sequentially
 
 # General Network Approximation Model
 
-![](images/133d38a4573756eb7629f1dedf3580b150abdc0449c4323c32057e16735309f4.jpg)
+### Diagram Description: Queueing Network with Feedback Loops
 
-V With a non-serial network,determining the arrival stream characteristics is more complicated than for the serial systems   
+This diagram illustrates a two-node queueing network characterized by probabilistic feedback loops. This structure is typically used to model rework, quality inspections, or iterative service processes.
+
+**1. Node 1 Flow:**
+*   Receives external arrivals at a rate of **$\gamma$**.
+*   Receives internal feedback (rework) from Node 2 with a probability of **$\beta$**.
+*   The total, effective arrival rate at Node 1 is denoted as **$\lambda_1$**.
+*   100% of the output from Node 1 flows directly into Node 2.
+
+**2. Node 2 Flow:**
+*   Receives the full departure stream from Node 1.
+*   Receives self-feedback (units returning immediately to the same node for reprocessing) with a probability of **$\alpha$**.
+*   The total, effective arrival rate at Node 2 is denoted as **$\lambda_2$**.
+
+**3. System Departure:**
+*   Units successfully exit the network from Node 2 with a probability of **$(1 - \alpha - \beta)$**. This ensures that the sum of all outbound routing probabilities from Node 2 equals 1. 
+
+> With a non-serial network,determining the arrival stream characteristics is more complicated than for the serial systems   
 > Since the flow rate into Workstation 1 is not known as yet, the inflow into Workstation 2 cannot be computed directly   
-V The resolution requires that all of the flow rates are computed simultaneously   
+> The resolution requires that all of the flow rates are computed simultaneously   
 The problem can be solved by means of a system of linear equations
 
 $$
@@ -907,7 +1023,7 @@ $$
 # General Network Approximation Model
 
 The parameters α ,β ,Y are all known data   
-V This linear system rearranged in terms of the unknowns on the left side of the equality is
+> This linear system rearranged in terms of the unknowns on the left side of the equality is
 
 $$
 \begin{array}{l} \lambda_ {1} - \beta \lambda_ {2} = \gamma , \\ - \lambda_ {1} + (1 - \alpha) \lambda_ {2} = 0. \\ \end{array}
@@ -915,21 +1031,19 @@ $$
 
 The solution to this system can be written in matrix form as
 
-$$
-\left( \begin{array}{c} \lambda_ {1} \\ \lambda_ {2} \end{array} \right) = \left( \begin{array}{c c} 1 & - \beta \\ - 1 & 1 - \alpha \end{array} \right) ^ {- 1} \left( \begin{array}{c} \gamma \\ 0 \end{array} \right)
-$$
+$$ \begin{pmatrix} \lambda_1 \\ \lambda_2 \end{pmatrix} = \begin{pmatrix} 1 & -\beta \\ -1 & 1-\alpha \end{pmatrix}^{-1} \begin{pmatrix} \gamma \\ 0 \end{pmatrix} $$
 
 # General Network Approximation Model
 
-V Consider a network consisting of workstations numbered from 1 to n   
-V The switching rule for the network is defined by an nxn matrix P= (pij), where pi,j is the probability that an arbitrary job leaving Workstation i will be routed directly to Workstation j   
-The matrix Pis called the routing matrix for the network   
-Row iof the routing matrix consists of the probabilities relating to the splitting of the outflow from Workstation iinto the various resultant successor Workstations j   
-V The jth column of the matrix represents the probabilities that jobs leaving the various workstations go to Workstation j
+> Consider a network consisting of workstations numbered from 1 to n.
+> The switching rule for the network is defined by an nxn matrix P= (pij), where pi,j is the probability that an arbitrary job leaving Workstation i will be routed directly to Workstation j.
+> The matrix P is called the routing matrix for the network.
+> Row iof the routing matrix consists of the probabilities relating to the splitting of the outflow from Workstation iinto the various resultant successor Workstations j.
+> The jth column of the matrix represents the probabilities that jobs leaving the various workstations go to Workstation j
 
 # General Network Approximation Model
 
-Define γi as the external inflow rate and Xias the total inflow rate into Workstation i   
+Define γi as the external inflow rate and λi as the total inflow rate into Workstation i   
 The total rate into Workstation imust satisfy the following equation:
 
 $$
@@ -944,16 +1058,16 @@ $$
 
 # General Network Approximation Model
 
-V Consider a general network of n workstations with switching rule defined by the routing matrix P and assume that the sum of at least one row of P is strictly less than one (i.e., jobs exit the network from at least one workstation)   
-> Let Y = (Y1，· · · ,Yn) denote a vector consisting of the mean arrival rate of jobs from an external source to the workstations.   
-> Let λ= (^1，· · ·,>n) be the unknown vector denoting mean arrival rates of all jobs to the workstations   
+Consider a general network of n workstations with switching rule defined by the routing matrix P and assume that the sum of at least one row of P is strictly less than one (i.e., jobs exit the network from at least one workstation)   
+> Let γ = (γ1，· · · ,γn) denote a vector consisting of the mean arrival rate of jobs from an external source to the workstations.   
+> Let λ= (λ1，· · ·,λn) be the unknown vector denoting mean arrival rates of all jobs to the workstations   
 The vector λ is given by
 
 $$
 \boldsymbol {\lambda} = \left(I - P ^ {T}\right) ^ {- 1} \boldsymbol {\gamma}
 $$
 
-where lis an nxn identity matrix.
+where I is an nxn identity matrix.
 
 # Example
 
@@ -961,15 +1075,40 @@ Consider the factory network of workstations depicted in the figure,with the not
 The system of equations defining the workstation total arrival rates are
 
 $$
-\begin{array}{l} \lambda_ {1} = 5 + 0. 1 0 \lambda_ {2} + 0. 0 5 \lambda_ {3} \\ \lambda_ {2} = 0 + 0. 7 5 \lambda_ {1} \\ \lambda_ {3} = 0 + 0. 2 5 \lambda_ {1} + 0. 9 0 \lambda_ {2} \\ \end{array}
+\begin{aligned}
+\lambda_1 &= 5 + 0.10\lambda_2 + 0.05\lambda_3 \\
+\lambda_2 &= 0 + 0.75\lambda_1 \\
+\lambda_3 &= 0 + 0.25\lambda_1 + 0.90\lambda_2
+\end{aligned}
 $$
 
-![](images/5588825e6f2e0c43c26675fba64a2175c5f0dd9b78b27c8b161ec71bb55ae037.jpg)
+### Diagram Description: Three-Node Queueing Network with Feedback
+
+This diagram illustrates a complex open queueing network consisting of three interconnected workstations (nodes), featuring probabilistic routing and multiple feedback loops.
+
+**1. External Input:**
+*   External arrivals enter the system solely at **Node 1** with a rate of **$\gamma = 5$**.
+
+**2. Routing from Node 1:**
+*   To Node 2: **$3/4$** (75%)
+*   To Node 3: **$1/4$** (25%)
+
+**3. Routing from Node 2:**
+*   To Node 3: **$9/10$** (90%)
+*   Feedback to Node 1: **$1/10$** (10%)
+
+**4. Routing from Node 3:**
+*   System Departure: **$19/20$** (95% of the flow successfully exits the system).
+*   Feedback to Node 1: **$1/20$** (5% of the flow requires rework and is sent back to the first node).
 
 This system rearranged is
 
 $$
-\begin{array}{l} 1 \lambda_ {1} - 0. 1 0 \lambda_ {2} - 0. 0 5 \lambda_ {3} = 5 \\ - 0. 7 5 \lambda_ {1} + 1 \lambda_ {2} + 0 \lambda_ {3} = 0 \\ - 0. 2 5 \lambda_ {1} - 0. 9 0 \lambda_ {2} + 1 \lambda_ {3} = 0, \\ \end{array}
+\begin{aligned}
+1\lambda_1 - 0.10\lambda_2 - 0.05\lambda_3 &= 5 \\
+-0.75\lambda_1 + 1\lambda_2 + 0\lambda_3 &= 0 \\
+-0.25\lambda_1 - 0.90\lambda_2 + 1\lambda_3 &= 0
+\end{aligned}
 $$
 
 which has the unique solution
@@ -979,32 +1118,77 @@ $$
 $$
 
 Thus, the first workstation receives 5.690 jobs per hour; 5 of these from the external source and the remaining 0.690 jobs from Workstations 2 and 3   
-V The second workstation receives 4.267 jobs per hour, all of these from Workstation 1   
-V The third workstation receives a total of 5.263 jobs per unit time as the combined inflow from Workstations 1 and 2
+> The second workstation receives 4.267 jobs per hour, all of these from Workstation 1   
+> The third workstation receives a total of 5.263 jobs per unit time as the combined inflow from Workstations 1 and 2
 
 # Exercises
 
-V Compute the mean flow rates for the systems ilustrated in the two figures
+> Compute the mean flow rates for the systems ilustrated in the two figures
 
-![](images/385ed88d18af99e5f6c13bd3f6e56386eb071137aa2f335e0b6e2442dd50e6e0.jpg)
+### Figure 1 - Diagram Description: Three-Node Feed-Forward Queueing Network
 
-![](images/fb0c7bd24714f695345617c7d82498a66677e5dcc4179f822c4f63b0bff307c6.jpg)
+This diagram illustrates a straightforward, three-node open queueing network characterized by a feed-forward flow, meaning there are no rework or feedback loops.
+
+**1. External Input:**
+*   External arrivals enter the system exclusively at **Node 1** with an incoming rate of **10**.
+
+**2. Routing from Node 1 (Splitting):**
+*   The departure stream from Node 1 is probabilistically split into two paths:
+    *   Routed to Node 2: **3/4** (75% of the flow).
+    *   Routed directly to Node 3: **1/4** (25% of the flow).
+
+**3. Routing from Node 2:**
+*   A single arrow connects Node 2 to Node 3, indicating that all processed units from Node 2 are routed entirely to **Node 3**.
+
+**4. System Departure (Node 3):**
+*   Node 3 acts as the final collection and processing stage for both streams (the direct flow from Node 1 and the processed flow from Node 2). The arrow pointing outward from Node 3 indicates that all units successfully exit the system from this point.
+
+### Figure 2 - Diagram Description: Three-Node Queueing Network with Multiple Feedback Loops
+
+This diagram illustrates a complex three-node open queueing network featuring probabilistic routing and two distinct feedback loops returning to the first node.
+
+**1. External Input:**
+*   External arrivals enter the system exclusively at **Node 1** with an incoming rate of **10**.
+
+**2. Routing from Node 1:**
+*   To Node 2: **3/4**
+*   To Node 3: **1/4**
+
+**3. Routing from Node 2:**
+*   To Node 3: **2/3**
+*   Feedback to Node 1: **1/3** (rework/loop back to the start).
+
+**4. Routing from Node 3:**
+*   System Departure: **4/5** (units successfully exiting the system).
+*   Feedback to Node 1: **1/5** (rework/loop back to the start).
 
 # Solution (1)
 
-![](images/8e19e8ff3762f2e1473009fb97bc8016bed65593ef77d90a9c4ba843039f626c.jpg)
-
-![](images/ce608698cc17f63269674293c07f52f0aed1f8c3a609c94d04c69d595a85b9c9.jpg)
+| | | |
+|---|---|---|
+| 0 | 3/4 | 1/4 |
+| 0 | 0 | 1 |
+| 0 | 0 | 0 |
 
 $$
-\begin{array}{l} \lambda_ {1} = 1 0 \\ \lambda_ {2} = \frac {3}{4} \cdot \lambda_ {1} = 7, 5 \\ \lambda_ {3} = \lambda_ {2} + \frac {1}{4} \cdot \lambda_ {1} = 1 0 \\ \end{array}
+\lambda_1 = 10
+$$
+
+$$
+\lambda_2 = \frac{3}{4} \cdot \lambda_1 = 7.5
+$$
+
+$$
+\lambda_3 = \lambda_2 + \frac{1}{4} \cdot \lambda_1 = 10
 $$
 
 # Solution (2)
 
-![](images/f4b333d2fb9327a37b727f5b826b053698e3bdbdd041265a656e9a403ea0d3bd.jpg)
-
-![](images/2f46c7f319ac44edd01fef403738d4aebd31ed0e2a7cead1a8d1182806baae95.jpg)
+| | | |
+|---|---|---|
+| 0 | 3/4 | 1/4 |
+| 1/3 | 0 | 2/3 |
+| 1/5 | 0 | 0 |
 
 $$
 \lambda_ {1} = 1 0 + \frac {1}{3} \cdot \lambda_ {2} + \frac {1}{5} \cdot \lambda_ {3} = 1 6. 6 7
@@ -1041,25 +1225,38 @@ $$
 
 # Exercise
 
-Y Analyze the network reported in the figure and find the arrival parameters at all the workstations
+> Analyze the network reported in the figure and find the arrival parameters at all the workstations
 
-![](images/5051d8b09e45c054f65559c92a882e6a7785e8ffc24fac5cf00f626c15b1a9ee.jpg)
+### Diagram Description: Three-Node Network with Superposition and Splitting
+
+This diagram illustrates an open, feed-forward queueing network with three nodes. It demonstrates both the splitting of a departure stream and the merging (superposition) of multiple arrival streams.
+
+**1. Node 1:**
+*   **External Arrivals:** Rate $\gamma_1 = 3 \text{ j/h}$, Variability $C_a^2(0,1) = 1$.
+*   **Workstation:** Utilization $u_1 = 0.7$, Service Variability $C_s^2(1) = 1$.
+*   **Routing:** The departure stream is split equally, with $0.5$ (50%) going to Node 2 and $0.5$ (50%) going directly to Node 3.
+
+**2. Node 2:**
+*   **External Arrivals:** Rate $\gamma_2 = 2 \text{ j/h}$, Variability $C_a^2(0,2) = 1$.
+*   **Workstation:** Utilization $u_2 = 0.9$, Service Variability $C_s^2(2) = 1$.
+*   **Routing:** All processed units flow entirely to Node 3.
+
+**3. Node 3:**
+*   Acts as the final destination node, merging the direct flow from Node 1 and the processed flow from Node 2.
 
 # Solution
 
 Routing matrix
 
-![](images/93510986816d6bb6a6673748457a74ab34d1b59e663df1f99f6330eb4c5b89da.jpg)
-
-![](images/0b1f7ba366d1379d8a17670314ea7ce7c91fa57a86c87b08bbfd3db8dace19ba.jpg)
+| | | |
+|---|---|---|
+| 0 | 0.5 | 0.5 |
+| 0 | 0 | 1 |
+| 0 | 0 | 0 |
 
 # Solution
 
 Workstation 1
-
-![](images/1d22d91f3ed9fed936c11b8bcc002a0495d850d43b66a0836470402cac51aa61.jpg)
-
-![](images/5ddd04e0b39e2ae5047498a59d887a419583f773c18593881a1ce5df818cbd15.jpg)
 
 $$
 \lambda_ {1} = \gamma_ {1} = 3 \mathrm {j / h}
@@ -1081,33 +1278,13 @@ $$
 C _ {a} ^ {2} (j) = \frac {\gamma_ {j}}{\lambda_ {j}} C _ {a} ^ {2} (0, j) + \sum_ {k = 1} ^ {n} \frac {\lambda_ {k} p _ {k , j}}{\lambda_ {j}} \left(p _ {k, j} C _ {d} ^ {2} (k) + 1 - p _ {k, j}\right)
 $$
 
-# Solution
-
-# Workstation 2
-
-![](images/e19acd904091048d3a5dfc260b7eb203ba7c4a035e383db673d1377fc44c6e9a.jpg)
-
-![](images/7b88c2bf1d6590a0ccb7804f50d7ca7c1936eb3e21e188a4a760654731122c1e.jpg)
+Workstation 2
 
 $$
-\lambda_ {i} = \gamma_ {i} + \sum_ {k = 1} ^ {n} p _ {k i} \lambda_ {k}, \text {f o r} i = 1, \dots , n
+\lambda _ {2} = \gamma _ {2} + 0.5 \cdot \lambda _ {1} = 2 + 0.5 \cdot 3 = 3.5 \text{ j/h}
 $$
 
-$$
-C _ {a} ^ {2} (j) = \frac {\gamma_ {j}}{\lambda_ {j}} C _ {a} ^ {2} (0, j) + \sum_ {k = 1} ^ {n} \frac {\lambda_ {k} p _ {k , j}}{\lambda_ {j}} \left(p _ {k, j} C _ {d} ^ {2} (k) + 1 - p _ {k, j}\right)
-$$
-
-$$
-\lambda_ {2} = \gamma_ {2} + 0. 5 ^ {*} \lambda_ {1} = 2 + 0. 5 ^ {*} 3 = 3. 5 \mathrm {j / h}
-$$
-
-$$
-\mathsf {C} _ {\mathsf {a}} ^ {2} (2) = \gamma_ {2} / \lambda_ {2} * \mathsf {C} _ {\mathsf {a}} ^ {2} (0, 2) + \lambda_ {1} \mathsf {p} _ {1 2} / \lambda_ {2} (\mathsf {p} _ {1 2} \mathsf {C} _ {\mathsf {d}} ^ {2} (1) + 1 - \mathsf {p} _ {1 2}) =
-$$
-
-$$
-2 / 3. 5 ^ {\star} 1 + 3 ^ {\star} 0. 5 / 3. 5 ^ {\star} (0. 5 ^ {\star} 1 + 1 - 0. 5) = 1
-$$
+$$C _ {a} ^ {2} (2) = \frac{\gamma _ {2}}{\lambda _ {2}} C _ {a} ^ {2} (0,2) + \frac{\lambda _ {1} p _ {12}}{\lambda _ {2}} \left(p _ {12} C _ {d} ^ {2} (1) + 1 - p _ {12}\right) = \frac{2}{3.5} \cdot 1 + \frac{3 \cdot 0.5}{3.5} \cdot (0.5 \cdot 1 + 1 - 0.5) = 1$$
 
 $$
 \mathsf {C} _ {\mathrm {d}} ^ {2} (2) = 1
@@ -1117,44 +1294,57 @@ $$
 
 Workstation 3
 
-![](images/372d686d50e3ff320f049692954c696696f0add2d55c95c7a1a2cafb4bf24d2a.jpg)
-
-![](images/55e0b48e2c3e511555519a21a3fd3b4924adaf705baa176d9c0492882d90ac6c.jpg)
-
 $$
-\lambda_ {i} = \gamma_ {i} + \sum_ {k = 1} ^ {n} p _ {k i} \lambda_ {k}, \text {f o r} i = 1, \dots , n
+\lambda _ {3} = 0.5 \cdot \lambda _ {1} + \lambda _ {2} = 0.5 \cdot 3 + 3.5 = 5 \text{ j/h}
 $$
 
 $$
-C _ {a} ^ {2} (j) = \frac {\gamma_ {j}}{\lambda_ {j}} C _ {a} ^ {2} (0, j) + \sum_ {k = 1} ^ {n} \frac {\lambda_ {k} p _ {k , j}}{\lambda_ {j}} \left(p _ {k, j} C _ {d} ^ {2} (k) + 1 - p _ {k, j}\right)
-$$
-
-$$
-\lambda_ {3} = 0. 5 ^ {*} \lambda_ {1} + \lambda_ {2} = 0. 5 ^ {*} 3 + 3. 5 = 5 \mathrm {j / h}
-$$
-
-$$
-\begin{array}{l} \mathsf {C} _ {\mathrm {a}} ^ {2} (3) = \lambda_ {1} \mathsf {p} _ {1 3} / \lambda_ {3} (\mathsf {p} _ {1 3} ^ {*} \mathsf {C} _ {\mathrm {d}} ^ {2} (1) + 1 - \mathsf {p} _ {1 3}) + \lambda_ {2} \mathsf {p} _ {2 3} / \lambda_ {3} (\mathsf {p} _ {2 3} ^ {*} \mathsf {C} _ {\mathrm {d}} ^ {2} (2) + 1 - \mathsf {p} _ {2 3}) = \\ 3 ^ {\star} 0. 5 / 5 ^ {\star} (0. 5 ^ {\star} 1 + 1 - 0. 5) + 3. 5 / 5 ^ {\star} 1 = 1 \\ \end{array}
+C _ {a} ^ {2} (3) = \frac{\lambda _ {1} p _ {13}}{\lambda _ {3}} \left(p _ {13} C _ {d} ^ {2} (1) + 1 - p _ {13}\right) + \frac{\lambda _ {2} p _ {23}}{\lambda _ {3}} \left(p _ {23} C _ {d} ^ {2} (2) + 1 - p _ {23}\right) = \frac{3 \cdot 0.5}{5} (0.5 \cdot 1 + 1 - 0.5) + \frac{3.5}{5} \cdot 1 = 1
 $$
 
 # General Network Approximation Model
 
-To analyze a general network, the mean arrival rate into each workstation is first determined   
+To analyze a general network, the mean arrival rate into each workstation is first determined 
 Then workstation utilization factors are calculated since these depend on the just computed arrival rates   
 A Finally the squared coefficients of variation for the arrival streams are computed either by a successive substitution iteration or by finding the inverse matrix   
-Y At this point, the network can be decomposed and each workstation treated individually   
-> Finally, these results are combined to estimate the performance characteristics of the system as a whole
+At this point, the network can be decomposed and each workstation treated individually   
+Finally, these results are combined to estimate the performance characteristics of the system as a whole
 
 # Example
 
-V Consider a factory that consists entirely of single-server workstations with service time data for each workstation given in the Table   
-V The arrivals from an external source enter into the factory at the first workstation, and the arivals are exponentially distributed with a mean rate of 5 jobs per hour   
+> Consider a factory that consists entirely of single-server workstations with service time data for each workstation given in the Table   
+> The arrivals from an external source enter into the factory at the first workstation, and the arivals are exponentially distributed with a mean rate of 5 jobs per hour   
 The topology of the factory is shown in the figure   
-V Find the mean cycle time for jobs, the factory inventory levels,and the workloads of each workstation
+> Find the mean cycle time for jobs, the factory inventory levels,and the workloads of each workstation
 
-![](images/8b9b801c31ffcf23bd9752378ca91987cca82c9566f8526d16309a850d826f52.jpg)
+| Workstation $i$ | $E[T_s(i)]$ | $C_s^2(i)$ |
+| :---: | :---: | :---: |
+| 1 | 7.80 min | 1.0355 |
+| 2 | 7.80 min | 1.7751 |
+| 3 | 9.60 min | 0.3906 |
+| 4 | 3.84 min | 2.4414 |
 
-![](images/4b82750e4e3fc54cc1ba5bb5523c5861ec6cc1fd46e49b3a8058ba0994d2b776.jpg)
+### Diagram Description: Four-Node Network with Complex Feedback Routing
+
+This diagram illustrates an advanced open queueing network comprising four nodes, characterized by parallel processing paths and a complex feedback distribution from the final node.
+
+**1. External Input:**
+*   External arrivals enter the system exclusively at **Node 1** with an incoming rate of **5**.
+
+**2. Routing from Node 1 (Splitting):**
+*   To Node 2: **2/3**
+*   To Node 3: **1/3**
+
+**3. Routing from Nodes 2 and 3 (Merging):**
+*   All processed units from **Node 2** flow directly into **Node 4** (implicit probability of 1).
+*   All processed units from **Node 3** flow directly into **Node 4** (implicit probability of 1).
+
+**4. Routing from Node 4 (Feedback & Departure):**
+*   Node 4 acts as an inspection/rework dispatcher. The flows are distributed as follows:
+    *   Feedback to Node 2: **2/10**
+    *   Feedback to Node 3: **3/10**
+    *   Feedback to Node 1: **1/10** (long loop back to the start).
+    *   System Departure: **4/10** (implicit, calculated as $1 - 2/10 - 3/10 - 1/10$).
 
 # Step 1: Workstation Arrival Rates
 
@@ -1184,7 +1374,12 @@ $$
 
 The workload to each workstation is the mean job arrival rate multiplied by the mean processing time per job which then equals the utilization factor
 
-![](images/116a7057d0c92fc661e30e0074ddfedabc27e0384c049dad602c1beac661e80b.jpg)
+| Workstation $i$ | $\lambda_i$ | $E[T_s(i)]$ | $u_i$ | $u_i^2$ | $1 - u_i^2$ |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| 1 | 6.250/hr | 0.130 hr | 0.8125 | 0.6602 | 0.3398 |
+| 2 | 6.667/hr | 0.130 hr | 0.8667 | 0.7512 | 0.2488 |
+| 3 | 5.833/hr | 0.160 hr | 0.9333 | 0.8710 | 0.1290 |
+| 4 | 12.50/hr | 0.064 hr | 0.8000 | 0.6400 | 0.3600 |
 
 # Step 3: Squared Coefficients of Variation
 
@@ -1287,11 +1482,38 @@ The arrivals from an external source have a mean rate of 10 jobs per hour and a 
 The topology is shown in the figure   
 > Compute the system performance measures of throughput, cycle time and work in process for this network.
 
-![](images/8ab38ce6b194795c116457a2e6c2673e30ab49cd2684f38562be700c53bb2767.jpg)
+| Workstation $i$ | $E[T_s(i)]$ | $C_s^2(i)$ |
+| :---: | :---: | :---: |
+| 1 | 0.086 | 1.3521 |
+| 2 | 0.110 | 0.8264 |
+| 3 | 0.080 | 1.5625 |
 
-![](images/8834c400717a8af8b6194783e5d6787f219a1737a035c4be974143ca7377698e.jpg)
+### Diagram Description: Three-Node Feed-Forward Queueing Network
 
-![](images/4288c53231370f9c30ee49c79fc4658958bb8f8cfd5303ba8ea21bbf5f415649.jpg)
+This diagram illustrates an open queueing network with three workstations arranged in a feed-forward configuration (no feedback loops).
+
+**1. External Input:**
+*   External arrivals enter the system at **Node 1** with a rate of **10**.
+
+**2. Routing from Node 1 (Splitting):**
+*   To Node 2: **3/4** (75% of the total flow).
+*   To Node 3: **1/4** (25% of the total flow).
+
+**3. Routing from Node 2:**
+*   All units processed at Node 2 flow directly into **Node 3** (implicit probability of 1).
+
+**4. System Departure:**
+*   All units exit the system after being processed at **Node 3**.
+
+# Solution
+
+$P$:
+
+| | | |
+|:---:|:---:|:---:|
+| 0 | 3/4 | 1/4 |
+| 0 | 0 | 1 |
+| 0 | 0 | 0 |
 
 $$
 \lambda_ {1} = 1 0
@@ -1352,14 +1574,6 @@ $$
 $$
 \mathrm {W I P} _ {3} = \mathrm {C T} _ {3} \cdot \lambda_ {3} = 4. 9 1
 $$
-
-![](images/dcdaf29cd1474bb80f9ce9369617f106a0fd7af5fb1c0381b08ec092bbce63f2.jpg)
-
-$$
-P =
-$$
-
-![](images/c3628f0b2a56f5c6cedd95aae2817890c10799237ad1d2fe34290b92d5d94490.jpg)
 
 $$
 \mathbf {W I P} _ {T O T} = 1 8. 2 5 4 \mathrm {j}

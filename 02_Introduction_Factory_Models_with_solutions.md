@@ -34,7 +34,21 @@ Question to be answered: whether or not the model yields accurate enough results
 >modeling the order creation or completed job delivery systems is not within the scope of our analysis   
 > Arriving job is a physical entity to be processed through the various processing steps or an order to begin the processing of raw material into a newly manufactured entity
 
-![](images/2971f1b3aa5db439ac8f94cfceb2e03feb9138518cd5fa1bb4b56e0d6d113bd0.jpg)
+### Visual Diagram: Modeled System Boundary
+- **Overall Layout**: A schematic diagram showing input, a central process, and output.
+- **Text Label**: "Modeled System" is positioned at the top, outside the curved boundary.
+
+#### 1. Input
+- **Visual Element**: An arrow originating from the left, pointing horizontally to the right.
+- **Text Label**: "Orders" is positioned at the start of the arrow.
+
+#### 2. Central Component
+- **Visual Element**: A rectangular box located in the center of the diagram. The input arrow terminates at its left edge.
+- **Text Label**: "Factory" is written inside the box.
+
+#### 3. Output
+- **Visual Element**: An arrow originating from the right edge of the central box, pointing horizontally to the right.
+- **Text Label**: "Completed Jobs" is positioned above the output arrow.
 
 # Notations and definitions
 
@@ -47,8 +61,6 @@ V Jobs arrive at the factory either individually or in batches based on some dis
 
 > Collection of one or more identical machines or resources (i.e. machines which perform the same function)
 
-![](images/2baad854133f5564b1c305bcfdd84d29481a24afdab6d5247e1fa5bdbf6d1f9c.jpg)
-
 # Routing
 
 Sequence of processing steps for a job   
@@ -56,8 +68,19 @@ Sequence of processing steps for a job
 
 different job types are jobs with different routings
 
-![](images/283272d24052ad399b4b1c600a8b394c3529f88fda3258178bc43ee5dee56f7b.jpg)  
-Routing
+### Visual Diagram: Factory Routing and Job Flow
+- **Component Type**: Network Flow Diagram.
+- **Logic**: Illustrates how jobs travel through a complex manufacturing system via specific sequences of workstations, defining their routing[cite: 1].
+
+#### 1. System Components
+- **Workstations (WS)**: The square boxes labeled "WS" represent the machines or resources where processing operations occur.
+- **Jobs and Orders**: Cylindrical icons represent physical entities. The cluster on the left is labeled "Job" (representing incoming work), while the final entity on the far right is labeled "Order".
+- **Buffers**: Intermediate cylindrical icons between some workstations indicate where jobs might wait in a queue before the next processing step.
+
+#### 2. Routing Paths
+- **Material Flow**: Magenta arrows connect the workstations, mapping the physical flow of materials from one station to the next.
+- **Highlighted Sequences**: Distinct colored outlines (orange, green, and pink) group specific sequences of workstations together. The label "**Routing**" points directly to these highlighted paths.
+- **Functional Meaning**: The diagram visually defines a routing as the exact sequence of processing steps a specific job must follow from entry to completion[cite: 1]. It also shows that a factory can have branching and converging paths; jobs that share the exact same highlighted path belong to the same "job type," while different paths represent different job types[cite: 1].
 
 # Performance measures
 
@@ -122,7 +145,22 @@ Time dependent measures such as CTs(t) and WIPs(t) are very difficult to develop
 Define Tai as the arrival time of the in job,and the function A(t) for t ≥ O as the total number of arrivals during the timeinterval [0, f]   
 > Define Tai as the departure time of the injob,and the function D(t) for t ≥Oas the total number of departures during the interval [0, f]
 
-![](images/cae86e2d3f0f2da4151d585ce0454d24f8269fc4c9011ce97e7644525d8efbdc.jpg)
+### Visual Diagram: Factory Analysis - Arrival and Departure Streams
+- **Component Type**: Cumulative flow diagram.
+- **Logic**: Illustrates how system performance measures like Cycle Time (CT) and Work-in-Process (WIP) can be estimated by tracking the cumulative number of jobs entering and leaving the system over time.
+
+#### 1. Axes
+- **Y-axis**: "Cumulative number of jobs" representing the total running count of items.
+- **X-axis**: "time" representing the elapsed observation period.
+
+#### 2. Step Curves
+- **Arrivals ($A(t)$)**: The upper step function. It represents the total number of arrivals during the time interval [0, t]. Each vertical jump indicates the exact arrival time ($T_{ai}$) of a new job into the system.
+- **Departures ($D(t)$)**: The lower step function. It represents the total number of departures during the interval [0, t]. Each vertical jump indicates the exact departure time ($T_{di}$) of a completed job leaving the system.
+
+#### 3. Functional Meaning and Metrics
+- **WIP (Vertical Difference)**: At any specific point in time $t$, the vertical distance between the arrivals curve and the departures curve ($A(t) - D(t)$) equals the exact number of jobs currently residing inside the system ($N(t)$).
+- **Cycle Time (Horizontal Difference)**: The horizontal distance between the two curves for a specific job index $i$ represents that job's cycle time, calculated as Departure Time minus Arrival Time ($T_{di} - T_{ai}$).
+- **System Averages**: The total area between these two curves over a given time interval represents the integral of the number of jobs in the system. This area is the mathematical foundation used to calculate the time-averaged WIP and average Cycle Time, ultimately leading to Little's Law ($WIP = \lambda \times CT$).
 
 # Factory analysis
 
@@ -196,8 +234,6 @@ $$
 > The formula estimates mean values, but the actual underlying random variables of the systems can be quite variable   
 > In most single workstation system models, the average number in the system,WIP, can be easily obtained. However, the behavior of the random variable representing the number in the system at any one point in time can be highly variable
 
-![](images/7e0392c0b1fc29ea66b1a75b6a411923877421c42cb5bfe7454d39b21b79e4db.jpg)
-
 # Factory analysis
 
 Term steady-state implies that the mean reaches a limiting value and thus ceases to change with respect to time
@@ -225,7 +261,21 @@ rate =>= 4 pcs/hr
 E[Ts]= 14.5 min = 14.5 14.5= 0.24 hrs   
 CTq =？
 
-![](images/0c73b0df2393b079c9b2abb1fb202fa115ea751ec008e6046ecf62a602a07152.jpg)
+### Visual Diagram: Workstation Input/Output Balance
+- **Component Type**: Basic system block diagram.
+- **Logic**: Illustrates the steady-state assumption for a single workstation where the arrival rate equals the departure rate.
+
+#### 1. Input Flow
+- **Visual Element**: An arrow pointing from left to right towards the central block.
+- **Text Label**: "λ" (lambda), representing the arrival rate or input rate of jobs into the system.
+
+#### 2. Central Component
+- **Visual Element**: A light blue rectangular box.
+- **Text Label**: "WS", representing the Workstation.
+
+#### 3. Output Flow
+- **Visual Element**: An arrow pointing from left to right away from the central block.
+- **Text Label**: "TH = λ", indicating that the system's Throughput (TH) is equal to its input arrival rate (λ).
 
 # Exercise 1 Solution
 
@@ -251,7 +301,6 @@ $$
 C T _ {q} = C T - E [ T _ {S} ] = 6. 2 5 - 0. 2 4 = 6. 0 1 h r s
 $$
 
-![](images/da39955c67c44a9c78ccb7ff4f430907c43f5a5f83ab4ebc2f2c6f85eafaaa4d.jpg)
 
 # Exercise 2
 
@@ -264,7 +313,29 @@ rate(𝜆) = 10 pcs/day = 24 pcs/hr = 0.417 pcs/hr
 CT1 = 4.2 hrs   
 CT2 = 5.3 hrs
 
-![](images/d9a790cad50840919fe78b68c2e73e922e1730230f961e78d0597fc2d0c19899.jpg)
+### Visual Diagram: Two Workstations in Series
+- **Component Type**: Basic system flow diagram for a serial production line.
+- **Logic**: Illustrates a sequential manufacturing process where jobs must pass through multiple processing steps in a specific order.
+
+#### 1. Initial Input Flow
+- **Visual Element**: An arrow pointing from left to right towards the first block.
+- **Functional Meaning**: Represents the arrival of raw materials or incoming jobs entering the system.
+
+#### 2. First Processing Stage
+- **Visual Element**: The first light blue rectangular box.
+- **Text Label**: "WS 1" (Workstation 1).
+
+#### 3. Intermediate Flow
+- **Visual Element**: An arrow connecting WS 1 to WS 2.
+- **Functional Meaning**: Represents the physical transfer of semi-finished goods. The output (Throughput) of the first workstation serves as the direct input for the second workstation.
+
+#### 4. Second Processing Stage
+- **Visual Element**: The second light blue rectangular box.
+- **Text Label**: "WS 2" (Workstation 2).
+
+#### 5. Final Output Flow
+- **Visual Element**: An arrow pointing from left to right away from WS 2.
+- **Functional Meaning**: Represents the completed jobs leaving the system after finishing all required operations across both workstations.
 
 # Exercise 2 Solution
 
@@ -288,11 +359,20 @@ Constant WIPs
 
 >when a job has completed its four processing steps, it is immediately removed from thefactory and a new job is started at Machine 1 to keep the total factory WIPs at the specified level
 
-![](images/3400c2b2855652fffd982b5f09896944915085c48cfb99904b1882be9a5cdc25.jpg)
-
 # Penny Fab model
 
-![](images/b245ca59c34eba7aaffeae1fef0e84a1156a8e3e71c7e7b41cb5edfca038d8b7.jpg)
+### Visual Diagram: Penny Fab Model (Constant WIP System)
+- **Component Type**: Production line schematic.
+- **Logic**: Illustrates a simplified factory model used to study the relationship between Cycle Time, Throughput, and Work-In-Process (WIP).
+
+#### 1. Workstations in Series
+- **Visual Elements**: Four square boxes representing sequential processing steps performed on separate machines.
+- **Processing Times**: The numbers inside the boxes (1, 2, 1, 1) represent the constant processing time in hours for each machine.
+- **Bottleneck**: The second machine is the bottleneck of this line, as it has the longest processing time (2 hours). This strictly limits the maximum throughput of the entire factory to 0.5 jobs/hour.
+
+#### 2. The Constant WIP Loop (CONWIP)
+- **Visual Element**: A long feedback arrow connecting the "out" point back to the beginning of the line as a "new" entry.
+- **Functional Meaning**: This loop visually represents the **Constant WIP** policy. It dictates that a new job is allowed to enter Machine 1 *only* when a completed job immediately exits the factory. This mechanical rule ensures that the total number of jobs currently active inside the system (the WIP level) remains strictly fixed at a specific level decided by management.
 
 Constant WIPs level fixed at 10 jobs decided by the Management   
 > Result a th= O.5 job/h (one finished job every two hours on the average is produced)   
@@ -300,8 +380,6 @@ V Equal to the maximum throughput rate for this factory because its slowest proc
 > Jobs can be completed no faster than this single machine completes its own processing
 
 # Penny Fab model
-
-![](images/f9c00f558c025117cc6967a662e345ee16a2a078012c5248eb29a6d181142586.jpg)
 
 Y Management pleased with the throughput of the factory since it is at its maximum capacity, but concerned with the cycle time (20 hours per job)   
 Very high since it only takes 5 hours of processing to complete each job   
@@ -312,15 +390,11 @@ Y Management is worried about the ability to keep customers when the industry on
 
 # Penny Fab model
 
-![](images/bbeb736bce1eb22d5806987556db195438b4d672c838346a34f89e55a48a9e63.jpg)
-
 Y Possible solution to address the cycle time problem: purchase a 25% faster machine (1.5 hours) for processing step two   
 > This purchase would be made expressly for the purpose of reducing the x-factor for the factory to be more in line with the industry average   
 The company selling the machine says that this investment will bring the x-factor down to 3.33 and the additional throughput of 0.166 units per hour would pay for the cost of the new machine in three years
 
 # Penny Fab model
-
-![](images/3469c3abc0824041182ee439b3284bca93b6624e4d4c3bef3e78dc65a4c4353a.jpg)
 
 V Management decided that investment is not worthwhile just based on increased throughput   
 V Funds needed to buy the machine are needed for other aspects of the company (e.g., research and development)   
@@ -328,8 +402,6 @@ V Funds needed to buy the machine are needed for other aspects of the company (e
 First activity to devise a method of predicting the long-term factory performance measures of cycle time and throughput
 
 # Penny Fab model
-
-![](images/536a4385c5aaad48dcab866174d3142b1b0aba2158b790bfa7677aedf8f94f0f.jpg)
 
 Hand simulation procedure of the factory flow   
 V Beginning: 10 jobs al placed at Machine 1, then hourly updates to each job's status   
@@ -342,8 +414,6 @@ All the job cycle times had identical values after the system reached the cyclic
 
 # Penny Fab model
 
-![](images/504d53e7f06bc92e9b05c96ee3a1a3cc340b7375d99e39d0066d475b9052bf25.jpg)
-
 Factory simulation with WIP = 10 for one 24-hour day   
 Status (X,Y)
 
@@ -352,11 +422,24 @@ Y: number of hours already completed for the job in processing
 
 After hour 15 the factory status repeats every two hours (factory status at the start of hours 15, 17, 19, 21, etc. are identical)
 
-![](images/8c176d4b779f78337236e85ec3eb32b4f613b5e3e53bfcd7ba5b27d92a7d02d2.jpg)
+### Visual Diagram: Factory Simulation Table
+- **Component Type**: Data table (Hourly simulation).
+- **Logic**: Shows the evolution of the numerical state of 4 workstations and the cumulative production over 24 time intervals.
+
+#### 1. Column Structure
+- **Time**: A sequential timeline from hour 0 to 24.
+- **WS #1, WS #2, WS #3, WS #4**: The four workstations. The data within them is formatted as pairs of numbers in parentheses, for example, `(10,0)` or `(3,1)`. *(Note from previous slides: this represents `(Jobs at WS, Hours already completed)`)*.
+- **Cum. Thru.** (Cumulative Throughput): An incremental counter that starts at 0 and ends at 10.
+
+#### 2. Data Trends (Direct Observations)
+- **Initial State (Time 0)**: The entire workload of 10 jobs is located at WS #1, shown as `(10,0)`. All other stations show `(0,0)` and the cumulative production is 0.
+- **First Output**: The "Cum. Thru." counter registers its first tick from 0 to 1 at "Time 5".
+- **Repetitive Pattern (From Time 16 to 24)**: Looking at the final portion of the table, a precise cyclic pattern emerges that repeats every two hours:
+    - **In the even rows** (16, 18, 20, 22, 24): The values are exactly identical: `(0,0)` at WS #1, `(9,1)` at WS #2, `(0,0)` at WS #3, and `(1,0)` at WS #4. The "Cum. Thru." counter remains unchanged from the previous row.
+    - **In the odd rows** (17, 19, 21, 23): The values alternate to: `(1,0)` at WS #1, `(8,0)` at WS #2, `(1,0)` at WS #3, and `(0,0)` at WS #4. At these specific rows, the "Cum. Thru." always increases by +1.
+- **Final Result**: At "Time 24", the final value of the Cumulative Throughput is 10.
 
 # Penny Fab model
-
-![](images/ea0b7502941ae9c8051286bb89857a35f53fd52b6776c97413618514a3fb525a.jpg)
 
 V The consulting team decided to estimate the x-factor for various numbers of jobs in the system (WIP)   
 From Little's Law: CT=WIP/th   
@@ -367,19 +450,26 @@ How the th change by varying WIP?
 
 # Penny Fab manual simulation
 
-![](images/6e7c1e5efa166ba964edee29bfe8b348b467a707de92df4ff9a1ea42159535c3.jpg)
+### Visual Diagram: Penny Fab Manual Simulation (WIP = 1)
+- **Component Type**: State-time diagram (Manual simulation).
+- **Logic**: Shows the physical progression of a single item (WIP = 1) through the production line hour by hour.
 
-![](images/ce2b889dcaafd3d09190363aec0a7f6f518928c1af9fe497f5f42276404faee7.jpg)
+#### 1. Line Setup (Top)
+- It defines the 4 workstations (WS1, WS2, WS3, WS4) and their respective processing times: $t_1=1h$, $t_2=2h$, $t_3=1h$, $t_4=1h$.
+- Since the WIP is constantly kept at 1, there is only one cylinder (representing the "job" or item) in the entire factory at any given time.
 
-![](images/006cfcc0acd2abe82839de3cc74828bee9e34e06ee6037c7d5d50c4abb1dc57b.jpg)
+#### 2. Time Evolution (Subsequent rows)
+- **t = 0h**: The item enters the system and starts processing at WS1.
+- **t = 1h**: After processing at WS1 (which takes 1h), the item moves to WS2.
+- **t = 2h**: The item is still at WS2. Since WS2 requires 2 hours of processing, the item must stay there for an additional hour.
+- **t = 3h**: Processing at WS2 is complete, and the item moves to WS3.
+- **t = 4h**: Processing at WS3 is complete (1h), and the item moves to WS4.
+- **t = 5h**: The item exits the line as a finished product. Because this is a constant WIP system, at the exact moment an item exits, a new item enters WS1.
 
-![](images/cfb5b34c3d1722d46d0b4970c50d77ae4b31db8d8b4fa2a7b691647b1a60761a.jpg)
-
-![](images/a727a2d116f2b76d5395b30ab692dd940a86757c58699fa3005d34173f51c64f.jpg)
-
-![](images/9357ea849ca2fd0ce3a80abaf6f132551a1f22f8b4e778858f0b9680232611e8.jpg)
-
-![](images/52bbd9468428a3bde1901f40c1f9cb4ca6e88167830e0ef6e846b534cf984592.jpg)
+#### 3. Results and Metrics (Text on the right and bottom)
+- **Cycle Time (CT)**: Because there are no other items in the system, the item never waits in a queue. Its Cycle Time is exactly equal to the total raw process time ($T_0$): $1+2+1+1 = \mathbf{5\text{ hours}}$.
+- **Throughput (TH)**: Exactly 1 item exits every 5 hours. Therefore, the Throughput is $\frac{1}{5} = \mathbf{0.2\text{ pcs/h}}$.
+- The red text at the bottom summarizes the result for this scenario: **WIP=1, CT=5h, TH=1/5=0.2 pz/h**.
 
 1 item every 5 hours comes out of the line (TH = 1/5 pcs/h)
 
@@ -387,19 +477,24 @@ Each item stays on the line for 5 hours (CT = 5 h)
 
 # Penny Fab manual simulation
 
-![](images/271385109998d2c877bf56725e165004155898a29f1a8beb00301b39fd327566.jpg)
+### Visual Diagram: Penny Fab Manual Simulation (WIP = 2)
+- **Component Type**: State-time diagram (Manual simulation).
+- **Logic**: Shows the physical progression of two items (WIP = 2) moving simultaneously through the production line.
 
-![](images/f5d2892569279d6110e9a443a128adc97cfae8d67be405d3cc649857d41d96e7.jpg)
+#### 1. Line Setup (Top)
+- The 4 workstations and their processing times remain identical ($t_1=1h$, $t_2=2h$, $t_3=1h$, $t_4=1h$).
+- The WIP is now set to **2**, meaning there are strictly two cylinders (jobs) allowed inside the factory at any given time.
 
-![](images/3b15b4a4ca7f90114d5c0a54848c9aaaf9ef3853e71dbc32bb395734e8ccf095.jpg)
+#### 2. Time Evolution & The Bottleneck Effect (Subsequent rows)
+- **t = 0h**: The simulation starts with two items in the system: one in WS1 and one in WS2.
+- **t = 1h**: The item in WS1 finishes its 1-hour process. However, WS2 takes 2 hours, so it is still busy processing the first item. The diagram visually shows the second item waiting in a queue, represented by a cylinder resting on the arrow between WS1 and WS2. This is the first visual evidence of WS2 acting as a **bottleneck**.
+- **t = 2h to t = 3h**: As the first item moves forward to WS3 and WS4, the second item enters WS2.
+- **t = 4h to t = 5h**: We see the items sequentially exiting the line as finished products (represented by the cylinders outside the WS4 box on the right). 
 
-![](images/82b7f3d568f566697a1261ed9e52ea8afca9f108572bef91d32c95e3418aa417.jpg)
-
-![](images/9f47bc38e1c65105e160000f6c1b4d2add036aaa57f62c6cd1ebd7be55a396ac.jpg)
-
-![](images/9e7dfa091187aedeb87d78c9955684bacf657657e9955f18e1d0396e560f0990.jpg)
-
-![](images/baca75cee38358beb142c67c903a6f437f9a2352f36d8f780f5902832d115e95.jpg)
+#### 3. Results and Metrics (Text on the right and bottom)
+- **Cycle Time (CT)**: Despite the momentary wait in front of the bottleneck at `t=1h`, the text explicitly notes that "Each item stays on the line for 5 hours". The Cycle Time remains at its minimum theoretical value ($T_0$): **5 hours**.
+- **Throughput (TH)**: Because there are more items in the system, the output rate increases. The text states "2 item every 5 hours comes out of the line". Therefore, the Throughput is $\frac{2}{5} = \mathbf{0.4\text{ pcs/h}}$.
+- The red text at the bottom summarizes the result: **WIP=2, CT=5h, TH=2/5=0.4 pz/h**.
 
 2 item every 5 hours comes out of the line (TH = 2/5 pcs/h)
 
@@ -407,21 +502,24 @@ Each item stays on the line for 5 hours (CT = 5 h)
 
 # Penny Fab manual simulation
 
-![](images/1464709ab514d4f9f64b5140d92ac48cc3063e3f818fad7283eaf6e8fab7d2d0.jpg)
+### Visual Diagram: Penny Fab Manual Simulation (WIP = 3)
+- **Component Type**: State-time diagram (Manual simulation).
+- **Logic**: Shows the physical progression of three items (WIP = 3) moving simultaneously through the production line.
 
-![](images/ae9be1bdfa52e6fd42d76a93c1bb587f3fb4e3f8403b2b34f0291cb09027bf8b.jpg)
+#### 1. Line Setup (Top)
+- The 4 workstations and their processing times remain identical ($t_1=1h$, $t_2=2h$, $t_3=1h$, $t_4=1h$).
+- The WIP is now set to **3**, meaning there are strictly three cylinders (jobs) allowed inside the factory at any given time.
 
-![](images/8fb3d5a6c3913e42ebacb5dc8fd97943984b7c5956766db17165f0858f760980.jpg)
+#### 2. Time Evolution & Queueing (Subsequent rows)
+- **t = 0h**: The simulation starts with three items distributed in the system: one in WS1, one in WS2, and one in WS3. To help track individual jobs, some cylinders are colored (e.g., a yellow one in WS3).
+- **t = 1h**: The item in WS1 finishes and moves forward, but WS2 is still occupied. We see a queue forming, represented by a cylinder resting on the arrow between WS1 and WS2. Meanwhile, the yellow item moves from WS3 to WS4.
+- **t = 2h**: The yellow item exits the line as a finished product. To maintain the constant WIP of 3, a new item immediately enters WS1. 
+- **t = 3h to t = 6h**: The simulation continues, introducing new colored cylinders (like an olive-green one at $t=4h$ and another yellow one at $t=6h$) to track the continuous flow. The diagram shows that an item regularly ends up waiting in the queue before WS2 because of its longer 2-hour processing time.
 
-![](images/76be7e06314bb7e32e4dae1ebcea1766e3adb64b0beacd29d642759f7b5701dc.jpg)
-
-![](images/e48a5d9b15eb196d722b8082702868a8425eb95f91de294d3fa48cb4001a2884.jpg)
-
-![](images/a27d090cbdeb4533da85137479ac093513ca5ea2878b37546f39e6a1fcac3e48.jpg)
-
-![](images/9a6198a1b37093e01bc3286059fd45bf7abcef6d3cc659d0916c1db419359e96.jpg)
-
-![](images/f2476e073fa8075cbc3886f73236961b2f39f386085debe83e2fbd2818ec96ea.jpg)
+#### 3. Results and Metrics (Text on the right and bottom)
+- **Cycle Time (CT)**: Because items now have to wait in the queue before the bottleneck, their total time in the system increases. The text explicitly states "Each item stays on the line for 6 hours". Therefore, the Cycle Time is now **6 hours**.
+- **Throughput (TH)**: The output rate has reached its maximum capacity. The text notes "3 item every 6 hours comes out of the line". Therefore, the Throughput is $\frac{3}{6} = \mathbf{0.5\text{ pcs/h}}$.
+- The red text at the bottom summarizes the result: **WIP=3, CT=6h, TH=3/6=0.5 pz/h**.
 
 3 item every 6 hours comes out of the line (TH = 3/6 pcs/h)
 
@@ -429,17 +527,46 @@ Each item stays on the line for 6 hours (CT = 6 h)
 
 # Penny Fab manual simulation
 
-![](images/75bb9da7ab58e370820ebbdecb0b4487bd005bed2efe4217ca2ab786bb8e57b9.jpg)
+### Visual Diagram: Penny Fab Performance Summary Table
+- **Component Type**: Data table.
+- **Logic**: Summarizes the system performance metrics (Throughput, Cycle Time, and x-factor) across varying levels of Work-In-Process (WIP), based on the manual simulation.
 
-![](images/a316a3bc4e3057161c7d82a1b8ae51bb14dce6b8a2fa844faf832043bfaf2e61.jpg)
+#### 1. Column Structure
+- **WIP**: The constant number of jobs in the system, evaluated from 1 up to 10.
+- **Throughput**: The output rate of the factory (jobs per hour).
+- **Cycle Time**: The total time a job spends in the factory from entry to exit (hours).
+- **x-factor**: A ratio representing how much longer the actual Cycle Time is compared to the theoretical minimum raw process time ($CT / T_0$). 
 
-![](images/492e003a0c63ff9a895fc56358ff108734bae442f0b128595a8c8b96ea524da2.jpg)
+#### 2. Data Trends & Factory Physics Laws (Direct Observations)
+- **WIP 1 to 2 (Uncongested State)**: The Cycle Time remains completely flat at its minimum theoretical value ($T_0 = 5$ hours), resulting in a perfect x-factor of 1.0. During this phase, Throughput increases linearly as more WIP is added (from 0.2 to 0.4).
+- **WIP 3 (Capacity Reached)**: Throughput hits its maximum ceiling of **0.5** jobs/hour (the bottleneck rate). Because jobs now begin queueing in front of the bottleneck, the Cycle Time increases to 6 hours, and the x-factor rises to 1.2.
+- **WIP 4 to 10 (Congestion State)**: For every additional unit of WIP added to the system beyond this point, the Throughput remains completely stagnant at **0.5**. However, the Cycle Time inflates significantly and linearly (growing from 8 up to 20 hours). At WIP 10, the x-factor reaches 4.0, meaning jobs take 4 times longer to complete than physically necessary, entirely due to waiting in queues.
 
 # Penny Fab manual simulation
 
-![](images/cfb426a16acc52f6fd940c9015f1c610dc025d17fde4d950532fb30972f1ab7b.jpg)
+### Visual Diagram: Cycle Time vs. Constant WIP Level
+- **Component Type**: Line graph.
+- **Logic**: Illustrates the relationship between the constant number of jobs in a system (WIP) and the resulting cycle time.
 
-![](images/7e6d980e4669e982e307a6e70aab96f965a0baf5c445b7bbffacf05179b51a61.jpg)
+#### 1. Axes
+- **Y-axis**: Labeled "Cycle Time", with numerical tick marks at 0, 5, 10, 15, and 20.
+- **X-axis**: Labeled "Constant WIP Level", with numerical tick marks at 0, 2, 4, 6, 8, and 10.
+
+#### 2. Visual Curve
+- **Horizontal Segment**: The graph begins with a perfectly flat, horizontal line fixed at a Cycle Time of 5. This flat segment spans from a WIP level of 0 up to a WIP level of 2.
+- **Linear Increase**: Starting exactly at a WIP level of 2, the trajectory changes. The line begins to angle upwards, following a steady, constant positive slope until it reaches the final marked point on the graph at WIP = 10 and Cycle Time = 20.
+
+### Visual Diagram: Throughput vs. Constant WIP Level
+- **Component Type**: Line graph.
+- **Logic**: Illustrates the relationship between the constant number of jobs in a system (WIP) and the resulting system throughput.
+
+#### 1. Axes
+- **Y-axis**: Labeled "Throughput", with numerical tick marks at 0, 0.2, 0.4, and 0.6.
+- **X-axis**: Labeled "Constant WIP Level", with numerical tick marks at 0, 2, 4, 6, 8, and 10.
+
+#### 2. Visual Curve
+- **Initial Increase**: The graph begins at a WIP level of 1 with a corresponding throughput of 0.2. The line slopes upwards, passing through a throughput of 0.4 at a WIP of 2, and continues to rise until it hits a WIP level of 3.
+- **Horizontal Asymptote (Capacity Limit)**: Starting exactly at a WIP level of 3, the graph hits a ceiling at a throughput value of 0.5. From this point forward (from WIP 3 all the way to 10), the line becomes perfectly flat and horizontal, indicating that adding more WIP to the system yields zero additional throughput.
 
 > The WiP level in the factory can be reduced to 3 jobs while maintaining the factory throughput rate of /2   
 The cycle time reduces to 2xWiP= 6 hours with an x-factor of 1.2   
@@ -474,8 +601,6 @@ Capacity of each machine (inverse of process time) = 1 pcs/2h
 Machines work continuously, with no stops   
 No discarded pieces
 
-![](images/97ef2783e84b25d189e136aa3611626c24c933323868740211409b2edd79ff08.jpg)
-
 # Example: balanced production line
 
 # Critical parameters:
@@ -495,8 +620,6 @@ Each WS is composed of a different number of machines
 > Each WS is composed of identical machines (with the same process time) in parallel   
 WS capacity = single machine capacity * number of machines
 
-![](images/5f9765f298093f6c735e4954af4ca612dad4758ae65e62872a0bd85bdc67e225.jpg)
-
 # Example: not balanced production line
 
 Line composed of work stations in series   
@@ -504,7 +627,22 @@ Each WS is composed of a different number of machines
 V Each WS is composed of identical machines (with the same process time) in parallel   
 > WS capacity = single machine capacity * number of machines
 
-![](images/e00c1fa776e16d0b37ede6b95fdae99ee7abb0f69157359e83249e22da25fc0e.jpg)
+### Visual Diagram: Work Station Capacity Calculation
+- **Component Type**: Data table.
+- **Logic**: Demonstrates step-by-step how to calculate the overall throughput capacity of a workstation that contains multiple identical machines in parallel.
+
+#### 1. Column Structure & Variables
+*   **Work Station**: Identifies the specific processing stage ($i = 1, 2, 3, 4$).
+*   **Machines ($m$)**: The number of parallel, identical machines operating at that station.
+*   **Process time ($t$)**: The time it takes one single machine to process one part (hours).
+*   **Machine capacity**: Calculated as the inverse of the process time ($\frac{1}{t}$). This gives the output rate of a *single* machine in pieces per hour.
+*   **WS capacity**: The total capacity of the entire workstation, calculated by multiplying the single machine capacity by the number of machines ($m \times \frac{1}{t}$).
+
+#### 2. Data Breakdown
+*   **WS 1**: 1 machine taking 2 hours. Capacity = $1 \times \left(\frac{1}{2}\right) = \mathbf{0.5 \text{ pcs/h}}$.
+*   **WS 2**: 2 machines taking 5 hours each. Single machine capacity is 0.2. Total WS Capacity = $2 \times 0.2 = \mathbf{0.4 \text{ pcs/h}}$.
+*   **WS 3**: 6 machines taking 10 hours each. Single machine capacity is 0.1. Total WS Capacity = $6 \times 0.1 = \mathbf{0.6 \text{ pcs/h}}$.
+*   **WS 4**: 2 machines taking 3 hours each. Single machine capacity is 0.33. Total WS Capacity = $2 \times 0.33 = \mathbf{0.67 \text{ pcs/h}}$.
 
 # Example: not balanced production line
 
@@ -521,11 +659,19 @@ To = 20 h (sum of process times)
 Average process rate (number of panels/h)   
 Average process time (h) at each station
 
-![](images/eeaad8cb8d792ef449a7dca89ab623b07045332e09149c0512c02742c2b88102.jpg)
+### Visual Diagram: Factory Process Routing and Capacity Table
+- **Component Type**: Production data table.
+- **Logic**: Details the sequential processing steps, their individual capacities, and processing times to determine the overall system constraints.
 
-![](images/f1e1d1b941f382dedcc6c33ae6284eecd7959c326db4631c702bf0847d65700b.jpg)
+#### 1. Columns & Data Structure
+*   **Process**: Lists the 12 sequential workstations the job must pass through, from "Lamination" to "EOL Test" (End of Line Test). 
+*   **Rate (p/hr)**: The individual capacity of that specific process, measured in parts per hour. 
+*   **Time (hr)**: The raw processing time a single part spends at that specific station.
 
-![](images/b7b6248649ee98fc1a1b3483d975977c179374edf0193a10991d0c8fa15b1142.jpg)
+#### 2. Factory Physics Parameters (The Bottom Row)
+The bottom row explicitly extracts the two most critical parameters for this factory, following standard Factory Physics definitions:
+*   **Bottleneck Rate ($r_b$)**: The rate of the workstation with the lowest overall capacity. By scanning the "Rate" column, the lowest value is **114.0 p/hr**, which occurs at the "Internal Circuitize" process. This station dictates the maximum possible throughput for the entire line.
+*   **Raw Process Time ($T_0$)**: The absolute minimum time it takes to produce one part if it never waits in a single queue. This is calculated by summing the "Time" column. The table lists **33.9 hours** as the total $T_0$ *(Note: if you manually sum the column exactly as written, it equals 34.0, which suggests the textbook table might have a minor rounding artifact in its display, but the concept remains exactly the same!)*.
 
 Batches and parallel machines are present, so rate is different from 1/time
 
@@ -543,8 +689,6 @@ WIP = 47,600 panels
 How HAL is performing?
 
 Which data we need to evaluate?
-
-![](images/4b7801fc45d2ba20c5e9183e023ae21acdb83d4e412ffca64629a89893a09c57.jpg)
 
 # HAL - Large Panel Line Processes
 
@@ -574,15 +718,25 @@ b) Compute CT and TH for values of WIP going from 1 to 10
 
 # Solution
 
-![](images/606874615b7b8ecf8764f21656e80aee7c883ce86e5ef2acb758f4789db8eefa.jpg)
+### Visual Diagram: Best-Case Performance Exercise Solution
+- **Component Type**: Integrated production model and performance dataset.
+- **Logic**: Models a 4-station serial line with a parallel workstation to demonstrate Best-Case Law relationships between WIP, Throughput, and Cycle Time.
 
-Data   
-![](images/76d701d31155f2f48c949cbab76da91f68ca5cc1406f897c5df0d9938aef9eea.jpg)
+#### 1. System Layout & Data
+*   **Process Flow**: Illustrates a serial manufacturing line where jobs move from WS 1 through WS 4.
+*   **Station Configuration**: WS 2 features two machines in parallel ($m=2$), while all other stations (1, 3, and 4) consist of a single machine ($m=1$).
+*   **Workstation Data Table**: Lists a constant process time of 2 hours per machine and the resulting station capacity ($m/t$) for each stage.
 
-Parameters   
-![](images/ccddbe2d4fde1b1961770ffd1149852cc6ef05f81e3cd3d5b14fec1ab51fe6e0.jpg)
+#### 2. Fundamental System Parameters
+The "Parameters" section calculates the theoretical limits based on the line configuration:
+*   **Bottleneck Rate ($r_b$)**: Identified as **0.5 jobs/h**, which is the minimum capacity among all workstations (WS 1, 3, and 4).
+*   **Raw Process Time ($T_0$)**: The absolute minimum time needed for a job to cross the line without queuing, equaling **8 hours** (the sum of individual process times).
+*   **Critical WIP ($W_0$)**: Calculated as **4 jobs** ($r_b \times T_0$), representing the minimum inventory level to achieve maximum throughput with minimum cycle time.
 
-![](images/f0222b39e2b1dd5716f21d94e79a63edcec5c5a66858fa5c440c50b167a04ee2.jpg)
+#### 3. Performance Dataset (WIP 1 to 10)
+The table displays the numerical results of the simulation as the inventory level increases:
+*   **Cycle Time ($CT$)**: Remains fixed at 8 hours for $WIP \le 4$, then increases linearly up to 20 hours at WIP 10.
+*   **Throughput ($TH$)**: Increases linearly from 0.13 to 0.50 jobs/h as WIP reaches the critical point ($WIP = 4$). For all $WIP > 4$, throughput remains saturated at the bottleneck rate of 0.50 jobs/h.
 
 # Exercise 2
 
@@ -592,23 +746,40 @@ Compute the botleneck rate rb, the raw process time T。 and the critical WIP W�
 
 What happen to the TH and CT values when the WIP exceeds Wo?
 
-![](images/44082cfb07a2495e0aa41a9b9476a211af6584a1ea4c69e1c18c640ee26cab77.jpg)
+### Visual Diagram: Workstation Data Table
+- **Component Type**: Production data table.
+- **Logic**: Outlines the processing characteristics for three sequential workstations, providing mean process times and the number of available machines for each.
+
+#### 1. Columns & Data Structure
+*   **Workstation i**: Numerical identifier for the workstations (1, 2, and 3).
+*   **E[Tsi] (min)**: The expected mean process time ($E[T_{si}]$) for a single job at the workstation, measured in minutes.
+*   **Machines**: The total number of parallel, identical machines located at the workstation.
+
+#### 2. Table Data Breakdown
+*   **Workstation 1**: Lists a mean process time ($E[T_{s1}]$) of **3 minutes** and utilizes **2 machines**.
+*   **Workstation 2**: Lists a mean process time ($E[T_{s2}]$) of **2 minutes** and utilizes **1 machine**.
+*   **Workstation 3**: Lists a mean process time ($E[T_{s3}]$) of **4 minutes** and utilizes **3 machines**.
 
 # Solution
 
-![](images/d2c639df5eeed9e59ab49ca3396e08c2691aae0588a1dd1e7465ed67e369770c.jpg)
+### Visual Diagram: Production Line Parameter Calculation Solution
+- **Component Type**: Performance data table and parameter summary.
+- **Logic**: Displays the calculated workstation production rates used to determine the fundamental limits ($T_0$, $r_b$, $W_0$) of a 3-station production system.
 
-TO
+#### 1. Columns & Data Structure
+*   **Workstation i**: Numerical identifier for the three sequential workstations in the system.
+*   **E[Tsi] (min)**: The expected mean process time per job at each station (3, 2, and 4 minutes respectively).
+*   **Machines**: The count of parallel machines at each station.
+*   **Production rate (min^-1)**: The calculated capacity ($m / E[T_s]$) for each workstation:
+    *   Workstation 1: **0.666666667**
+    *   Workstation 2: **0.5**
+    *   Workstation 3: **0.75**
 
-9 min
-
-rb LAAA
-
-0.5 j/min
-
-WO
-
-4.5j
+#### 2. Fundamental System Parameters
+The values calculated below the table represent the theoretical performance boundaries:
+*   **Raw Process Time ($T_0$)**: The sum of process times across all stations, listed as **9 min**.
+*   **Bottleneck Rate ($r_b$)**: The minimum production rate in the system, identified as **0.5 j/min** (dictated by Workstation 2).
+*   **Critical WIP ($W_0$)**: The minimum Work-In-Process level required to achieve the bottleneck rate with the minimum cycle time, calculated as **4.5 j**.
 
 # Solution
 

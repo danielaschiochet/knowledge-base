@@ -1,5 +1,20 @@
 # Course Introduction – Analysis and Management of Production Systems
 
+# Description
+Different courses of the Degree in Management Engineering present the broad theme of the production of goods and services from multiple points of view: technological, plant engineering, economic, operational management, and quality
+
+The aim of the course is to provide to the students of the Master Degree in Management Engineering a complementary knowledge, both through the development of new analysis tools and approaches, and their integration in the perspective of contemporary business, characterized by its inclusion in globalized and competitive markets, not only by considering traditional concepts of value and cost, but also new aspects such as the sustainability
+
+# Expected Learning Outcomes
+
+The course aims to develop the ability of students to analyze, evaluate and design a production system, both of manufacturing and services, coherently with the company strategy and organization
+
+This will be obtained by learning new technical skills, by creating connections between skills already developed, and by familiarizing with the most important changes taking place in the production sectors
+
+# Pre-requirements
+
+Knowledge of topics covered in courses dedicated to Production Systems and Production Planning and Contro
+
 ## Course Structure
 This course is divided into two main parts:
 - **Part 1**: Operations Strategy (covered by Prof. Cantamessa)
@@ -67,23 +82,19 @@ Simulation tools are demonstrated but **not required to be learned**.
 ---
 
 ## Exam Structure
-- **Written exam** (2 hours)
-- Includes:
-  - Multiple-choice theoretical questions
-  - Numerical exercises
-- No supporting material allowed
-- All necessary formulas are provided directly on the exam paper
-
-Mock exams and examples are provided during the course.
+Written exam, including both the numerical exercises and questions on the theoretical aspects (qualitative and quantitative)
+The questions can be open or multiple choice or true/false answer
+Numerical exercises and theoretical questions can be integrated in the same exercise
+During the written exam it is not possible to consult any support (form, handouts, texts, etc.)
 
 ---
 
 ## Reference Materials
-- **Operations Strategy** (Part 1): Lewis
-- **Manufacturing Systems Modeling and Analysis** (Part 2): Carín & Feldman, Springer  
-  (freely available online; course follows from Chapter 2 onward)
-
-For process representation formalisms, slides are sufficient; additional sources may be consulted.
+Slides and notes, available online, on the course page
+Suggested reference books:
+➢ Curry G.L., Feldman, R.M., "Manufacturing Systems Modeling and Analysis", Springer, 2011
+➢ Slack N., Lewis N., "Operations Strategy", Pearson, 2017
+Additional material: Internet
 
 ---
 

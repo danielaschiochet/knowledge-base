@@ -5,15 +5,15 @@
 a) UML activity diagram   
 b) Flow process chart (X)   
 c）BPNM   
-d） IDEFO
+d） IDEF0
 
 2) Which is the right Kendallnotation to indicate a workstation in which the inter-arrival time follows a normal distribution,the processing time follows an exponential distribution,there are three machines in paralll and the queue is unlimited?
 
-e) M/G/3/∞   
-f)N/E/3/0   
-g) M/G/∞/3   
-h) G/M/0/3   
-i) G/M/3/∞ (X)
+a) M/G/3/∞   
+b)N/E/3/0   
+c) M/G/∞/3   
+d) G/M/0/3   
+e) G/M/3/∞ (X)
 
 3) Which of the folowing definitions best describes the concept of maintenance in production systems?
 
@@ -33,7 +33,7 @@ c）operational (X)
 a) 90%   
 b) 70%   
 c) 50% (X)   
-d） 30%
+d）30%
 
 6) Which of the following statements regarding PLM systems is correct?
 
@@ -54,33 +54,27 @@ reduced processing time due to the reduced setup times between part types and th
 ·reduced WIP and variability in each production cell   
 ·reduced material handling and transport because items move inside a single cell.
 
-2) In a system the mean arrival rate isλ = 6 jobs/hours,and it is exponentially distributed. The mean service times is E[Ts] = 0.5 hours,with asquared coeficients of variation C² = 0.8.Which is the number of parallel machines needed to get a utilization lower or equal to O.9? Considering the obtained number of parallel machines, compute the CT,the WIP and the TH of the system.
+2) In a system the mean arrival rate is λ = 6 jobs/hours,and it is exponentially distributed. The mean service times is E[Ts] = 0.5 hours,with asquared coeficients of variation C² = 0.8.Which is the number of parallel machines needed to get a utilization lower or equal to 0.9? Considering the obtained number of parallel machines, compute the CT, the WIP and the TH of the system.
 
-$$
-\lambda = 6 \text {j o b s / h o u r s , E [ T s ]} = 0. 5 \text {h o u r s , C _ {s} ^ {2}} = 0. 8
-$$
+$$ \lambda = 6 \text{ jobs/h}, \quad E[T_s] = 0.5 \text{ h}, \quad C_s^2 = 0.8, \quad C_a^2 = 1 $$
 
-$$
-u <   = 0. 9 \rightarrow \text {t h u s} \lambda^ {*} E [ T s ] / c <   = 0. 9 \rightarrow c > = \lambda^ {*} E [ T s ] / 0. 9 = 6 ^ {*} 0. 5 / 0. 9 = 3. 3 3 \rightarrow c = 4
-$$
+$$ u \le 0.9 \implies \frac{\lambda \cdot E[T_s]}{c} \le 0.9 \implies c \ge \frac{6 \cdot 0.5}{0.9} = 3.33 \implies c = 4 $$
 
-$$
-u = \lambda^ {*} E [ T s ] / c = 6 ^ {*} 0. 5 / 4 = 0. 7 5
-$$
+$$ u = \frac{\lambda \cdot E[T_s]}{c} = \frac{6 \cdot 0.5}{4} = 0.75 $$
 
-$$
-\begin{array}{l} C T = \left(c _ {a} ^ {2} + c _ {s} ^ {2}\right) / 2 * u ^ {\wedge} (\operatorname {s q r t} (2 c + 2) - 1) / (c (1 - c)) ^ {*} E [ T s ] + E [ T s ] = \\ = 1. 8 / 2 * 0. 7 5 ^ {\wedge} (\operatorname {s q r t} (1 0) - 1) / \left(4 * 0. 2 5\right) * 0. 5 + 0. 5 = 0. 7 4 2 h \\ \end{array}
+$$ 
+\begin{aligned} 
+CT &= \left( \frac{C_a^2 + C_s^2}{2} \right) \cdot \frac{u^{\sqrt{2(c+1)}-1}}{c(1-u)} \cdot E[T_s] + E[T_s] \\ 
+&= \left( \frac{1 + 0.8}{2} \right) \cdot \frac{0.75^{\sqrt{2(4+1)}-1}}{4(1-0.75)} \cdot 0.5 + 0.5 \\ 
+&= 0.9 \cdot \frac{0.75^{2.162}}{1} \cdot 0.5 + 0.5 = 0.742 \text{ h} 
+\end{aligned} 
 $$
 
-$$
-\mathrm {T H} = 6 \mathrm {j / h}
-$$
+$$ TH = \lambda = 6 \text{ jobs/h} $$
 
-$$
-W I P = T H ^ {*} C T = 6 ^ {*} 0. 7 4 2 = 4. 4 5 \mathrm {j}
-$$
+$$ WIP = TH \cdot CT = 6 \cdot 0.742 = 4.45 \text{ jobs} $$
 
-3)Aline is composed by 3 workstations, named A, Band C.Thefirst and the third have a single machine,while the second has two paralel machines (B1 and B2). By analysing the Dashboard of the simulation model shown in the figure,answer the folowing questions. Times are expressed in seconds,unless otherwise specified.
+3) A line is composed by 3 workstations, named A, Band C.Thefirst and the third have a single machine,while the second has two paralel machines (B1 and B2). By analysing the Dashboard of the simulation model shown in the figure,answer the folowing questions. Times are expressed in seconds,unless otherwise specified.
 
 ![](images/3dccf3c415e6976bb400b0c4ab610c1731974e3fec23f0bada6ae5538692fdef.jpg)
 

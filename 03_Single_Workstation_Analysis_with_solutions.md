@@ -42,10 +42,6 @@ V Skewness
 V Kurtosis   
 V
 
-![](images/330cb9c2667f5103e03c3d9ba441186905d78bdedaaaf8ec2a5b12bc1829d27b.jpg)
-
-![](images/e927a90c01ff9e76a402ec66bfc7e7efd141a0182975cf21dc135ceb1586ca74.jpg)
-
 # Variability
 
 > To classify and to quantify the variability of a random variables, dimensionless coefficients are used:
@@ -80,21 +76,19 @@ StDev = 5.65 min
 
 CV = 0.226
 
-![](images/61a1d0c7cabe3f8cdd83e113d3f3930400156be238564d6cc3035a1bb1e97249.jpg)
+### Visual Diagram: Variability Classification Axis
+- **Component Type**: Quantitative classification scale.
+- **Logic**: Categorizes production systems into three levels of variability based on the value of the Coefficient of Variation ($c$).
 
-![](images/fd1083e3c5dab3d6ac1f7ed14123709362a4b96ba21c0a16a6d059ef7d88d61c.jpg)
+#### 1. Axis Structure
+*   **Variable ($c$)**: The horizontal axis represents the Coefficient of Variation, defined as the ratio of standard deviation to the mean ($c = \sigma / \mu$).
+*   **Scale**: The axis starts at 0 and increases to the right, using color-coded segments to define performance zones.
 
-![](images/0d03dc4179a8b5fa1b1d533eb1389b2505465a0eb011838efad61a84cb610008.jpg)
-
-Mean Value = 73.6 min
-
-StDev = 8.4 min
-
-CV = 0.114
-
-![](images/e6ccea208030877e13d972edb03786a8a48d1d5cc811d6a88eb2c0c2aa59aa4d.jpg)
-
-![](images/f07607faf36689c06d5a6e9501cd3b7860fc3242559d5d883823293d0656e449.jpg)
+#### 2. Variability Thresholds
+The diagram establishes three specific regimes:
+*   **Low Variability (LV)**: Highlighted in green for values where **$c < 0.75$**.
+*   **Moderate Variability (MV)**: Highlighted in blue for values in the range **$0.75 \le c < 1.33$**.
+*   **High Variability (HV)**: Highlighted in red for values where **$c \ge 1.33$**.
 
 # Effect of variability
 
@@ -124,15 +118,22 @@ $$
 D <   1 / 1 0 \quad p c s / m i n
 $$
 
-Item arrival
+### Visual Diagram: Effect of Variability
+- **Component Type**: Integrated process flow and utilization graph.
+- **Logic**: Demonstrates a system with zero variability (constant arrival and service times) to illustrate the theoretical behavior of queues at varying utilization levels.
 
-![](images/b3db1db51c9d26c27fb5728ac10bce23bac398b180a5bacbb69df883131aa66b.jpg)
+#### 1. System Layout
+*   **Process Flow**: Illustrates items arriving, entering a buffer ("Units waiting for process"), and moving to a server with a fixed **process time of 10 minutes**.
+*   **Deterministic Assumption**: Both the inter-arrival times and the processing times are constant, meaning there is no randomness in the system.
 
-Process time (10 minutes)
+#### 2. Utilization vs. Waiting Items Graph
+The plot illustrates how the system queue behaves as the arrival rate increases toward the processing capacity:
+*   **Points A & B**: Represent arrival rates significantly below capacity (e.g., $1/30$ and $1/20$ pcs/min). Because the system is perfectly regular and arrival is slower than service, the number of items waiting remains at **zero**.
+*   **Point C**: Marks the **100% utilization** point where the arrival rate exactly matches the processing capacity ($1/10$ pcs/min). 
+*   **Point D**: Shows that if the arrival rate even slightly exceeds the capacity in a deterministic system, the queue grows toward infinity because the server can never "catch up."
 
-Units waiting for process
-
-![](images/86aa3731c3a83b16dd05ab11c6e384ace53adb61aebf75173c0b8d6f3d664fb5.jpg)
+#### 3. Theoretical Baseline
+This diagram provides the "ideal" baseline for Factory Physics: in a world with zero variability, we could run a machine at 100% utilization without ever having a queue. Any deviation from this horizontal line in real systems is caused by variability.
 
 # Effect of variability
 
@@ -152,25 +153,71 @@ Inactivity time = 5 min = 7.7% of 65
 
 Utilization = 92.3%
 
-![](images/11b5247df5bf993443051273505a7d5866700f5617290adda03bd0036dac3570.jpg)
+### Visual Diagram: Effect of Variability
+- **Component Type**: Numerical data table and Gantt-style timeline chart.
+- **Logic**: Illustrates how variability in arrival times creates system waste (idle time) and congestion (queues) even when the processing time remains constant.
 
-![](images/4e40bc97a7990d05546dbd2b043d7d81726ffd938998e86115b080607448a8a7.jpg)
+#### 1. Data Table Breakdown
+The table tracks six items (**A through F**) through a single workstation with a **constant process time of 10 minutes**:
+*   **Arrival Times**: Items arrive at irregular intervals (e.g., Item B at 12 min, Item C at 20 min).
+*   **Waiting Times**: Although the machine is fast, Item C must wait **2 minutes** and Item E must wait **1 minute** because they arrive before the previous job has finished.
+*   **Process Flow**: The "Start of process" is dictated by either the arrival time or the "End of process" of the preceding item, whichever is later.
+
+#### 2. Visual Timeline Analysis
+The chart maps the table data onto a 65-minute timeline, highlighting two types of inefficiency:
+*   **Unused Machine (Blue)**: These gaps represent idle capacity. They occur when the machine is empty but no job has arrived yet (e.g., between Items A and B, B and C, or D and E). There are **5 minutes** of total idle time.
+*   **Waiting Time in Queue (Red)**: These blocks represent jobs waiting for the server to become available. Even with idle periods earlier, the system still experiences **3 minutes** of total queuing.
+*   **System Paradox**: This demonstrates that variability prevents a system from being perfectly efficient; you can have both "starvation" (idle machines) and "congestion" (waiting jobs) within the same period.
+
+#### 3. Performance Summary
+Based on the 65-minute observation period:
+*   **Utilization**: **92.3%** (calculated as $(65 - 5) / 65$).
+*   **Mean Waiting Time**: **0.046 minutes** per job (3 minutes total wait / 65 minutes duration).
+*   **Inactivity**: The machine was idle for approximately **7.7%** of the time.
 
 Units which enters in a process with variable arrival times and a constant processing time (10 minutes)
 
 # Effect of variability
 
-![](images/6969145e8e35ecb09aa97c863674e56be225708b680eaa19ce934463d6a3c4bf.jpg)
+### Visual Diagram: Transition from Deterministic to Stochastic Variability Effects
+- **Component Type**: Comparative analysis of performance curves.
+- **Logic**: Illustrates the fundamental shift in system behavior when moving from an "ideal" deterministic environment (top) to a "real-world" stochastic environment (bottom) where arrival and process times vary.
 
-![](images/d7849fffae231d96b45257e47322b5689fd02765becdc17c1eb42ffa282fb2a9.jpg)
+#### 1. Top Graph: The Deterministic Case (Constant Rates)
+This plot shows the theoretical behavior of a system with zero variability (constant inter-arrival and process times):
+*   **Axis**: Maps **Utilization** (X) against **Waiting Items** (Y).
+*   **Points A, B, & C**: Represent a flat line at zero. In a deterministic world, no queue forms as long as utilization is $\leq 100\%$.
+*   **Point D**: At exactly $100\%$ utilization, any infinitesimal increase in load causes the queue to grow infinitely, represented by the vertical dashed line.
 
-![](images/ef7e69b5f74d49694a5808a56d2e7c6abf4ac5b9a22d9424b71cfe5276b8dc23.jpg)
+#### 2. Bottom Graph: The Stochastic Case (Variable Rates)
+This plot represents the system behavior observed in the stochastic arrival example:
+*   **Axis**: Maps **Utilization** (X) against **Mean Waiting Time** (Y).
+*   **The Non-Linear Curve**: Unlike the deterministic case, the waiting time is no longer zero. It begins to rise gradually and then grows exponentially as it approaches the $100\%$ saturation point.
+*   **Point X**: Corresponds to the numerical results: at **$92.3\%$ utilization**, the mean waiting time is **$0.046$ minutes**.
+*   **Visual Significance**: Even before reaching full capacity, variability "steals" capacity, forcing jobs to wait because of the lack of perfect synchronization between arrivals and service.
+
+#### 3. Key Takeaway
+The blue arrow indicates the transition from theoretical "ideal" planning to realistic performance. It highlights the **Variability Law**: as utilization increases, the presence of variability causes waiting time (and thus WIP) to increase disproportionately. To improve performance, one must move the curve downward by reducing variability.
 
 # Effect of variability
 
-![](images/4d6beb5e834e471593acd3075f400b3c06ccc7b9896fc82ee5e8c8695a8e40eb.jpg)
+### Visual Diagram: Strategies for Managing Variability
+- **Component Type**: Performance curve analysis graphs.
+- **Logic**: Demonstrates the impact of reducing variability on system performance and the strategic trade-offs between utilization and waiting time.
 
-![](images/2fb718e3e98f94a09673d6a17f5b418ef880ebe2b3716744ecb0bb95a0aa4ec9.jpg)
+#### 1. Top Graph: Decreasing Variability
+*   **Axis**: Maps **Utilization** (X-axis, 0 to 100%) against waiting time (Y-axis).
+*   **Multiple Curves**: Shows a family of curves representing different levels of system variability.
+*   **The Arrow**: A large diagonal arrow points downward and to the right, labeled "Decreasing Variability." It illustrates that as you reduce variability in arrival or process times, the entire performance curve shifts lower. For any given level of utilization, the waiting time is significantly reduced.
+
+#### 2. Bottom Graph: Strategic Trade-offs (Points X, Y, Z)
+This graph highlights three distinct operational strategies on a variability curve:
+*   **Point X (High utilization but long waiting times)**: Represents a system pushed close to maximum capacity (e.g., $90\%$ utilization). Due to the steepness of the curve at this level, jobs experience very long queues.
+*   **Point Y (Short waiting times but low utilization)**: Represents a system operating at a much lower capacity (e.g., $40\%$ utilization) on the same variability curve. Waiting times are short, but the machine is idle most of the time, resulting in poor asset utilization.
+*   **Point Z (Reduction of variability)**: The ideal state. By structurally reducing variability (moving to a lower curve), the system achieves both high utilization (like X) and short waiting times (like Y) simultaneously.
+
+#### 3. Managerial Implication
+The graphs visually reinforce a core principle of Factory Physics: you cannot simply increase utilization without paying a penalty in cycle time unless you first reduce the underlying variability in the system.
 
 X = accepting long waiting times to obtain a high utilization of the machine
 
@@ -195,13 +242,21 @@ Both the processing and inter-arrival times are assumed to be exponentially dist
 Each state represents the number of items in the system   
 The node listing is
 
-![](images/7b420779747164e223bd1ba96b47324e3247c22ab9d8d35b4e8b6873ac7a6207.jpg)
+### Visual Diagram: Initial State Nodes for a Finite Queuing System
+- **Component Type**: State-transition diagram nodes.
+- **Logic**: Represents the first step in modeling a workstation with limited capacity (M/M/1/3) by listing all possible discrete states as nodes in a network.
 
-![](images/5183d3a309c6322a2f314d5ced0e459f78d890732ae5a8942acbf896059a5d28.jpg)
+#### 1. Node Definitions
+*   **State Space**: The circles labeled **0, 1, 2, and 3** represent the specific states of the system based on inventory levels.
+*   **System Status**: Each node number corresponds to the total number of items currently in the workstation:
+    *   **0**: The system is empty (idle).
+    *   **1**: One job is present in the system (being processed).
+    *   **2**: Two jobs are present in the system (one in process, one waiting).
+    *   **3**: The system has reached its maximum capacity of three jobs.
 
-![](images/5b5898bc4c5f1cc6d402f202efc2d4f81b49b8cbfeb7f489a9e56578205b441e.jpg)
-
-![](images/29f553cf0bc5e1bed0b71d7dc7c3ab5f317d20ed33d90babf0160c47aa994f36.jpg)
+#### 2. Analytical Role
+*   **Foundation for Balance Equations**: These nodes serve as the starting point for developing balance equations for systems in a steady-state.
+*   **Network Development**: These nodes will subsequently be connected by directional arcs to represent flows: arrivals ($\lambda$) moving the system to the right and service completions ($\mu$) moving it to the left.
 
 # Diagram model
 
@@ -212,7 +267,18 @@ The node listing is
 
 > Note that an arrival into the system cannot occur when the system is in state 3 (i.e., when the system is full)
 
-![](images/69a6d22e58d9110e2806db193e9dc8862e8795033a3c452a68f1815f5434ef2b.jpg)
+### Visual Diagram: State-Transition Network with Flow Arcs
+- **Component Type**: Directed state-transition network.
+- **Logic**: Adds directional arcs to the previously defined nodes to represent the possible movement (flows) between discrete system states.
+
+#### 1. Flow Representation
+*   **Forward Arcs ($0 \to 1 \to 2 \to 3$)**: These directional arrows represent arrivals into the system. For example, node 0 is connected to node 1 to show the flow that occurs when an arrival happens while the system is empty.
+*   **Backward Arcs ($3 \to 2 \to 1 \to 0$)**: These arrows represent service completions. For example, node 1 is connected to node 0 to show the system returning to an empty state after a job is processed.
+*   **Finite Boundary**: There is no forward arc exiting node 3, reflecting the constraint that arrivals cannot enter the system when it is already full.
+
+#### 2. Analytical Role
+*   **State Transitions**: The arcs visually define every possible way the system can change from having $n$ items to $n+1$ or $n-1$ items.
+*   **Prerequisite for Balance**: This completed network is the necessary visual tool for deriving steady-state balance equations, where the flow into a state must equal the flow out.
 
 # Diagram model
 
@@ -224,7 +290,23 @@ Downward movements all occur when a service has been completed and these have ra
 
 >The conditional service rate given that there is a job in the system to be serviced is μ and the resulting downward rates from state n is μ Pn
 
-![](images/427e09c75a5e04349441a84d43c74d10a73f1e6c0ef2a9ee3d58fe06f6b08790.jpg)
+### Visual Diagram: State-Transition Network with Transition Rates
+- **Component Type**: Directed birth-death process diagram.
+- **Logic**: Quantifies the movement between system states by assigning specific rates ($\lambda$ and $\mu$) to the transition arcs, enabling the calculation of steady-state probabilities.
+
+---
+
+#### 1. Transition Rate Definitions
+*   **Arrival Rate ($\lambda$)**: Represents the frequency at which new jobs enter the system. Upward movements from state $n$ to $n+1$ occur at this rate.
+*   **Service Rate ($\mu$)**: Represents the processing speed of the workstation. Downward movements from state $n$ to $n-1$ occur at this rate when a service is completed.
+
+#### 2. Flow Dynamics
+*   **Net Flow Calculation**: The actual flow rate between states is determined by multiplying the transition rate by the probability ($p_n$) of being in the origin state. For instance, the net upward rate from state $n$ is $\lambda p_n$.
+*   **Boundary Constraints**: An arrival cannot occur when the system is in state 3 because the system has reached its maximum capacity. This is why there is no $\lambda$ arc moving forward from the final node.
+
+#### 3. Analytical Application
+*   **Steady-State Balance**: This diagram is the primary tool for deriving balance equations, based on the principle that the flow into each state must equal the flow out of it.
+*   **Example Equation**: By partitioning the nodes between state 0 and state 1, you obtain the first balance equation: $\lambda p_0 = \mu p_1$.
 
 # Diagram model
 
@@ -234,7 +316,22 @@ Partition the nodes into two subsets of nodes, then establish values for the app
 > Partitions are redrawn at n-1 different locations to obtain n-1 equations; these equations are combined with the norming equation   
 First equation
 
-![](images/d4511fef0bca38189adb86b8be6173f2e2c36c0f4c5886f5b1e3606b8ea4f351.jpg)
+### Visual Diagram: Partitioning for the First Balance Equation
+- **Component Type**: Partitioned state-transition diagram[cite: 1].
+- **Logic**: Illustrates the method of partitioning nodes into subsets to establish steady-state balance equations.
+
+#### 1. The Partitioning Method (The "Cut")
+*   **The "Cut"**: A diagonal line intersects the transition arcs specifically between **node 0** and **node 1**.
+*   **Subset Definition**: This partition separates the system into two subsets: the state to the left (idle) and the states to the right (active/busy).
+*   **Steady-State Requirement**: For a steady-state to exist, the flow moving out of a subset must exactly balance the flow moving back into it.
+
+#### 2. Deriving the First Equation
+*   **Outward Flow**: Represents an arrival ($\lambda$) occurring when the system is in state 0. The rate is defined as **$\lambda p_0$**.
+*   **Inward Flow**: Represents a service completion ($\mu$) occurring when the system is in state 1. The rate is defined as **$\mu p_1$**.
+*   **First Equation**: Equating these flows across the partition yields the balance equation.
+
+#### 3. Analytical Role
+*   **Iterative Application**: This "cut" procedure is repeated at each boundary (between 1-2 and 2-3) to generate a system of $n-1$ equations[cite: 1].
 
 $$
 \lambda p _ {0} = \mu p _ {1}
@@ -244,7 +341,22 @@ $$
 
 Second equation
 
-![](images/922fc8c32a81e37b6259ab70f099c7255c9381b9b4cbfe51995bad1092e4df9c.jpg)
+### Visual Diagram: Partitioning for the Second Balance Equation
+- **Component Type**: Partitioned state-transition diagram.
+- **Logic**: illustrates the method of partitioning nodes to establish the second steady-state balance equation in a finite queuing system.
+
+#### 1. The Partitioning Method (The "Cut")
+*   **The "Cut"**: A diagonal line intersects the transition arcs specifically between **node 1** and **node 2**.
+*   **Subset Definition**: This partition separates the system into two distinct subsets: states {0, 1} to the left and states {2, 3} to the right.
+*   **Steady-State Requirement**: For the system to remain in steady-state, the flow moving from the left subset to the right must exactly balance the flow moving from the right subset to the left.
+
+#### 2. Deriving the Second Equation
+*   **Outward Flow (Left to Right)**: Represents an arrival ($\lambda$) occurring when the system is in state 1. The rate is defined as **$\lambda p_1$**.
+*   **Inward Flow (Right to Left)**: Represents a service completion ($\mu$) occurring when the system is in state 2. The rate is defined as **$\mu p_2$**.
+*   **Second Equation**: Equating these flows across the partition yields the balance equation.
+  
+#### 3. Analytical Role
+*   **Iterative Process**: This "cut" is the second of three possible partitions in an M/M/1/3 system. 
 
 $$
 \lambda p _ {1} = \mu p _ {2}
@@ -252,8 +364,23 @@ $$
 
 Third equation
 
-![](images/1ced4f828d4cc1c52e47828d39dd9b3704623b6c2a2c9efd2efbedbd5c005e78.jpg)
+### Visual Diagram: Partitioning for the Third Balance Equation and Norming Equation
+- **Component Type**: Partitioned state-transition diagram and mathematical summation.
+- **Logic**: Illustrates the final partition of the state space to complete the system of balance equations and introduces the conservation of probability.
 
+#### 1. The Final Partition (The Third "Cut")
+*   **The "Cut"**: A diagonal line intersects the transition arcs between **node 2** and **node 3**.
+*   **Subset Definition**: This partition separates the system into states {0, 1, 2} on the left and the boundary state {3} on the right.
+*   **Third Equation**: Equating the flow rates across this boundary (arrival into the full system vs. service completion from the full state).
+
+#### 2. The Norming Equation
+To solve for the individual probabilities ($p_0, p_1, p_2, p_3$), the balance equations are combined with the **Norming Equation**:
+*   **Definition**: It states that the sum of the probabilities of all possible mutually exclusive states must equal 1 (100% probability).
+
+#### 3. Analytical Conclusion
+*   **System of Equations**: By substituting the balance equations ($p_1 = \frac{\lambda}{\mu}p_0$, etc.) into the norming equation, the idle probability $p_0$ can be isolated and calculated.
+*   **Steady-State Solution**: This represents the final step required to determine the long-term performance measures of the workstation, such as average WIP and Throughput.
+  
 $$
 \lambda p _ {2} = \mu p _ {3}
 $$
@@ -341,7 +468,29 @@ Deterministic or stochastic process times
 FCFS (First Come First Served),LCFS (Last Come First Served), SIRIO (Service In Random Order),....   
 Limited or illimited length
 
-![](images/d6cffe7d7b034120518235487558ba34ca41263d2572b875764e88bfa20013ad.jpg)
+### Visual Diagram: Fundamental Components of a Queuing System
+- **Component Type**: Process flow diagram.
+- **Logic**: Defines the basic architectural elements and flow of a standard queuing model, illustrating the transition from a source population to service completion.
+
+#### 1. Population (Calling Source)
+*   **Role**: Represents the pool of potential customers or jobs that can enter the system.
+*   **Cycle**: The diagram illustrates a closed-loop flow where completed items (Output) return to the source population.
+
+#### 2. Arrival Process
+*   **Action**: The arrow labeled "Arrival" indicates items leaving the population to enter the workstation.
+*   **Modeling**: This is the first element defined in queuing theory (e.g., in Kendall notation), usually characterized by an inter-arrival time distribution.
+
+#### 3. The Queue
+*   **Visual Representation**: Depicted as a series of vertical slots within a horizontal buffer.
+*   **Purpose**: A waiting area for items when the service node is occupied. Key parameters include its capacity (limited or unlimited) and its discipline (e.g., FCFS - First Come First Served).
+
+#### 4. Service Node
+*   **Visual Representation**: A circle representing the server or workstation.
+*   **Operation**: The stage where the actual processing or service takes place, defined by a specific service time distribution ($\mu$).
+
+#### 5. Output
+*   **Action**: The final arrow represents the completion of the service and the departure of the item from the workstation area.
+
 
 # Kendall Notation
 
@@ -358,7 +507,26 @@ Example: M/M/1/3
 
 # Commonly used abbreviations
 
-![](images/726662a47706f740a50c7a2177081c5c76f276561b6a0434ffa984f3e143aeac.jpg)
+### Visual Diagram: Kendall Notation Symbols and Abbreviations
+- **Component Type**: Reference table for shorthand notation.
+- **Logic**: Defines the standard symbols used in Kendall's notation to categorize queuing systems based on arrival/service distributions, capacity, and queue discipline.
+
+#### 1. Distribution Symbols (First & Second Elements)
+*   **M**: Exponential (Markov) distribution for inter-arrival or service times.
+*   **D**: Deterministic (constant) inter-arrival or service times.
+*   **$E_k$**: Erlang type $k$ distribution.
+*   **G**: General distribution (any probability law).
+
+#### 2. Numerical Parameters (Third & Fourth Elements)
+*   **1, 2, ..., $\infty$**: Indicates the number of parallel servers or the maximum allowed capacity in the system.
+*   **Note**: Most often the fourth parameter is omitted when it is not finite (e.g., M/M/1 instead of M/M/1/$\infty$).
+
+#### 3. Queue Disciplines (Optional Fifth Element)
+*   **FIFO**: First In, First Out.
+*   **LIFO**: Last In, First Out.
+*   **SIRO**: Service In Random Order.
+*   **PRI**: Priority queue discipline.
+*   **GD**: General queue discipline.
 
 V If the system has no effective limit on the number of jobs allowed, then the fourth parameter would be infinity. Most often the fourth parameter is omitted when it is not finite, so that such a model would often be written as M/M/1 instead of M/M/1/.
 
@@ -369,7 +537,20 @@ Exponential distribution of processing times
 One machine in the server   
 Queue of unlimited dimension (it can be omitted)
 
-![](images/2ad3959c18c90ce65a822d9e8951ece7a82fcc21ccacd0511b163cdb40fde18a.jpg)
+### Visual Diagram: State-Transition Network for Infinite Capacity System (M/M/1)
+- **Component Type**: Infinite state-transition diagram (Markov chain).
+- **Logic**: Illustrates the state space and transition flows for a single-server queuing system with no physical limit on the queue length.
+
+#### 1. Infinite State Space
+*   **The Ellipsis (...)**: Unlike the finite model, the nodes extend from 0, 1, 2, 3 towards infinity, represented by the ellipsis. This reflects the assumption that the system can accommodate an unlimited number of waiting jobs.
+
+#### 2. Constant Transition Rates
+*   **Arrival Rate ($\lambda$)**: The forward transition rate remains constant for every state. New jobs continue to arrive at the same rate regardless of how long the queue is.
+*   **Service Rate ($\mu$)**: The backward transition rate also remains constant for every state above zero. Because there is only one server (M/M/1), the processing speed does not increase when the queue gets longer.
+
+#### 3. Analytical Implication
+*   **Infinite Equations**: This open-ended network generates an infinite sequence of balance equations (e.g., $\lambda p_n = \mu p_{n+1}$).
+*   **Mathematical Resolution**: To find the steady-state probabilities ($p_n$), this infinite system requires the use of successive substitution and the properties of geometric series, converging to a solution only if the utilization factor ($u = \lambda/\mu$) is strictly less than 1.
 
 # Infinite Capacity Model (M/M/1)
 
@@ -395,7 +576,7 @@ $$
 \sum_ {n = 0} ^ {\infty} p _ {n} = 1.
 $$
 
-![](images/b6db3a747ccd4f449900b96b04d0eccdfab9d8a89b86b237ce8a97ed5a10a5ce.jpg)
+->
 
 $$
 {p _ {1}} {= \frac {\lambda}{\mu} p _ {0}}
@@ -427,7 +608,7 @@ $$
 p _ {0} + \left(\frac {\lambda}{\mu}\right) p _ {0} + \left(\frac {\lambda}{\mu}\right) ^ {2} p _ {0} + \dots + \left(\frac {\lambda}{\mu}\right) ^ {n} p _ {0} + \dots = 1
 $$
 
-![](images/ed825c4dc6ef7742051349afbe0381c04c7a6bd1debb2b508313853a3644a15e.jpg)
+->
 
 $$
 p _ {0} = \frac {1}{\left(1 + \frac {\lambda}{\mu} + \left(\frac {\lambda}{\mu}\right) ^ {2} + \cdots + \left(\frac {\lambda}{\mu}\right) ^ {n} + \cdots\right)}
@@ -574,7 +755,20 @@ $$
 > If one machine operates at a rate of μ, then c machines operate at a rate of cu ，and the state diagram must be adjusted accordingly.   
 For example, suppose a workstation has three machines, then the service rate when two machines are busy is 2μ and whenever all machines are busy the service rate is 3μ; thus, the rate diagram is as below. 入 2 入
 
-![](images/ba8776d8ac46593175d25c362b2b7aa94f7672733cab924534143d76c17be3b8.jpg)
+### Visual Diagram: State-Transition Network for Multiple Servers (M/M/c)
+- **Component Type**: Infinite state-transition diagram for a multi-server system.
+- **Logic**: Illustrates the transition flows for a queuing system with infinite capacity and multiple parallel servers, specifically modeling an M/M/3 system (where $c=3$).
+
+#### 1. Constant Arrival Dynamics
+*   **Arrival Rate ($\lambda$)**: The forward transition rate remains constant for every state. New jobs arrive at the same rate regardless of how many items are in the system or how many servers are busy.
+
+#### 2. Variable Service Rates (The Multi-Server Effect)
+Unlike the single-server model, the backward transition rates (service completions) scale dynamically with the number of active servers:
+*   **Partial Load (States 1 & 2)**: When there are fewer jobs than servers ($n < c$), the service rate is $n\mu$. For example, moving from state 2 to 1 happens at a rate of **$2\mu$** because two servers are working simultaneously.
+*   **Full Capacity (States $\ge 3$)**: Once the system reaches state 3, all three servers are occupied. The total service rate caps at **$3\mu$**. Any state beyond 3 (represented by the ellipsis) will also return at a rate of $3\mu$ because the maximum processing capacity has been reached and the excess items are waiting in the queue.
+
+#### 3. Analytical Implication
+*   **Piecewise Balance Equations**: This structure requires a two-part approach to defining the balance equations and calculating steady-state probabilities. The mathematical logic changes depending on whether the system is partially loaded ($n < c$) or fully saturated with a queue forming ($n \ge c$).
 
 # Infinite Capacity Model (M/M/c)
 
@@ -607,11 +801,56 @@ Nmax = 4
 > n=1f: one job in the system in the faster machine   
 V n=1s: one job in the system in the slower machine
 
-![](images/ca401ed11e7312354367bcd99b82c9cb3681b7afabab8af533c90cb057994b57.jpg)
+### Visual Diagram: State-Transition Network for Parallel Tasks and Finite Capacity
+- **Component Type**: Continuous-Time Markov Chain (CTMC) / State-transition diagram.
+- **Logic**: Models a queuing system with a finite capacity ($N=4$) and a server that performs two independent tasks in parallel for each job.
+
+#### 1. State Space Definitions
+The system consists of six discrete states based on the number of jobs present and the completion status of the parallel tasks:
+*   **State 0**: The system is idle (empty).
+*   **States 1f and 1s**: The system contains 1 job. The suffixes "f" and "s" denote which of the two parallel tasks is still pending.
+*   **States 2, 3, 4**: The system contains 2, 3, or 4 jobs respectively. State 4 is the **maximum capacity**; any further arrivals are blocked and lost.
+
+#### 2. Transition Rate Dynamics
+*   **Arrival Rate ($\lambda$)**: Represents new jobs entering the system, moving the state to the right (e.g., $0 \to 1f$ or $2 \to 3$).
+*   **Service Rates ($\mu, \gamma$)**: Represent the completion rates of two distinct internal tasks (Task A and Task B) required to process a single job.
+
+#### 3. Parallel Service Logic
+This model captures a workstation where each job requires two operations that can be performed simultaneously:
+*   **Parallel Processing ($n \ge 2$)**: When 2 or more jobs are present, the server works on both tasks ($\mu$ and $\gamma$) at the same time for the job at the head of the queue. If either task finishes, the system moves to a lower state. The return rate from states 3 and 4 is the sum **$(\gamma + \mu)$**.
+*   **The State 1 Split**: When only one job remains (transitioning from state 2), the system enters a specific state based on which task finished first:
+    *   If task $\gamma$ finished first, the system enters **1f** (where only task $\mu$ remains to be completed).
+    *   If task $\mu$ finished first, the system enters **1s** (where only task $\gamma$ remains to be completed).
+*   **Re-entry**: If a new arrival ($\lambda$) occurs while the system is in 1f or 1s, it returns to state 2, where both parallel processes resume.
+
+#### 4. Analytical Application
+*   **Steady-State Balance**: This diagram is used to establish the global balance equations (e.g., the flow out of state 0, $\lambda p_0$, must equal the flow into state 0, $\mu p_{1f} + \gamma p_{1s}$).
+*   **Performance Metrics**: Essential for calculating the blocking probability ($p_4$), effective throughput ($\lambda_{eff}$), and the average Work-In-Process (WIP).
 
 Cutting the graph
 
-![](images/63f42042102a58a884873fdc83e1c125fa43aba0ba971fa7c2562fda40c5e36c.jpg)
+### Visual Diagram: State Partitioning for Idle State Balance
+- **Component Type**: Partitioned state-transition diagram.
+- **Logic**: Isolates the idle state (0) from the rest of the state space to establish flow equilibrium between being empty and having at least one job in the system.
+
+#### 1. Subset Definition
+The diagram highlights two distinct subsets via dashed blue lines:
+*   **Subset A (Left)**: Contains only **State 0** (system empty).
+*   **Subset B (Right)**: Encompasses the active states **{1f, 1s, 2, 3, 4}**.
+
+#### 2. Flow Equilibrium Across the Boundary
+In steady-state, the flow exiting Subset A must equal the flow entering it from Subset B:
+*   **Outward Flow (0 to B)**: An arrival ($\lambda$) occurs while the system is in state 0. Rate: $\lambda p_0$.
+*   **Inward Flow (B to 0)**: Final service completions returning the system to idle:
+    *   Task $\mu$ completion from state 1f (rate $\mu p_{1f}$).
+    *   Task $\gamma$ completion from state 1s (rate $\gamma p_{1s}$).
+
+#### 3. Resulting Balance Equation
+The equality of flows yields:
+$$ \lambda p_0 = \mu p_{1f} + \gamma p_{1s} $$
+
+#### 4. Analytical Role
+This partition is essential for isolating the idle probability ($p_0$). It serves as the foundation for the recursive calculation of all subsequent state probabilities ($p_n$), leading to the final determination of system throughput and average WIP.
 
 $$
 \lambda p _ {0} = \mu p _ {1 \mathrm {f}} + \gamma p _ {1 \mathrm {s}}
@@ -641,7 +880,30 @@ $$
 
 Cutting the graph
 
-![](images/fe2383365ab0d965eaf7fc5e45014c8fbb82f1ca7a67b62ab31ac7057d5a4509.jpg)
+### Visual Diagram: Partitioning for State Subset Balance
+- **Component Type**: Partitioned state-transition diagram.
+- **Logic**: Illustrates the application of the "cut" method to a complex state-transition diagram, isolating specific groups of states to derive local balance equations.
+
+---
+
+#### 1. Subset Definitions
+The diagram defines two disjoint subsets using dashed blue circles:
+*   **Subset Left**: Contains nodes **0** and **1f** (representing an empty system or a system where only task $\mu$ remains).
+*   **Subset Right**: Contains nodes **1s**, **2**, **3**, and **4** (representing states where task $\gamma$ is active or multiple jobs are present).
+
+#### 2. Flow Dynamics Across the Cut
+For the system to be in equilibrium, the total probability flow exiting the left subset must equal the flow entering it from the right:
+*   **Flow Out (Left to Right)**: A single transition occurs from **state 1f to state 2** due to an arrival at rate **$\lambda$**. The total flow rate is defined as $\lambda p_{1f}$.
+*   **Flow In (Right to Left)**: Two distinct transitions return the system to the left subset:
+    *   Completion of the parallel task $\gamma$ from **state 2 to state 1f**.
+    *   Completion of the parallel task $\gamma$ from **state 1s to state 0**.
+
+#### 3. Derived Balance Equation
+Equating these crossing flows results in the following balance equation:
+$$ \lambda p_{1f} = \gamma p_2 + \gamma p_{1s} $$
+
+#### 4. Analytical Significance
+This partition is a fundamental step in solving the parallel task model. By isolating these subsets, we can relate the probabilities of having one job in a specific phase ($1f$ or $1s$) to the probability of having two jobs ($p_2$), allowing us to eventually solve the entire system via the norming equation.
 
 $$
 \lambda p _ {0} = \mu p _ {1 \mathrm {f}} + \gamma p _ {1 \mathrm {S}}
@@ -671,7 +933,28 @@ $$
 
 Cutting the graph
 
-![](images/b9968a78a710714bd543c226258bfcfe2460c0dc8d8dcfc9d9000f971b0d5caa.jpg)
+### Visual Diagram: Partitioning for State Subset Balance
+- **Component Type**: Partitioned state-transition diagram.
+- **Logic**: Illustrates the application of the "cut" method to a complex state-transition diagram, isolating specific groups of states to derive local balance equations.
+
+#### 1. Subset Definitions
+The diagram defines two disjoint subsets using dashed blue circles:
+*   **Subset Left**: Contains nodes **0** and **1f** (representing an empty system or a system where only task $\mu$ remains).
+*   **Subset Right**: Contains nodes **1s**, **2**, **3**, and **4** (representing states where task $\gamma$ is active or multiple jobs are present).
+
+#### 2. Flow Dynamics Across the Cut
+For the system to be in equilibrium, the total probability flow exiting the left subset must equal the flow entering it from the right:
+*   **Flow Out (Left to Right)**: A single transition occurs from **state 1f to state 2** due to an arrival at rate **$\lambda$**. The total flow rate is defined as $\lambda p_{1f}$.
+*   **Flow In (Right to Left)**: Two distinct transitions return the system to the left subset:
+    *   Completion of the parallel task $\gamma$ from **state 2 to state 1f** (rate $\gamma p_2$).
+    *   Completion of the parallel task $\gamma$ from **state 1s to state 0** (rate $\gamma p_{1s}$).
+
+#### 3. Derived Balance Equation
+Equating these crossing flows results in the following balance equation:
+$$ \lambda p_{1f} = \gamma p_2 + \gamma p_{1s} $$
+
+#### 4. Analytical Significance
+This partition is a fundamental step in solving the parallel task model. By isolating these subsets, we can relate the probabilities of having one job in a specific phase ($1f$ or $1s$) to the probability of having two jobs ($p_2$), allowing for the recursive resolution of the entire state probability distribution.
 
 $$
 \lambda p _ {0} = \mu p _ {1 \mathrm {f}} + \gamma p _ {1 \mathrm {s}}
@@ -697,11 +980,30 @@ $$
 p _ {0} + p _ {1 \mathrm {f}} + p _ {1 \mathrm {S}} + p _ {2} + p _ {3} + p _ {4} = 1
 $$
 
-![](images/fa0e32d6ebab60a34ceebd45f42e2a1201778fcd5e089a963d3a78b69946f93f.jpg)
+# Example M/M/2/4
 
 Cutting the graph
 
-![](images/5f5ecea3a528db650cb9212e5e4acb2ceeaa6a182c29b6658a91d706644b15cd.jpg)
+### Visual Diagram: Partitioning for High Congestion States
+- **Component Type**: Partitioned state-transition diagram.
+- **Logic**: Isolates the states representing higher congestion (3 or more jobs) to define the balance between moderate work-in-process and near-capacity conditions.
+
+#### 1. Subset Definitions
+The diagram defines two disjoint subsets using dashed blue circles:
+*   **Subset Left**: Includes states **{0, 1f, 1s, 2}**.
+*   **Subset Right**: Includes states **{3, 4}**.
+
+#### 2. Flow Dynamics Across the Cut
+For the system to be in equilibrium, the total probability flow exiting the left subset must equal the flow entering it from the right:
+*   **Flow Out (Left to Right)**: An arrival ($\lambda$) occurs while the system is in state 2, moving it to state 3. Rate: $\lambda p_2$.
+*   **Flow In (Right to Left)**: The completion of parallel service (sum of rates $\gamma + \mu$) while the system is in state 3, returning it to state 2. Rate: $(\gamma + \mu) p_3$.
+
+#### 3. Derived Balance Equation
+Equating these crossing flows results in the following balance equation:
+$$ \lambda p_2 = (\gamma + \mu) p_3 $$
+
+#### 4. Analytical Significance
+This partition establishes the mathematical relationship between the probabilities of the system being "busy" (2 jobs) versus "congested" (3 jobs). It is a critical step in calculating the stationary distribution for the system, which allows for the final determination of the blocking probability at state 4.
 
 $$
 \lambda p _ {0} = \mu p _ {1 \mathrm {f}} + \gamma p _ {1 \mathrm {S}}
@@ -731,7 +1033,26 @@ $$
 
 Cutting the graph
 
-![](images/4d7d7c60e273d9bfa7c9dcfed0660c09f622cdb75145d53a80f8223814a03f99.jpg)
+### Visual Diagram: Partitioning for the Blocking State Balance
+- **Component Type**: Partitioned state-transition diagram.
+- **Logic**: Isolates the blocking state (4) from the rest of the system to establish flow equilibrium at the capacity limit.
+
+#### 1. Subset Definitions
+The diagram defines two disjoint subsets using dashed blue circles:
+*   **Subset Left**: Includes states **{0, 1f, 1s, 2, 3}**.
+*   **Subset Right**: Includes only **State 4** (system full).
+
+#### 2. Flow Dynamics Across the Cut
+For the system to be in equilibrium, the total probability flow exiting the left subset must equal the flow entering it from the right:
+*   **Flow Out (Left to Right)**: An arrival ($\lambda$) occurs while the system is in state 3, moving it to the full state (4). Rate: $\lambda p_3$.
+*   **Flow In (Right to Left)**: The completion of parallel service (sum of rates $\gamma + \mu$) while the system is in state 4, returning it to state 3. Rate: $(\gamma + \mu) p_4$.
+
+#### 3. Derived Balance Equation
+Equating these crossing flows results in the following balance equation:
+$$ \lambda p_3 = (\gamma + \mu) p_4 $$
+
+#### 4. Analytical Significance
+This partition is critical for calculating the **Blocking Probability ($p_4$)**. This value is used to determine the effective arrival rate and the service level of the workstation, as any job arriving in state 4 is rejected by the system.
 
 $$
 \lambda p _ {0} = \mu p _ {1 \mathrm {f}} + \gamma p _ {1 \mathrm {S}}
@@ -753,8 +1074,33 @@ $$
 
 Norming equation
 
-![](images/869c386c8f0922ae53f600b788adef739ae3c77b8be78da33dc3d5b62143a16e.jpg)
+### Visual Diagram: State-Transition Network for Parallel Tasks and Finite Capacity
+- **Component Type**: Continuous-Time Markov Chain (CTMC) / State-transition diagram.
+- **Logic**: Models a queuing system with a finite capacity ($N=4$) and a server that performs two independent tasks in parallel for each job.
 
+---
+
+#### 1. State Space Definitions
+The system consists of six discrete states based on the number of jobs present and the completion status of the parallel tasks:
+*   **State 0**: The system is idle (empty).
+*   **States 1f and 1s**: The system contains 1 job. These states distinguish which of the two parallel tasks is still pending completion.
+*   **States 2, 3, 4**: The system contains 2, 3, or 4 jobs respectively. State 4 represents the **maximum capacity**; arrivals occurring in this state are blocked.
+
+#### 2. Transition Rate Dynamics
+*   **Arrival Rate ($\lambda$)**: Represents new jobs entering the system, moving the state from left to right (e.g., $0 \to 1f$ or $2 \to 3$).
+*   **Service Rates ($\mu, \gamma$)**: Represent the completion rates of two distinct tasks (e.g., Task A and Task B) required for each job.
+
+#### 3. Parallel Service Logic
+This model captures a workstation where each job requires two operations that are performed simultaneously:
+*   **Parallel Processing ($n \ge 2$)**: When 2 or more jobs are present, the server works on both tasks ($\mu$ and $\gamma$) at the same time for the job in service. Completing either task moves the system to a lower state. Thus, the total service rate from states 3 and 4 is the sum **$(\gamma + \mu)$**.
+*   **The State 1 Split**: When the system transitions from state 2 (having completed one task), it enters a specific state based on which task finished first:
+    *   If task $\gamma$ finished first, the system enters **1f** (where only task $\mu$ remains).
+    *   If task $\mu$ finished first, the system enters **1s** (where only task $\gamma$ remains).
+*   **Re-entry**: An arrival ($\lambda$) during states 1f or 1s returns the system to state 2, where both parallel tasks resume.
+
+#### 4. Analytical Application
+*   **Global Balance Equations**: This diagram is the foundation for establishing balance equations (e.g., $\lambda p_0 = \mu p_{1f} + \gamma p_{1s}$) to solve for steady-state probabilities.
+*   **Performance Metrics**: Used to calculate the **Blocking Probability ($p_4$)**, effective throughput, and the average number of jobs in the system (WIP).
 $$
 \lambda p _ {0} = \mu p _ {1 \mathrm {f}} + \gamma p _ {1 \mathrm {S}}
 $$
@@ -869,7 +1215,66 @@ $$
 >Probability that a job is rejected   
 >Utilization of the workstation
 
-![](images/e94d7e70c888f6482e31156907f7896a6cb05df14eeadf29992352a93b99eac6.jpg)
+### Simulation Interface: System Layout and Performance Dashboard
+- **Component Type**: Discrete-Event Simulation (DES) interface (FlexSim).
+- **Logic**: Represents a parallel workstation configuration with differentiated processing speeds and a real-time performance tracking dashboard.
+
+---
+
+#### 1. Model Layout (3D View)
+The left panel illustrates the physical material flow within the system:
+*   **Source1**: The entry point for entities (jobs) into the simulation.
+*   **Queue1**: A central buffer where jobs wait before being dispatched to the next available resource.
+*   **Parallel Processors**: 
+    *   **FASTER**: The upper workstation, characterized by a higher processing speed.
+    *   **SLOWER**: The lower workstation, characterized by a lower processing speed.
+*   **Sink1 & Sink2**: Departure points. Sink1 collects finished products from both processors, while Sink2 handles a secondary flow (potentially scrap or bypassed units) directly from the source.
+
+---
+
+#### 2. Performance Dashboard (KPIs)
+The right panel displays metrics collected over a total simulation run time of **761,602.03 units**.
+
+**A. State (Resource Utilization)**
+Visualizes the percentage of time machines spend in the *Processing* state versus the *Idle* state.
+| Object | Utilization (Processing) |
+| :--- | :--- |
+| **FASTER** | 36.48% |
+| **SLOWER** | 25.85% |
+
+**B. Cycle Time (Avg Staytime)**
+Indicates the average duration an entity spends within each specific module.
+| Object | Avg Staytime (Days) |
+| :--- | :--- |
+| **Queue1** | 0.030 |
+| **FASTER** | 0.250 |
+| **SLOWER** | 0.500 |
+
+**C. Work in Process (Average WIP)**
+Represents the average number of entities present in each section simultaneously.
+| Object | Average WIP |
+| :--- | :--- |
+| **Queue1** | 0.059 |
+| **FASTER** | 0.365 |
+| **SLOWER** | 0.259 |
+
+**D. Cumulative Throughput**
+The total count of entities that have successfully passed through each component.
+| Object | Total Throughput |
+| :--- | :--- |
+| **Source1** | 1,522,955 |
+| **Queue1** | 1,505,065 |
+| **FASTER** | 1,111,178 |
+| **SLOWER** | 393,886 |
+| **Sink2** | 17,890 |
+
+---
+
+#### 3. Technical System Analysis
+The data suggests a **capacity-based load balancing** strategy:
+1.  **Throughput Distribution**: The "FASTER" machine handles approximately **74%** of the total processed volume ($1,111,178$ out of $1,505,064$ total), confirming its role as the primary bottleneck-reducing resource.
+2.  **Processing Ratio**: The cycle time for the "SLOWER" machine is exactly double that of the "FASTER" machine (0.500 vs 0.250), which directly correlates with the throughput variance.
+3.  **Stability**: Despite the high cumulative throughput, machine utilization remains under 40% and the Queue1 WIP is very low (0.059), indicating that the system is stable and currently over-capacitated for the given arrival rate.
 
 # Solution
 
@@ -923,7 +1328,30 @@ $$
 
 mean 1 and shape parameters k = 2 (solid line) and k = 10 (dashed line)
 
-![](images/bd000fbce5dbd03e717a23783bfbc95c464808df28e401e09d75441c1beddc13.jpg)
+### Visual Diagram: Probability Density Functions for Service Times
+- **Component Type**: Comparison graph of probability distributions.
+- **Logic**: Illustrates the difference in variability between a purely random process and a multi-stage (Erlang) process, which is critical for calculating system congestion.
+
+---
+
+#### 1. The Solid Line: Exponential Distribution ($M$)
+*   **Definition**: Represents the "Markovian" or memoryless process used in $M/M/1$ systems.
+*   **Characteristics**: It has the highest probability at very short durations and a very long "tail."
+*   **Variability**: The standard deviation is equal to the mean ($\sigma = E[x]$), resulting in a **Coefficient of Variation ($CV$) of 1**. This represents a high degree of randomness.
+
+#### 2. The Dashed Line: Erlang Distribution ($E_k$)
+*   **Definition**: Represents a process consisting of $k$ independent exponential stages.
+*   **Characteristics**: The probability of very short service times is near zero because all $k$ stages must be completed. The curve is more concentrated around the mean.
+*   **Variability**: As $k$ increases, the variance decreases ($\sigma^2_{E_k} = \frac{\sigma^2_M}{k}$). This results in a **Coefficient of Variation ($CV$) < 1**.
+
+#### 3. Impact on Queuing Performance (VUT Logic)
+In industrial engineering, the shape of these curves directly impacts the **VUT (Kingman's) formula**:
+*   **High Variability (Solid Line)**: Leads to "clustering" of jobs, causing longer queues and higher Work-In-Process (WIP) even at moderate utilization.
+*   **Low Variability (Dashed Line)**: Moving toward the dashed line (or a deterministic $D$ distribution) reduces the "Variability" term in the VUT equation, significantly lowering the average waiting time.
+
+#### 4. Transition toward Determinism
+*   **The Trend**: If $k$ continues to increase towards infinity, the dashed line would eventually become a single vertical spike at the mean.
+*   **Engineering Goal**: Reducing process variability (moving from the solid line to the dashed line) is a primary objective in Lean manufacturing to stabilize cycle times without necessarily increasing machine speed.
 
 # M/E2/1/3- Erlang processing time
 
@@ -946,13 +1374,36 @@ Pair (n.i)
 >n: number of jobs in the system   
 >i: service phase occupied by the job being processed
 
-![](images/8c0c608aaaa1c215939f656cd9f722b34c0f2608533a6c0698a778d3961c617e.jpg)
+### Visual Diagram: State-Transition Network for Erlang-2 Service ($M/E_2/1/3$)
+- **Component Type**: Continuous-Time Markov Chain (CTMC) with phase-type service.
+- **Logic**: Illustrates a queuing system with a finite capacity of 3 jobs ($N=3$), where the service time follows an Erlang-2 distribution ($k=2$).
+
+---
+
+#### 1. State Definition (Phase-Space Representation)
+States are defined by the pair $(n, x)$, where **$n$** is the total number of jobs in the system and **$x$** is the current service phase of the job being processed:
+*   **State 0**: The system is empty (idle).
+*   **States 11, 12**: One job in the system. The job is currently in Phase 1 or Phase 2, respectively.
+*   **States 21, 22**: Two jobs in the system. The job in service is in Phase 1 or Phase 2; the second job is waiting in the queue.
+*   **States 31, 32**: Three jobs in the system (**Maximum Capacity**). The job in service is in Phase 1 or Phase 2; two additional jobs are waiting.
+
+#### 2. Transition Rate Dynamics
+*   **Arrival Rate ($\lambda$)**: Represents a new job entering the system. An arrival increases the job count but does not alter the service phase of the job currently at the server (e.g., $11 \xrightarrow{\lambda} 21$ or $12 \xrightarrow{\lambda} 22$).
+*   **Service Phase Rate ($2\mu$)**: The service process consists of $k=2$ identical exponential phases. To maintain a total mean service rate of $\mu$, each phase must complete at rate **$2\mu$**.
+    *   **Phase Completion**: Moving from Phase 1 to Phase 2 (e.g., $21 \to 22$).
+    *   **Job Departure**: Completing Phase 2 of the current job and immediately starting Phase 1 of the next job in the queue (e.g., $22 \to 11$ or $32 \to 21$).
+
+#### 3. System Boundaries
+*   **Blocking**: In states 31 and 32, there are no outgoing $\lambda$ arcs. Any arrival occurring when 3 jobs are present is blocked and lost.
+*   **Return to Idle**: When the system is in state 12 (the only job present is in its final phase), completion at rate $2\mu$ returns the system to State 0.
+
+#### 4. Analytical Application
+*   **Global Balance Equations**: This diagram is used to solve for steady-state probabilities ($p_{n,x}$). For example, the balance for state 12 is: $(\lambda + 2\mu)p_{12} = 2\mu p_{11}$.
+*   **Performance Impact**: Because $k=2$, the service variability is lower than a standard exponential distribution ($CV = 1/\sqrt{2} \approx 0.707$). This reduction in variability results in a lower average Work-In-Process (WIP) compared to a Markovian $M/M/1/3$ system with the same utilization.
 
 # M/E2/1/3- Erlang processing time
 
 Node partitioning and corresponding equations
-
-![](images/e2087b3479b1d76356b7f214925f1738c7a5b7f0faf77888e96b3d4ba5872f23.jpg)
 
 $$
 \lambda p _ {0} - 2 \mu p _ {1 2} = 0
@@ -986,7 +1437,37 @@ $$
 
 Node partitioning and corresponding equations
 
-![](images/2e15005166387a688506770b2e045c6b19f8e5e6a2c7a31253eea796d8fb162a.jpg)
+$$
+\lambda p _ {0} - 2 \mu p _ {1 2} = 0
+$$
+
+$$
+\lambda p _ {0} + \lambda p _ {1 2} - 2 \mu p _ {1 1} = 0
+$$
+
+$$
+(\lambda + 2 \mu) p _ {1 1} - 2 \mu p _ {1 2} - 2 \mu p _ {2 2} = 0
+$$
+
+$$
+\lambda p _ {1 1} + \lambda p _ {1 2} - 2 \mu p _ {2 2} = 0
+$$
+
+$$
+\lambda p _ {2 1} + \lambda p _ {2 2} - 2 \mu p _ {3 2} = 0
+$$
+
+$$
+\lambda p _ {2 2} + 2 \mu p _ {3 1} - 2 \mu p _ {3 2} = 0
+$$
+
+$$
+p _ {0} + p _ {1 1} + p _ {1 2} + p _ {2 1} + p _ {2 2} + p _ {3 1} + p _ {3 2} = 1.
+$$
+
+# M/E2/1/3- Erlang processing time
+
+Node partitioning and corresponding equations
 
 $$
 \lambda p _ {0} - 2 \mu p _ {1 2} = 0
@@ -1020,8 +1501,6 @@ $$
 
 Node partitioning and corresponding equations
 
-![](images/17d147532ab5f6f46bb3762f5ef4d6e982da1970ff2a49883e9ccfecf88592a8.jpg)
-
 $$
 \lambda p _ {0} - 2 \mu p _ {1 2} = 0
 $$
@@ -1054,8 +1533,6 @@ $$
 
 Node partitioning and corresponding equations
 
-![](images/2bd6793bcd3caf07c1826d35b3871834881db30a972e8a37289dade8b609a410.jpg)
-
 $$
 \lambda p _ {0} - 2 \mu p _ {1 2} = 0
 $$
@@ -1087,42 +1564,6 @@ $$
 # M/E2/1/3- Erlang processing time
 
 Node partitioning and corresponding equations
-
-![](images/6117cb15df6326730e4d87acefd86ec23691652b04341ba5c9267cd140afeb91.jpg)
-
-$$
-\lambda p _ {0} - 2 \mu p _ {1 2} = 0
-$$
-
-$$
-\lambda p _ {0} + \lambda p _ {1 2} - 2 \mu p _ {1 1} = 0
-$$
-
-$$
-(\lambda + 2 \mu) p _ {1 1} - 2 \mu p _ {1 2} - 2 \mu p _ {2 2} = 0
-$$
-
-$$
-\lambda p _ {1 1} + \lambda p _ {1 2} - 2 \mu p _ {2 2} = 0
-$$
-
-$$
-\lambda p _ {2 1} + \lambda p _ {2 2} - 2 \mu p _ {3 2} = 0
-$$
-
-$$
-\lambda p _ {2 2} + 2 \mu p _ {3 1} - 2 \mu p _ {3 2} = 0
-$$
-
-$$
-p _ {0} + p _ {1 1} + p _ {1 2} + p _ {2 1} + p _ {2 2} + p _ {3 1} + p _ {3 2} = 1.
-$$
-
-# M/E2/1/3- Erlang processing time
-
-Node partitioning and corresponding equations
-
-![](images/e95d67bbbdcb7910bb6942518bb443e0d9e0a3d8725a6fff6e03262c312a31cd.jpg)
 
 $$
 \lambda p _ {0} - 2 \mu p _ {1 2} = 0
@@ -1156,8 +1597,6 @@ $$
 
 # Norming equation
 
-![](images/03378f4d805db8c1dcba82455214d25c357383a744ad2c7ba95a24bf035631af.jpg)
-
 $$
 \lambda p _ {0} - 2 \mu p _ {1 2} = 0
 $$
@@ -1190,7 +1629,35 @@ $$
 
 # V Alternative solution with node isolation
 
-![](images/f9e69c6a25d1989f201b537e6b872a52322f163a3cd37cc8ce827f1d3694b1de.jpg)
+### Visual Diagram: Node Isolation for Local Balance (State 22)
+- **Component Type**: Partitioned state-transition diagram for an $M/E_2/1/3$ system.
+- **Logic**: Illustrates the isolation of a specific node to derive a local balance equation by equating the total probability flow entering and exiting that state.
+
+---
+
+#### 1. The Isolation Method
+*   **Target Subset**: The diagram isolates **State 22** (representing 2 jobs in the system, with the job in service currently in its second phase) using a dashed blue partition.
+*   **External Subset**: All other states in the Markov chain **{0, 11, 12, 21, 31, 32}** are grouped as the external environment relative to the isolated node.
+
+#### 2. Flow Dynamics Across the Boundary
+For the system to maintain steady-state equilibrium, the flow rate crossing the boundary into the node must equal the flow rate exiting it:
+
+*   **Outward Flow (Exiting State 22)**:
+    *   **Arrival ($\lambda$)**: A new job arrives, moving the system to state 32.
+    *   **Service Completion ($2\mu$)**: The second phase of service concludes, returning the system to state 11 (starting phase 1 of the next job).
+    *   **Total Outward Rate**: $(\lambda + 2\mu) p_{22}$.
+
+*   **Inward Flow (Entering State 22)**:
+    *   **Arrival from State 12**: An arrival occurs while the system is in phase 2 of the first job.
+    *   **Phase Shift from State 21**: The job in service completes its first phase at rate $2\mu$.
+    *   **Total Inward Rate**: $\lambda p_{12} + 2\mu p_{21}$.
+
+#### 3. Resulting Local Balance Equation
+Equating these flows provides the algebraic relationship necessary to solve for the steady-state probability of this specific state:
+$$ (\lambda + 2\mu) p_{22} = \lambda p_{12} + 2\mu p_{21} $$
+
+#### 4. Analytical Significance
+Isolating nodes individually allows for the systematic construction of the global balance matrix. This specific equation links the probability of having two jobs ($p_2$) to both the lower-congested state ($p_1$) and the higher-congested state ($p_3$), facilitating the recursive resolution of the entire finite-capacity model.
 
 $$
 \begin{array}{l} \lambda p _ {0} = 2 \mu p _ {1 2} \\ \lambda p _ {1 1} + 2 \mu p _ {1 1} = \lambda p _ {0} + 2 \mu p _ {2 2} \\ \lambda p _ {1 2} + 2 \mu p _ {1 2} = 2 \mu p _ {1 1} \\ \lambda p _ {2 1} + 2 \mu p _ {2 1} = \lambda p _ {1 1} + 2 \mu p _ {3 2} \\ 2 \mu p _ {3 1} = \lambda p _ {2 1} \\ 2 \mu p _ {3 2} = \lambda p _ {2 2} + 2 \mu p _ {3 1} \\ \end{array}
@@ -1234,13 +1701,72 @@ Derive the balance equations
 
 State diagram
 
-![](images/2dd779d17eeea7bb4f42b8bfb67ed16f2f1c567a9a086728a560a47878746192.jpg)
+### Visual Diagram: State-Transition Network for Erlang-3 Service ($M/E_3/1/2$)
+- **Component Type**: Continuous-Time Markov Chain (CTMC) with phase-type service.
+- **Logic**: Illustrates a queuing system with a finite capacity of 2 jobs ($N=2$), where the service time is modeled as an Erlang-3 distribution ($k=3$).
+
+---
+
+#### 1. State Definition (Phase-Space Representation)
+States are labeled as $(n, x)$, where **$n$** is the number of jobs in the system and **$x$** is the current service phase of the job being processed:
+*   **State 0**: The system is idle (empty).
+*   **States 11, 12, 13**: One job in the system. The job is currently in Phase 1, 2, or 3, respectively.
+*   **States 21, 22, 23**: Two jobs in the system (**Maximum Capacity**). One job is in service (Phase 1, 2, or 3), and one job is waiting in the queue.
+
+#### 2. Transition Rate Dynamics
+*   **Arrival Rate ($\lambda$)**: Represents a new job entering the system. 
+    *   An arrival moves the system from $n$ to $n+1$ without changing the current service phase (e.g., $11 \xrightarrow{\lambda} 21$ or $12 \xrightarrow{\lambda} 22$).
+    *   From state 0, an arrival moves the system to state 11.
+*   **Service Phase Rate ($3\mu$)**: The service consists of $k=3$ identical exponential phases. To maintain a total mean service rate of $\mu$, each phase completes at rate **$3\mu$**.
+    *   **Phase Shift**: Moving from one phase to the next (e.g., $11 \to 12 \to 13$).
+    *   **Job Departure**: Completing Phase 3 triggers a departure. 
+        *   If no one else is waiting ($13 \to 0$).
+        *   If a second job is waiting ($23 \to 11$), the system returns to state 11 as the waiting job starts its first phase of service.
+
+#### 3. System Constraints
+*   **Blocking**: There are no arrival arrows ($\lambda$) exiting the states $21, 22, 23$. This confirms the system capacity is strictly limited to 2. Any arrival occurring when 2 jobs are already present is blocked and lost.
+*   **Variability Reduction**: By using $k=3$ phases, the service time variability is significantly lower than a standard exponential distribution ($CV = 1/\sqrt{3} \approx 0.577$).
+
+#### 4. Analytical Significance
+This Markov chain allows for the calculation of steady-state probabilities $p_{n,x}$. These are used to determine:
+*   **Blocking Probability**: $P_{block} = p_{21} + p_{22} + p_{23}$.
+*   **Average WIP**: $\sum n \cdot p_{n,x}$.
+*   **Effective Throughput**: $\lambda_{eff} = \lambda (1 - P_{block})$.
 
 # Solution
 
 # Equations with node isolation
 
-![](images/f776be86a3b3e475cde0b5f0c0497beb20b1139b68054a51af12ef0c78ff3726.jpg)
+### Visual Diagram: Node Isolation Method for $M/E_3/1/2$ System
+- **Component Type**: Partitioned state-transition diagram (Local Balance approach).
+- **Logic**: Illustrates the isolation of individual states via mathematical "cuts" to establish the equilibrium between inward and outward probability flows for each node.
+
+---
+
+#### 1. Partitioning Strategy (Node Isolation)
+The dashed blue circles represent the **Isolation Method**. In steady-state, for any isolated subset (or single node), the rate at which the process leaves the subset must equal the rate at which it enters it. This is the visual basis for deriving the **Global Balance Equations**.
+
+#### 2. Analysis of Key Isolated States
+Based on the provided diagram, we can derive the following local equations:
+
+*   **Isolated State 0 (Idle)**:
+    *   **Flow Out**: $\lambda p_0$ (an arrival occurs).
+    *   **Flow In**: $3\mu p_{13}$ (the only job finishes its 3rd phase).
+    *   **Equation**: $\lambda p_0 = 3\mu p_{13}$
+*   **Isolated State 11 (1 Job, Phase 1)**:
+    *   **Flow Out**: $(\lambda + 3\mu) p_{11}$ (either a new arrival moves it to 21, or the first phase finishes).
+    *   **Flow In**: $\lambda p_0$ (arrival when empty) + $3\mu p_{23}$ (a departure occurs from a full system).
+    *   **Equation**: $(\lambda + 3\mu) p_{11} = \lambda p_0 + 3\mu p_{23}$
+*   **Isolated State 23 (Full, Phase 3)**:
+    *   **Flow Out**: $3\mu p_{23}$ (the job in service finishes).
+    *   **Flow In**: $\lambda p_{13}$ (arrival while 1 job was in phase 3) + $3\mu p_{22}$ (phase 2 finishes while the system is full).
+    *   **Equation**: $3\mu p_{23} = \lambda p_{13} + 3\mu p_{22}$
+
+#### 3. Observation on State 12
+In this specific visualization, **State 12** is the only node not highlighted with a dashed circle. This typically implies that its balance equation is either considered redundant (due to the linearly dependent nature of the equation system) or is derived as the "leftover" once all other nodes are balanced against the **Norming Equation** ($\sum p_{n,x} = 1$).
+
+#### 4. Engineering Objective
+This method allows us to transform a complex state-transition network into a solvable system of linear equations. By solving for $p_{n,x}$, we can determine the **Blocking Probability** ($p_{21}+p_{22}+p_{23}$) and the system's overall efficiency.
 
 $$
 \begin{array}{l} \lambda p _ {0} = 3 \mu p _ {1 3} \\ \lambda p _ {1 1} + 3 \mu p _ {1 1} = \lambda p _ {0} + 3 \mu p _ {2 3} \\ 3 \mu p _ {1 3} + \lambda p _ {1 3} = 3 \mu p _ {1 2} \\ 3 \mu p _ {2 1} = \lambda p _ {1 1} \\ 3 \mu p _ {2 2} = \lambda p _ {1 2} + 3 \mu p _ {2 1} \\ 3 \mu p _ {2 3} = \lambda p _ {1 3} + 3 \mu p _ {2 2} \\ \end{array}
@@ -1271,7 +1797,38 @@ $$
 
 > When finished typing, hold down the <ctrl> and <shift> keys and while holding these two keys down, hit <enter>
 
-![](images/bade2b68cdfb8979b2edc2ae04df26024ae8d228f7c31a21c5ec7924156a8334.jpg)
+### Visual Diagram: Mathematical Matrix for $M/E_3/1/2$ Steady-State Probabilities
+- **Component Type**: System of linear equations in matrix form ($A \cdot x = b$).
+- **Logic**: Numerical implementation of global balance equations derived from node isolation, used to calculate the exact probability of each system state.
+
+---
+
+#### 1. Matrix Structure and Variables
+The matrix columns represent the variables to be solved (the steady-state probabilities $p_{n,x}$), while the rows represent the balance equations for each node:
+*   **Columns**: $p_0$ (idle), $p_{11}, p_{12}, p_{13}$ (1 job, phases 1-3), and $p_{21}, p_{22}, p_{23}$ (2 jobs, phases 1-3).
+*   **Column $b$**: The right-hand side of the equations. Most are set to 0 (equilibrium), while the last is set to 1 (norming condition).
+
+#### 2. Parameter Inference from Coefficients
+Based on the coefficients in the matrix, the system parameters used for this specific calculation are:
+*   **Arrival Rate ($\lambda$)**: $3$ (seen in the coefficients for arrivals).
+*   **Phase Service Rate ($3\mu$)**: $18$ (seen in the coefficients for service completions). This implies an individual phase rate of $6$ and a total mean service rate of $\mu = 6$.
+*   **Utilization**: $\rho = \frac{\lambda}{\mu} = \frac{3}{6} = 0.5$.
+
+#### 3. Row Logic
+*   **Equations 1-6 (Global Balance)**: Each row corresponds to the flow equilibrium of a specific state. For example, **Equation 1** ($3p_0 - 18p_{13} = 0$) represents the idle state balance: $\lambda p_0 = 3\mu p_{13}$.
+*   **Equation 7 (Norming Equation)**: The row of 1s ensures that the sum of all probabilities equals exactly 1 ($\sum p_{n,x} = 1$). This is a necessary constraint to solve the system since balance equations are linearly dependent.
+
+#### 4. Calculated Numerical Results
+The **result** column provides the final stationary distribution for the system:
+*   **$p_0 = 0.5574$**: The system is empty more than 55% of the time.
+*   **Probabilities of 1 job**: $p_{11} \approx 0.1265$, $p_{12} \approx 0.1084$, $p_{13} \approx 0.0929$.
+*   **Probabilities of 2 jobs (Full)**: $p_{21} \approx 0.0211$, $p_{22} \approx 0.0391$, $p_{23} \approx 0.0546$.
+*   **Total Blocking Probability ($P_{block}$)**: $p_{21} + p_{22} + p_{23} \approx 0.1148$ (approx. 11.5%).
+
+---
+
+#### 5. Engineering Conclusion
+With a utilization of 0.5 and a service process divided into 3 Erlang phases, this workstation maintains a high idle rate and a relatively low blocking probability, demonstrating the stability provided by reducing service variability.
 
 # Solution
 
@@ -1315,7 +1872,34 @@ where p_(m,n)is the state probability,mis the numberof jobs in thefacility and n
 
 # Solution
 
-![](images/d9bacdf190671558def3c35aea342c5dc4571059aedb25eb7a06ea9c5b84f2b1.jpg)
+### Summary of Performance Metrics for Finite Capacity Systems
+- **Component Type**: Summary table of system performance indicators (KPIs).
+- **Logic**: Applies the results of steady-state probability calculations to determine effective throughput, inventory levels, and cycle times.
+
+---
+
+#### 1. Effective Throughput (TH)
+*   **Formula**: $\lambda_e = \lambda(1 - p_{n_{max}})$
+*   **Description**: Represents the actual rate at which jobs enter the system. In finite capacity models, the raw arrival rate ($\lambda$) must be adjusted by the probability that an arriving job finds the system full ($p_{n_{max}}$) and is blocked.
+*   **Calculation**: With an arrival rate of 4 jobs/hour and a blocking probability of 0.0415, the effective throughput is **3.834 jobs/hour**.
+
+#### 2. Work in Process (WIP)
+*   **Formula**: $WIP = \sum n \cdot p_{n}$
+*   **Description**: The average number of jobs currently in the system (both in service and in the queue).
+*   **Logic**: It is the weighted sum of the number of jobs $n$ multiplied by the probability of being in those states. For phase-type distributions (like Erlang), this includes summing across all phases for each job count (e.g., $p_{1,1} + p_{1,2} + p_{1,3}$).
+*   **Result**: The system maintains an average of **0.6941 jobs**.
+
+#### 3. Queue Inventory ($WIP_q$)
+*   **Formula**: $WIP_q = \sum (n-1) \cdot p_{n}$ (for $n \ge 1$)
+*   **Description**: The average number of jobs waiting in the queue, excluding the one currently being processed.
+*   **Calculation**: This sums the probabilities of having jobs in excess of the server's capacity.
+*   **Result**: On average, **0.2148 jobs** are waiting in line.
+
+#### 4. Cycle Time (CT) - Little's Law
+*   **Formula**: $CT = \frac{WIP}{\lambda_e}$
+*   **Description**: The average total time a job spends in the system from arrival to departure.
+*   **Application**: By applying Little's Law using the effective throughput ($\lambda_e$) rather than the raw arrival rate, we determine the average stay time.
+*   **Result**: The average cycle time is **0.1810 hours** (approximately 10.8 minutes).
 
 # General service distribution M/G/1
 
@@ -1406,7 +1990,7 @@ where Ca² and C² are the squared coefficients of variation for the inter-arriv
 
 Kingman equation also called the VUT equation
 
-![](images/6bf12c11fd5236e9351300b33496eed69ff93ec8269663b52104604ba35b780f.jpg)
+$$CT_q(G/G/1) \approx \left( \frac{C_a^2 + C_s^2}{2} \right) CT_q(M/M/1)$$
 
 # Approximation for G/G/1 systems
 

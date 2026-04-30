@@ -14,34 +14,11 @@ Problem of making customers/colleagues with different backgrounds to understand 
 Everyone reasons and expresses concepts according to their own cultural background   
 V distance of languages
 
-![](images/6fc5b824762183715ab5da253a4d01947f56d7af351c498723a75c2cb890d919.jpg)
-
-![](images/817d22f6ddc4c9fcb158f4ad03ca81555fe18c1cfca3d6af142a1649423febfb.jpg)
-
 # Communication problem
 
 Metaphor of the swing   
 Problem of using words to describe processes   
 Importance of being able to formalize a process to have an effective communication
-
-![](images/225d52996811bb411cb2429aad0e9b5914424cb50769b481d6441b7f46eb9483.jpg)  
-As proposed by the project sponsor (propostadal committente)
-
-![](images/afc285ef82b49d97a54928b53a1e5cd55b8fb129054750c85a00e974b18265e1.jpg)  
-As produced by the programmers (prodottadaiprogrammatori)
-
-![](images/30a24fab0ae25bc99cae2a6c98e1e506a00cbb33cf89d96a4cd1ee5f5a005d0e.jpg)  
-As specified in the project request (specificata nei requisiti)
-
-![](images/2116effbd6e926073eaf478f10a0ca7097fad5f3fcca33a4e2464aa33da42a84.jpg)  
-As installed at the user's site (installatapressof'utente)
-
-![](images/85b3ee3dec008364ed7899e4b081e8d6eb6564496991779d1e0d23731f091f78.jpg)  
-As designed by the senior analyst (progettatadall'analista)
-
-![](images/b0b6a13361b448f68767746836e9138a6209529547492e0e6a35a9a6836e2c21.jpg)  
-What the user wanted   
-(cio chef'utentevoleva)
 
 # Importance of processes in production systems
 
@@ -53,13 +30,16 @@ Implement
 Support   
 Disposal
 
-![](images/7d721492f9d7c6775931b419b6fcf922718d7abd68776fb5b1a3c167a4dbd591.jpg)
 
 # Process definition
 
 A process is characterized by a series of activities linked together to provide a certain output given a certain input
 
-![](images/f369de232db3e730a6190f2e461896ea70ed35f78fdd9e92b4bb6f20aedf9d11.jpg)
+### Visual Diagram: Basic Process Definition
+- **Visual Element 1 (Left)**: A solid black arrow pointing horizontally to the right. Text positioned directly above the arrow: "Input".
+- **Visual Element 2 (Center)**: A solid blue rectangle. Text centered inside the shape: "Process" (in black font).
+- **Visual Element 3 (Right)**: A solid black arrow pointing horizontally to the right, originating from the right edge of the blue rectangle. Text positioned directly above the arrow: "Output".
+- **Logical Flow**: The "Input" arrow enters the left side of the "Process" rectangle. The "Output" arrow exits from the right side of the "Process" rectangle.
 
 V Representation at various levels of detail   
 To represent a process, it is necessary to identify the activities of which it is composed and their sequence
@@ -85,59 +65,66 @@ Many variants
 
 # Flow chart
 
-![](images/793c5aba4185bdfc75d103e9a3a397d982aae7853be581f769e4cbdcce7b287b.jpg)
-
-Start and End
-
-![](images/dc52557947df7ae3eb9ad08b8e6c620cb1fbaf20c523fe218667938a08e6a86e.jpg)
-
-Activity
-
-![](images/6624660e11cc1e21400de932bd1fe7618fc0ad9f77adebed04bbdb500f6f0326.jpg)
-
-Decision
-
-![](images/4e72e32d02f9fb37d0cb773628bcb9ea13379766a67a5703979eda570549a796.jpg)
-
-Input/output data
-
-![](images/c0b7d3e9e201ee3526eba5d6c7792c8a11ec7e8076989c0e8c4961bf233890fa.jpg)
-
-Flow control
+### Visual Diagram: Flow Chart Symbols Legend
+- **Overall Layout**: The diagram is a legend enclosed within a white box with rounded corners and a thin black border. It features a vertical list of five standard flowchart symbols aligned to the left, with their corresponding definitions written to the right.
+- **Element 1 (Top)**: A light green oval (ellipse) with a black outline. Associated text to the right: "Start and End".
+- **Element 2**: A light peach/beige rectangle with a black outline. Associated text to the right: "Activity".
+- **Element 3**: A light pink diamond (rhombus) with a black outline. Associated text to the right: "Decision".
+- **Element 4**: A blue parallelogram with a black outline. Associated text to the right: "Input/output data".
+- **Element 5 (Bottom)**: A solid black horizontal arrow pointing to the right. Associated text to the right: "Flow control".
 
 # Example: Customer support service
 
-![](images/aa6a00b793c206c7651ea7922b0bc13525627ecb67be87a13bcd9115f29ab0c2.jpg)
+### Visual Diagram: Customer Support Service Flowchart
+- **Diagram Type**: Swimlane Flowchart (Cross-functional process).
+- **Swimlanes (Horizontal, top to bottom)**: "Customer", "Service Desk", "Technical support".
+
+**Nodes and Process Routing:**
+1. **Start**: An oval node labeled "Send request" located in the **Customer** lane. An arrow flows down to the next node.
+2. **Activity**: A rectangle labeled "Determine nature of request" in the **Service Desk** lane. An arrow flows right to a decision node.
+3. **Decision**: A diamond labeled "Previous incident?" in the **Service Desk** lane. 
+    - The **"no"** branch flows to a rectangle labeled "Create new incident record".
+    - The **"yes"** branch flows to a rectangle labeled "Review existing incident".
+4. **Merge**: Arrows from both "Create new incident record" and "Review existing incident" converge and flow right into a rectangle labeled "Investigation and diagnosis" (all still within the **Service Desk** lane).
+5. **Decision**: An arrow flows right from "Investigation and diagnosis" to a diamond labeled "SD able to solve?" in the **Service Desk** lane.
+    - The **"yes"** branch flows right to a rectangle labeled "Recovery" in the **Service Desk** lane.
+    - The **"no"** branch flows down to a rectangle labeled "Investigation and diagnosis" in the **Technical support** lane.
+6. **Technical Support Escalation Path**: From "Investigation and diagnosis" in the **Technical support** lane, an arrow flows right to a rectangle labeled "Recovery". From this "Recovery", an arrow flows back up into the **Service Desk** lane, connecting to "Resolution notification".
+7. **Service Desk Direct Path**: From the Service Desk's own "Recovery" node, an arrow flows right to a rectangle labeled "Resolution notification" in the **Service Desk** lane.
+8. **Customer Confirmation**: From "Resolution notification", an arrow flows up into the **Customer** lane to a diamond labeled "Confirmed resolution".
+    - The **"no"** branch creates a feedback loop, flowing left and down back to the "Investigation and diagnosis" node in the **Service Desk** lane.
+    - The **"yes"** branch flows right to a rectangle labeled "Give a rating" in the **Customer** lane.
+9. **End of Process**: From "Give a rating", an arrow flows down to a rectangle labeled "Store rating" in the **Service Desk** lane. Finally, an arrow flows right to an oval node labeled "End" in the **Service Desk** lane.
 
 # UML Activity Diagram
 
-![](images/80f1fa0bdaaa6ed4e888c9f95daede98b450cdfe7b32798fa73195333ace6dd8.jpg)
-
-Initial state
-
-![](images/e7e5975375cb18bf6b8566cd7ef3caf9ea356884a113f1ec7b07412675f31925.jpg)
-
-End state
-
-![](images/2f1e031f1e9b3e21375e51e240d1cea0d2f7720bf76a994468b264805128c1f0.jpg)
-
-Activity
-
-![](images/2acefb96c3abbc6cb0ebc00ff2fa6eae24a2b00ab387985105c0518361c2b63a.jpg)
-
-Decision
-
-![](images/fb36934457634881bb4a5ba7c84b0e08e82c719c070947cf1b88b7f0a30beb9a.jpg)
-
-Fork and Join
-
-![](images/61e20d3695dbee92f46fc847c0cc6d765cd3c29ed4d77b28fa9cb0e13d18f372.jpg)
-
-Flow control
+### Visual Diagram: UML Activity Diagram Symbols Legend
+- **Overall Layout**: The diagram is a legend enclosed within a white box with rounded corners and a thin black border. It features a vertical list of six standard UML activity diagram symbols aligned to the left, with their corresponding definitions written to the right.
+- **Element 1 (Top)**: A solid black circle. Associated text to the right: "Initial state".
+- **Element 2**: A solid black circle surrounded by an outlined circle (resembling a bullseye). Associated text to the right: "End state".
+- **Element 3**: A light green rectangle with rounded corners and a black outline. Associated text to the right: "Activity".
+- **Element 4**: A light pink diamond (rhombus) with a black outline. Associated text to the right: "Decision".
+- **Element 5**: Two distinct symbols shown side-by-side to represent splitting and merging paths. 
+    - The left symbol (Fork) shows one arrow pointing down into a thick black horizontal line, with two arrows pointing down and away from the bottom of the line.
+    - The right symbol (Join) shows two arrows pointing down into a thick black horizontal line, with one arrow pointing down from the center of the bottom line.
+    - Associated text to the right: "Fork and Join".
+- **Element 6 (Bottom)**: A solid black horizontal arrow pointing to the right. Associated text to the right: "Flow control".
 
 # Example: order management
 
-![](images/47198cf0c56dcbaa78c67a9183e5c1119aefd31fa5f67ad0ef55902bf64ec936.jpg)
+### Visual Diagram: UML Activity Diagram - Order Management
+- **Diagram Type**: UML Activity Diagram with Swimlanes.
+- **Swimlanes (Vertical, Left to Right)**: "WAREHOUSE", "CUSTOMER SERVICE", "ACCOUNTING".
+
+**Nodes and Process Routing:**
+1. **Start**: A solid black circle (Initial state) located at the top of the **CUSTOMER SERVICE** lane. An arrow flows down to the first activity.
+2. **Activity**: A rounded rectangle labeled "RECEIVE ORDER" in the **CUSTOMER SERVICE** lane. An arrow flows down to a Fork node.
+3. **Fork (Parallel Routing)**: A thick black horizontal line (Fork) in the **CUSTOMER SERVICE** lane. It splits the flow into two parallel paths:
+    - **Path A (Physical Fulfillment)**: An arrow flows left into the **WAREHOUSE** lane to an activity labeled "FULFILL ORDER". From there, an arrow flows down to an activity labeled "24 h SHIPPING".
+    - **Path B (Invoicing)**: An arrow flows down within the **CUSTOMER SERVICE** lane to an activity labeled "SEND BILL". From there, an arrow flows right into the **ACCOUNTING** lane to an activity labeled "RECEIVE PAYMENT".
+4. **Join (Synchronization)**: Arrows from the ends of both parallel paths ("24 h SHIPPING" in the Warehouse lane and "RECEIVE PAYMENT" in the Accounting lane) converge onto a single thick black horizontal line (Join) located in the **CUSTOMER SERVICE** lane. This indicates the process cannot proceed until both the shipping and payment are complete.
+5. **Activity**: From the Join node, an arrow flows down to a rounded rectangle labeled "CLOSE ORDER" in the **CUSTOMER SERVICE** lane.
+6. **End of Process**: An arrow flows down from "CLOSE ORDER" to a bullseye symbol (End state) located at the bottom of the **CUSTOMER SERVICE** lane.
 
 # Business process model and notation
 
@@ -146,31 +133,48 @@ Based on popular graphical flowcharts:
 Core set of notation elements   
 Each core element has various subtypes
 
-![](images/f6987c41d2ae908f569d232df5babf67e284d8adeaf68cae6eed324379f8b979.jpg)  
-activity
-
-Activities capture work performed in a process
-
-![](images/df402f1a51922bd78408afe765c0fb8647ad967c3f047350edd18a577897c993.jpg)  
-event
-
-Events represent the process' triggers (start event) and outcomes (end event)
-
-![](images/7e247ff621f581aceb4c2e8ca034610db163ba00f24040ba6db47a47bc612a60.jpg)
-
-![](images/bca067349814232fc8e81df08600d3f3b93330e05f503f9b53ca58ae23e4964c.jpg)  
-gateway
-
-Gateways capture forking and joining paths in the control flow
-
-![](images/eaf037dd9a18259c5cd4cae3a989fb8b634776c5d28e1a68c8a26b65c7124e37.jpg)  
-sequence flow
-
-Sequence flows represent the order in which activities and events will be performed
+### Visual Diagram: BPMN Core Elements Legend
+- **Overall Layout**: The diagram is a horizontal legend arranged in four columns, displaying the core notation elements for BPMN. Each column contains a geometric symbol, its name, and a textual description below it.
+- **Element 1 (Left)**: A white rectangle with rounded corners and a black outline. 
+  - **Name**: activity
+  - **Description**: Activities capture work performed in a process.
+- **Element 2 (Center-Left)**: Two circles shown side-by-side. The left circle has a thin black outline (with the word "start" below it). The right circle has a thick black outline (with the word "end" below it).
+  - **Name**: event
+  - **Description**: Events represent the process' triggers (start event) and outcomes (end event).
+- **Element 3 (Center-Right)**: A white diamond (rhombus) with a black outline.
+  - **Name**: gateway
+  - **Description**: Gateways capture forking and joining paths in the control flow.
+- **Element 4 (Right)**: A thin black horizontal arrow pointing to the right.
+  - **Name**: sequence flow
+  - **Description**: Sequence flows represent the order in which activities and events will be performed.
 
 # Example Order-to-cash
 
-![](images/158d362438dcd8a6efb4c84f661f0ce4162e56ac3a74c50b9d677c90dd1372f9.jpg)
+### Visual Diagram: BPMN Example - Order-to-cash
+- **Diagram Type**: BPMN Collaboration Diagram with Pools and Swimlanes.
+- **Pools**: 
+    - Top Pool: "Customer" (Black-box pool, no internal process details shown).
+    - Bottom Pool: "Seller".
+- **Swimlanes (within "Seller" Pool, top to bottom)**: 
+    - "Warehouse & Distribution" (contains sub-lanes "ERP System" and "Warehouse Staff").
+    - "Sales".
+- **Message Flows (Dashed arrows crossing pool boundaries)**:
+    - From Customer to Seller (ERP System): "Purchase order".
+    - From Seller (Sales) to Customer: "Order confirmation", "Order rejection", "Invoice".
+    - From Seller (Warehouse Staff) to Customer: "Shipment notice".
+
+**Nodes and Process Routing (inside Seller Pool):**
+1. **Start Event**: A message start event (circle with an envelope icon) labeled "Purchase order received" in the **ERP System** lane. It is triggered by the "Purchase order" message from the Customer.
+2. **Activity**: A sequence flow leads to a task labeled "Check stock availability" in the **ERP System** lane.
+3. **Exclusive Gateway (X)**: The flow moves down to an exclusive gateway (diamond with an 'X') in the **Sales** lane.
+    - **Path "items not in stock"**: Flows to a task labeled "Reject order" in the **Sales** lane. This task sends an "Order rejection" message back to the Customer. The flow then terminates at an End Event labeled "Order rejected".
+    - **Path "items in stock"**: Flows to a task labeled "Confirm order" in the **Sales** lane. This task sends an "Order confirmation" message to the Customer.
+4. **Parallel Gateway (+) - Split**: After "Confirm order", the flow reaches a parallel gateway (diamond with a '+') in the **Sales** lane, splitting into two concurrent paths:
+    - **Parallel Path A**: Flows up to a task labeled "Ship goods" in the **Warehouse Staff** lane. This task sends a "Shipment notice" message to the Customer.
+    - **Parallel Path B**: Flows to a task labeled "Emit invoice" in the **Sales** lane. This task sends an "Invoice" message to the Customer.
+5. **Parallel Gateway (+) - Join**: The sequence flows from both "Ship goods" and "Emit invoice" converge at a second parallel gateway in the **Sales** lane.
+6. **Activity**: The unified flow continues to a task labeled "Archive order" in the **Sales** lane.
+7. **End Event**: The process concludes at a standard end event (thick black circle) labeled "Order fulfilled" in the **Sales** lane.
 
 # Flow process chart
 
@@ -186,11 +190,18 @@ When to use it:
 
 # ASME symbols
 
-Activity, changes physical or chemical material characteristics   
-Transport, movement of people or material (distance measures could be included)   
-Waiting, for material arrivals or machines availability   
-Warehouse, for material storage   
-Inspection,material quality and quantity control
+### Visual Diagram: ASME Symbols Legend for Flow Process Charts
+- **Overall Layout**: The diagram is a legend enclosed within a white box with rounded corners and a thin black border. It features a vertical list of five standard ASME symbols aligned to the left, with their corresponding descriptions written to the right. All symbols have a thin black outline and a white fill.
+- **Element 1 (Top)**: A circle.
+  - **Description**: Activity, changes physical or chemical material characteristics
+- **Element 2**: A block arrow pointing to the right.
+  - **Description**: Transport, movement of people or material (distance measures could be included)
+- **Element 3**: A semi-circle (resembling the capital letter 'D', with the flat vertical edge on the left).
+  - **Description**: Waiting, for material arrivals or machines availability
+- **Element 4**: An inverted triangle (pointing downwards).
+  - **Description**: Warehouse, for material storage
+- **Element 5 (Bottom)**: A square.
+  - **Description**: Inspection, material quality and quantity control
 
 # Example: Baking Cookies Factory
 
@@ -205,7 +216,28 @@ Alternative flows representedon parallel lines
 Numbers for counting the symbols of the same type   
 Description at the right side of the activity
 
-![](images/0c58775dbc6a634463c45134af6091da690674859a2fe7fd460de7a20a67e327.jpg)
+### Visual Diagram: Flow Process Chart - Baking Cookies Factory
+- **Overall Layout**: A vertical flow process chart using ASME symbols. Nodes are connected by a central vertical line, with one alternative flow branching horizontally to the right. Each symbol contains a sequential number corresponding to its specific category.
+
+**Main Flow (Top to Bottom):**
+1. **Transport (Block Arrow)**: Number inside: 1. Text right: "Introduce the dough into the mould". Measurement left: "50 m".
+2. **Activity (Circle)**: Number inside: 1. Text right: "Shape the cookies".
+3. **Transport (Block Arrow)**: Number inside: 2. Text right: "Place the cookies in the oven".
+4. **Activity (Circle)**: Number inside: 2. Text right: "Bake the cookies in the oven". Measurement left: "13 min".
+5. **Transport (Block Arrow)**: Number inside: 3. Text right: "Take the cookies to the cooling belt". Measurement left: "30 m".
+6. **Waiting (Semi-circle)**: Number inside: 1. Text right: "Cooling of cookies". Measurement left: "30 min".
+7. **Transport (Block Arrow)**: Number inside: 4. Text right: "Take the cookies to the inspection line". Measurement left: "30 m".
+8. **Inspection (Square)**: Number inside: 1. Text right: "Inspection of cookies".
+
+**Alternative Flow (Branching right after Inspection):**
+- **Path**: A horizontal line branches to the right from the main vertical flow. 
+- **Text on path**: "(8.2 %) Rejection of flan cookies".
+- **Destination**: Leads to a **Transport (Block Arrow)** pointing right. Measurement left: "20 m".
+
+**Main Flow Continuation (Downward after Inspection):**
+9. **Activity (Circle)**: Number inside: 3. Text right: "Stacking for packaging".
+10. **Activity (Circle)**: Number inside: 4. Text right: "Wrap the cookies".
+11. **Warehouse (Inverted Triangle)**: Number inside: 1. Text right: "Place the cookies in the shipping boxes".
 
 # Observations
 
@@ -215,46 +247,117 @@ V With a successive intervention, the mixing and molding processes can be improv
 
 # Example: reengineering comparison
 
-![](images/f6306e34710313df6ccaa9b313b440bb63517259ebce8e721cd969db200bd2b9.jpg)  
-Present State
-
-![](images/2f54f8db461ac724f962fc7899efd8fe690fc21ee3aab1bc1d23aba20b751ac6.jpg)  
-Future State
+### Visual Diagram: Process Reengineering Comparison
+- **Diagram Type**: Side-by-side comparison of a process flow before and after optimization.
+- **Left Panel (Present State)**: Shows the "Original Process". The flow is highly complex, featuring multiple decision branches, long queues, and numerous waiting times.
+    - **Key Metric 1**: Manufacturing Cycle = 349.49 Hours
+    - **Key Metric 2**: Customer Order Cycle = 101.31
+- **Right Panel (Future State)**: Shows the "Re-Engineered Process". The flow is significantly simplified, more linear, and structured to minimize delays.
+    - **Key Metric 1**: Manufacturing Cycle = 80.79 Hours
+    - **Key Metric 2**: Customer Order Cycle = 19.21
 
 # Example: packaging process
 
-![](images/15088f822d98f32ea545de7e21edea7af48d810b5dd240d990b81ca70e27b8bf.jpg)
+### Visual Diagram: Flow Process Chart - Packaging Process
+- **Overall Layout**: A continuous vertical flow process chart using standard ASME symbols. The flow is split into two columns for layout purposes, but represents a single sequential process starting from the top left and ending at the bottom right.
 
-Store of waste paper
-
-Convey to mixer
-
-Pulping and mixing
-
-Convey to forming machine
-
-Forming (Moulding)
-
-Drying
-
-![](images/8df70ca9bc8adb24f29e56cdcbb569e564dd2e134bf7b561e48f3a8e7a8bc600.jpg)
-
-Inspecting&counting
-
-Stacking
-
-Packing
-
-Convey to warehouse
-
-Store at warehouse
+**Process Sequence:**
+1. **Warehouse (Inverted Triangle)**: Store of waste paper
+2. **Transport (Block Arrow)**: Convey to mixer
+3. **Activity (Circle)**: Pulping and mixing
+4. **Transport (Block Arrow)**: Convey to forming machine
+5. **Activity (Circle)**: Forming (Moulding)
+6. **Activity (Circle)**: Drying
+7. **Inspection (Square)**: Inspecting & counting
+8. **Activity (Circle)**: Stacking
+9. **Activity (Circle)**: Packing
+10. **Transport (Block Arrow)**: Convey to warehouse
+11. **Warehouse (Upright Triangle)**: Store at warehouse
 
 # Example: chair assembly
 
-![](images/a9fd4474db5b6d0611d7c75068d0a1405579cb904313ba0b483f70ffa625628e.jpg)
+### Visual Diagram: Flow Process Chart - Chair Assembly
+- **Overall Layout**: An assembly chart utilizing ASME symbols. It displays three parallel processing lines for distinct components ("Legs", "Sills", "Top"), which subsequently merge into a single main assembly line. Every node displays a timing value to its left and a descriptive label to its right. Activity nodes (Circles) enclose an operational number format (e.g., "0-12"), whereas Inspection nodes (Squares) enclose an inspection number format (e.g., "Ins. 3").
 
-Flow Process Chart   
-![](images/2f4e4ccbd05f03b9ae2395efa6d77612f5dc0d76399a0cd7bba9a66d8e541ece.jpg)
+**Component Line 1 (Left): Legs**
+- **Material**: Legs (4 Req'd) Dwg. 2834421-3, 2 1/2"x2 1/2"x16" White Maple.
+1. **Activity (Circle)**: .09 Min. [0-12] Saw to Rough Length.
+2. **Activity (Circle)**: .30 " [0-3] Joint Two Edges.
+3. **Activity (Circle)**: .32 " [0-4] Plane to Size.
+4. **Activity (Circle)**: .11 " [0-5] Saw to Finished Length.
+5. **Inspection (Square)**: D.W. [Ins. 3] Check Over-All Dimensions.
+6. **Activity (Circle)**: .28 Min. [0-16] Sand All Over.
+*-> Merges into the main assembly line prior to operation [0-17].*
+
+**Component Line 2 (Center): Sills**
+- **Material**: Sills (4 Req'd) Dwg. 2834421-2, 1 1/2"x3"x12" Yellow Pine.
+1. **Activity (Circle)**: .08 Min. [0-6] Saw to Rough Length.
+2. **Activity (Circle)**: .15 " [0-7] Joint Two Edges.
+3. **Activity (Circle)**: .30 " [0-8] Plane to Size.
+4. **Activity (Circle)**: .10 " [0-9] Saw to Finished Length.
+5. **Inspection (Square)**: D.W. [Ins. 2] Check Over-All Dimensions.
+6. **Activity (Circle)**: .25 Min. [0-10] Sand All Over.
+*-> Merges into the main assembly line prior to operation [0-11].*
+
+**Component Line 3 (Right) & Main Assembly Line: Top**
+- **Material**: Top Dwg. 2834421-1, 1 1/2"x14"x14" White Maple.
+1. **Activity (Circle)**: .13 Min. [0-1] Saw to Rough Length.
+2. **Activity (Circle)**: .23 " [0-2] Joint Two Edges.
+3. **Activity (Circle)**: .32 " [0-3] Plane to Size.
+4. **Activity (Circle)**: .18 " [0-4] Saw to Finished Length.
+5. **Inspection (Square)**: D.W. [Ins. 1] Check Over-All Dimensions.
+6. **Activity (Circle)**: .50 Min. [0-5] Sand All Over.
+*-> Sills merge here.*
+7. **Activity (Circle)**: 2.00 Min. [0-11] Assemble Four Sills to Top.
+*-> Material added: 8 Slotted Head 1 1/2" Wood Screws, Pc. 416412.*
+*-> Legs merge here.*
+8. **Activity (Circle)**: 3.25 Min. [0-17] Assemble Legs Complete.
+9. **Inspection (Square)**: D.W. [Ins. 4] Inspect Complete.
+*-> Material added: Clear Shellac #173-111.*
+10. **Activity (Circle)**: 1.15 Min. [0-18] Spray One Coat Clear Shellac.
+11. **Activity (Circle)**: .75 " [0-19] Sand Complete.
+*-> Material added: Gun Lacquer #115-309.*
+12. **Activity (Circle)**: 1.15 Min. [0-20] Spray One Coat Lacquer.
+13. **Inspection (Square)**: D.W. [Ins. 5] Inspect Finish.
+
+### Visual Diagram: Flow Process Chart - Preparing Direct Mail Ads
+- **Diagram Type**: Standard tabular Flow Process Chart template using ASME symbols.
+
+**Header Information:**
+- **Location**: Dorben Ad Agency
+- **Activity**: Preparing Direct Mail Ads
+- **Date**: 1-26-98
+- **Operator**: J.S. / **Analyst**: A.F.
+- **Method**: Present
+- **Type**: Material
+
+**Summary Table (Present State):**
+- **Operation**: 4
+- **Transport**: 4
+- **Delay**: 4 *(Note: The traced path actually indicates 8 delays, but the handwritten summary explicitly reports 4)*
+- **Inspection**: 0
+- **Storage**: 2
+- **Distance (ft)**: 340
+
+**Process Sequence (Traced Events from top to bottom):**
+1. **Storage (Triangle)**: stock room
+2. **Transport (Arrow)**: to collating room | Distance: 100 ft
+3. **Delay (D-shape)**: in collating rack by type
+4. **Operation (Circle)**: collate 4 sheets
+5. **Delay (D-shape)**: in stack
+6. **Transport (Arrow)**: to folding room | Distance: 20 ft
+7. **Delay (D-shape)**: in stack
+8. **Operation (Circle)**: jog, fold, crease
+9. **Delay (D-shape)**: in stack
+10. **Transport (Arrow)**: to angle stapler | Distance: 20 ft
+11. **Delay (D-shape)**: in stack
+12. **Operation (Circle)**: staple
+13. **Delay (D-shape)**: in stack
+14. **Transport (Arrow)**: to mail room | Distance: 200 ft
+15. **Delay (D-shape)**: in stack
+16. **Operation (Circle)**: addressing
+17. **Delay (D-shape)**: in stack
+18. **Storage (Triangle)**: mailbag
 
 # Exercise: paper factory
 
@@ -264,9 +367,50 @@ The paper is produced starting from the pulp in a dedicated machine,in which the
 
 # Solution
 
-![](images/8cb29e0d1ce32f12f936e0c23031698895f8597f2212841687c7e6d16563508e.jpg)
+### Visual Diagram: Flow Process Chart - Paper Factory (Solution)
+- **Overall Layout**: A vertical flow process chart using ASME symbols. It features two initial parallel inputs merging into a main line, one inspection node with a feedback loop and a rejection branch, followed by a sequential processing line.
 
-![](images/5fa179c2c52bfeeb1164ef3f2fe1fcf54de52c531916196a2a153deee258ff2e.jpg)
+**Sourcing and Initial Storage:**
+- **Warehouse (Triangle 1)**: FOREST
+- **Warehouse (Triangle 2)**: SUPPLIER
+- **Transport (Block Arrow 1)**: From Forest
+- **Transport (Block Arrow 2)**: From Supplier
+*-> Transports 1 and 2 merge into:*
+- **Warehouse (Triangle 3)**: WOOD STORAGE AREA
+
+**Chipping and Inspection:**
+- **Transport (Block Arrow 3)**: To chipper
+- **Activity (Circle 1)**: CUTTING
+- **Inspection (Square 1)**: CHIP INSPECTION
+    - *Feedback Loop (Large Chips)*: Returns to the flow immediately before Activity 1 (CUTTING).
+    - *Rejection Path (Small Chips)*: Flows right to **Transport (Block Arrow 4)** for removal.
+    - *Main Flow Continuation*: Flows down to the next step.
+
+**Pulp Processing:**
+- **Transport (Block Arrow 5)**: To silos
+- **Warehouse (Triangle 4)**: SILOS
+- **Transport (Block Arrow 6)**: To boiling
+- **Activity (Circle 2)**: BOILING
+- **Transport (Block Arrow 7)**: To discharge vat
+- **Activity (Circle 3)**: FIBER SEPARATION
+- **Transport (Block Arrow 8)**: To centrifuge
+- **Activity (Circle 4)**: CENTRIFUGE
+- **Activity (Circle 5)**: PRESSING
+- **Activity (Circle 6)**: BLEACHING
+- **Transport (Block Arrow 9)**: To warehouse
+
+**Paper Production and Delivery:**
+- **Waiting/Delay (Semi-circle 1)**: REST IN THE WAREHOUSE
+- **Transport (Block Arrow 10)**: To paper machine
+- **Activity (Circle 7)**: DRYING
+- **Activity (Circle 8)**: COMPRESSION
+- **Activity (Circle 9)**: WRAPPING
+- **Transport (Block Arrow 11)**: To storage
+- **Warehouse (Triangle 5)**: REEL STORAGE
+- **Transport (Block Arrow 12)**: To preparation for customer
+- **Activity (Circle 10)**: CUTTING
+- **Activity (Circle 11)**: REWINDING
+- **Transport (Block Arrow 13)**: DELIVERY TO THE CUSTOMER
 
 # Value Stream Mapping (VSM)
 
@@ -294,125 +438,84 @@ Vis a qualitative tool that describes how the plant should operate to produce va
 
 # VSM Diagram
 
-![](images/4959f9073151ea975b7de961f410e01c8efbeb5b93d6eb1df61ebb66f9a19885.jpg)
+### Visual Diagram: Value Stream Mapping (VSM) Core Structure
+- **Overall Layout**: A Value Stream Map divided into three distinct horizontal sections.
+  1. Top Section: Information Flows.
+  2. Middle Section: Material Flows.
+  3. Bottom Section: Lead Time Ladder.
 
-![](images/ea143be3fc191f1bb9b7709c316e6df3e538e08c609419853918c2d9ca93edfb.jpg)  
-Lead time ladder
+**1. Information Flows (Top Section):**
+- **Supplier (Left)**: Factory icon.
+- **Customer (Right)**: Factory icon.
+- **Production Control (Center)**: Rectangular box.
+- **Connections**: 
+  - An electronic information flow (lightning arrow) goes from the Customer to Production Control, labeled "Monthly order".
+  - An electronic information flow (lightning arrow) goes from Production Control to the Supplier, labeled "Weekly order".
 
+**2. Material Flows (Middle Section):**
+- **Supplier Delivery**: A truck icon labeled "Weekly" moves material from the Supplier down to the start of the production line (Process A) via a wide, white delivery arrow.
+- **Internal Production Line (Left to Right)**:
+  - **Process A**: Process box. Data box below reads: C/T = 300 sec, C/O = 60 min, Uptime = 80%, 2 Shifts, 27000 sec available. Preceded by an inventory triangle (1783).
+  - **Push Flow**: A striped arrow connects Process A to Process B.
+  - **Process B**: Process box. Data box below reads: C/T = 45 sec, C/O = 10 min, Uptime = 90%, 2 Shifts, 27000 sec available. Preceded by an inventory triangle (1202).
+  - **Push Flow**: A striped arrow connects Process B to Process C.
+  - **Process C**: Process box. Data box below reads: C/T = 300 sec, C/O = 240 min, Uptime = 100%, 2 Shifts, 27000 sec available. Preceded by an inventory triangle (733).
+  - **Push Flow**: A striped arrow connects Process C to Shipping. Preceded by an inventory triangle (593).
+  - **Shipping**: Process box.
+- **Customer Delivery**: A truck icon labeled "Monthly" moves the finished product from Shipping up to the Customer via a wide, white delivery arrow.
+
+**3. Lead Time Ladder (Bottom Section):**
+- A continuous, stepped timeline showing non-value-added time (waiting/inventory) on the upper steps and value-added time (processing) on the lower steps.
+- **Timeline Values (Left to Right)**:
+  - Wait time: 6 days -> Processing time: 300 sec
+  - Wait time: 4 days -> Processing time: 45 sec
+  - Wait time: 1 day -> Processing time: 240 sec
+  - Wait time: 3 days
+- **Summary Box (Right)**:
+  - Production lead time = 14 days
+  - Processing time = 585 sec
+  
 # Formalism
 
 The manufacturing process mapping is performed using a series of simple unified icons
 
 These icons can represent both physical flows and information flows of the production planning system (e.g., an MRP system)
 
-# SIMBOLI RELATIVI AL FLUSSO(FISICO,INFORMATIVO,TEMPORALE)
+### Visual Diagram: Value Stream Mapping (VSM) Symbols Legend
+- **Overall Layout**: A comprehensive legend organized into three thematic groups: "Flow Symbols" (Top Left), "Internal/External Process Symbols" (Bottom Left), and "Process Improvement Symbols" (Right Column).
 
-![](images/a6f7c22c5334d56e37d1f1e5a349e166c69d4add9e19ec10245fe1b7b89a506a.jpg)
+**1. Flow Symbols (Physical, Informational, Temporal):**
+- **Physical flow**: A solid black horizontal arrow.
+- **Electronic information**: A "lightning" style arrow.
+- **Manual information**: A thin straight horizontal arrow.
+- **Inbound/Outbound physical flow**: A wide white arrow (hollow arrow) pointing diagonally up.
+- **Time Line**: A stepped line showing alternating upper and lower levels for non-value-added and value-added time.
 
-Flusso fisico
+**2. Internal and External Process Symbols:**
+- **Process Box**: A rectangle divided by a horizontal line near the top.
+- **Process Box (multiple processes)**: A rectangle with a shaded/striped header.
+- **Process Box (generic)**: A plain white rectangle.
+- **External source (Supplier/Customer)**: A factory icon with a jagged roof.
+- **Process Box Data box**: A rectangle containing horizontal lines (representing rows of data).
+- **Inventory/Warehouse**: An upright triangle.
+- **Operator**: A simple semi-circle icon representing a person.
+- **Computer-assisted process (MRP)**: A 3D cylinder/canister icon.
 
-![](images/6c78326f642afdc7d92b9ddfdb18aa213d399b7f9c62ccfca983d578e0cb8d09.jpg)
-
-Informazioneelettronica
-
-![](images/4b18c44f4c1d539b59c369c3be97453703cbc1d8c32040fcf4ce19638c61c3cc.jpg)
-
-Informazione manuale
-
-![](images/b53edd15de1549927e595081324dc6b9a7745c8cecd2eec73bc97892574444f3.jpg)
-
-Flusso fisico in ingresso/uscita dall'azienda
-
-![](images/8f71d5e3ebbbb4d220a98396b6cc446c995f4ca1897635b8383270f599722fa9.jpg)
-
-Time Line
-
-# SIMBOLIRELATIVIAI PROCESSI INTERNI ED ESTERNI
-
-![](images/a99387012b636148d4cf89c5e1b29dee4b700917bdd15c9400a738379aa051e8.jpg)
-
-Process Box
-
-![](images/49fbf55f188450d34b69ea789b8d4049bffca728cbdfc87932ef9745c654b776.jpg)
-
-Process Box (processi multipli)
-
-![](images/5e14a8ae47bc76e6cac06e872d9b76184a2f2b5a52d9e04055d6da54e6b27a0c.jpg)
-
-Process Box（generico）
-
-![](images/70c801118eb818cea92a8b8a29505cb14da8481294b0f7560b81ddad71a13449.jpg)
-
-Fornitore esterno,cliente esterno
-
-![](images/40fe1503618b9c43eabb7292e0e6eda2a248b09546dc54c2970d51c3f15c8b8f.jpg)
-
-Informazioni relative al Process Box
-
-![](images/622fe06a51236bb976d1f96b761d9321f6ed2202b354d1ab9181bd71f30a0c1e.jpg)
-
-Magazzino
-
-![](images/5aa23a10f18c411998bf71beec0b35705109c3be16ca4cf8b75b10e52856dbec.jpg)
-
-Operatore
-
-![](images/18f106386d0cc70188529097cd8633a800d4cb14b4a0174efcf2631f4f4575e2.jpg)
-
-Processo assistito dacomputer(MRP)
-
-# SIMBOLIRELATIVIALMIGLIORAMENTO DEIPROCESSI
-
-![](images/b635a7d5b3d3fb53ad3e3672eae88e825eb73d908c6bcc884d0558b4fa7c8e5a.jpg)
-
-Obiettivo kaizen
-
-![](images/8ccff41a3cdffcd885c06caad8c7778385a5359e0afe56466f8a562b69e3ce9c.jpg)
-
-"Supermarket"
-
-![](images/965b763dafd4f12252121e6e7fc0b4b331ee9db3517f928375fcea1a42351f86.jpg)
-
-Postazione kanban
-
-![](images/7d1b29b9612a1bb3da71dbaf5238bad7f868519cc3ba4766ebd3f2c048151243.jpg)
-
-Flusso kanban
-
-![](images/acdf459fb9d75d8129b977b7e21e079fd09612e45a5c923408ec9ac446d789ec.jpg)
-
-Kanban"ordine di produzione"(Production)
-
-![](images/77b5cf255cbdbfed5ce98ea79ee47d67c955cb170b119cf29f75ab6f75e746f6.jpg)
-
-Kanban"prelievo"(Withdrawal)
-
-![](images/0eb00ea3e880e02cd87a1ebbf1282370b7800d114cb99f9c9cb89bf00657b67b.jpg)
-
-Kanban"segnale"（Signal)
-
-![](images/cd9f487e18c0b004113cfac1fb6fd67a09852bf4c943f1f6510aec7cf33840ee.jpg)
-
-"corsia FIFO"
-
-![](images/3f96a36b0666b8305c68b9fc4b2f044e96cd97d400b184033888fcdc619bd370.jpg)
-
-Cella produttivaa forma di“U"
-
-![](images/ee2865bf0f877910073df29f66e631313e2a8c2e4d478ae1de00072a16572f8b.jpg)
-
-Magazzino"buffer"
-
-![](images/f0d787a638578e840cccaf9f7e1e294132096b3ae753f55902cc506ba4bab048.jpg)
-
-Scorte di sicurezza
-
-# Formalism
+**3. Process Improvement Symbols:**
+- **Kaizen burst (Obiettivo kaizen)**: A spiked "explosion" shape.
+- **Supermarket**: A symbol resembling an open shelf (three horizontal lines within a three-sided frame).
+- **Kanban post**: A symbol resembling a goalpost or a "U" shape on a stand.
+- **Kanban flow**: A dashed arrow pointing down and then right.
+- **Production Kanban**: A square containing a small "P" in a corner box.
+- **Withdrawal Kanban**: A square containing a small "W" in a corner box.
+- **Signal Kanban**: A square containing an inverted triangle with an "S".
+- **FIFO Lane**: A long rectangle containing circular and triangular symbols, labeled "Max = XX".
+- **U-shaped work cell**: A rectangle with a thick black "U" path inside.
+- **Buffer Warehouse**: A rectangle containing two small boxes labeled "B".
+- **Safety Stock**: A rectangle containing two small boxes labeled "S".
 
 The manufacturing process mapping is performed using a series of simple unified icons   
 > These icons can represent both physical flows and information flows of the production planning system (e.g., an MRP system)
-
-![](images/6f716347908b840408d096e90df66496d85388158848074aba0ee9028953a8ce.jpg)
 
 # Factory
 
@@ -437,7 +540,23 @@ Factory + Data Box
 Shelf=20 parts   
 2 shifts
 
-![](images/1b75a2e110312be550221c7b83bf583fede9c04b73888ee86ee845fb3017c38f.jpg)
+### Visual Diagram: VSM External Sources and Data Boxes
+- **Overall Layout**: Two examples of the "Factory" symbol used in Value Stream Mapping to represent external entities (Suppliers or Customers).
+
+**1. External Source Symbol (Top)**
+- **Visual Shape**: A factory icon with a jagged, sawtooth-style roof and a rectangular base.
+- **Label**: "ABC COMPANY" written inside the rectangular base.
+- **Context**: This symbol represents an external source, such as a supplier or a customer, before additional data is attached.
+
+**2. Factory with Data Box (Bottom)**
+- **Visual Shape**: A larger factory icon with a jagged roof, labeled "Customer" inside the main rectangular body.
+- **Attached Element**: A "Data Box" is positioned directly underneath the factory icon. It is a rectangle divided into four horizontal rows of technical data.
+- **Data Box Content (Top to Bottom)**:
+    - **Row 1**: 18400 parts/month | 12000 Left side | 6400 Right side
+    - **Row 2**: (empty)
+    - **Row 3**: Shelf = 20 parts
+    - **Row 4**: 2 shifts
+- **Context**: This combination represents a specific external entity (Customer) along with their demand requirements, logistics (shelf capacity), and operational constraints (shifts).
 
 # Customer
 
@@ -463,11 +582,25 @@ Operators
 >Whether a process is automated or needs operators   
 Report the number of operators required
 
-![](images/29bd8a4f7027c25b34c93f2aa50e896e3720bac16fc4ae700aff2ca4ed78f6b0.jpg)
+### Visual Diagram: Basic VSM Process Box
+- **Visual Shape**: A rectangle with a black outline, divided by a horizontal line near the top to create a header section.
+- **Text**: The word "PROCESS" is centered within the top header.
+- **Functional Meaning**: This is the generic symbol used to represent a single machine, a specific manufacturing process, or an entire factory department.
 
-![](images/9405652db932f974e58b0128093c3869f74d609e46c0211b3759ea9265a7985b.jpg)
+### Visual Diagram: VSM Process with Integrated Data Box
+- **Visual Shape**: A process box (labeled "WELDING" in the header) with a multi-row table (Data Box) attached directly to its bottom edge.
+- **Internal Elements**: Contains an operator icon (circle over a semi-circle) followed by the number "**2**" in the bottom-left corner of the process box.
+- **Data Box Content**: A vertical list of technical metrics:
+    - **C/T** (Cycle Time) = **39 sec**
+    - **C/O** (Setup Time) = **10 Min**
+    - **Uptime** = **100%**
+    - **Shifts** = **2 Shifts**
+    - **Availability** = **27600 sec**
+- **Functional Meaning**: Represents a specific workstation (Welding) including its human resource requirements (2 operators) and its operational performance data.
 
-![](images/ad0424bfdbe63229c1a8d5514eb4856955385cc6d8b69f85803ea73acb5fb778.jpg)
+### Visual Diagram: VSM Operator Symbol
+- **Visual Shape**: A standalone icon consisting of a small circle (representing a head) positioned over a larger semi-circle (representing a torso or workstation seat).
+- **Functional Meaning**: This symbol is used to report human resource requirements. It indicates whether a process needs manual intervention and is used to specify the exact number of operators required for a task.
 
 # Inventory
 
@@ -475,19 +608,26 @@ Report the number of operators required
 > It can be expressed in terms of WIP or time,while in the services and offices it can be understood as pending files, emails to be processed, etc   
 V Traditionally the icon is a triangle, as it represents a significant danger in terms of waste.
 
-![](images/e81546645dc5893151cb18c67d2c37cf3b3efc254d1f021c87b847861797a48e.jpg)
+### Visual Diagram: VSM Inventory Symbol
+- **Visual Shape**: An upright equilateral triangle with a black outline.
+- **Internal Elements**: The capital letter "**I**" (standing for Inventory) is centered inside the triangle.
+- **External Text**: Positioned directly underneath the base of the triangle in two rows:
+    - **Row 1**: "300 pezzi" (identifying the quantity of items).
+    - **Row 2**: "2 Giorni" (identifying the inventory lead time/coverage).
+- **Functional Meaning**: This is the standard symbol used to show the accumulation of products between processes. It can represent Work-in-Progress (WIP), raw materials, or finished goods. In Lean manufacturing, the triangle shape is used as a warning sign for waste. The data below the symbol quantifies the stock both in physical units and in time (days of supply).
 
-300 pezzi   
-2 Giorni
+# Material flow
 
-# Striped arrow
+### Visual Diagram: VSM Push Flow Arrow
+- **Visual Shape**: A horizontal arrow pointing to the right, characterized by a fill of alternating black and white segments (striped or dashed pattern).
 
 >Represents the material flow between two stations   
 >Indicates a "Push" type flow
 
-![](images/804cb7f34539bd2fb23e42a73f33cb3471eb68f0ac76ec3b1119e9b5e60455ba.jpg)
-
 # White arrow
+
+### Visual Diagram: VSM External Shipment Arrow
+- **Visual Shape**: A wide, hollow (white) horizontal arrow with a clean black outline, pointing to the right.
 
 > Represents the movement of raw materials from suppliers   
 >Represents the movement of finished products towards customers
@@ -503,17 +643,20 @@ V Plane
 
 Frequency of supplying and/or delivery is indicated
 
-![](images/1edf5433047f74b5d937f8d17eb58dbe360e5be1c0dd5235770651e4c942d3a8.jpg)  
-Daily
+### Visual Diagram: VSM Transport Component Structure (image_ff24f6.png)
+- **Component Type**: External Logistics Notation.
+- **Logic**: The symbol combines a fixed visual icon (mode) with a variable text descriptor (frequency).
 
-![](images/7cf206c0b8ea2c5a027a29244f0dacae59f4276c5b2b567bc7e8f230c9597878.jpg)  
-Weekly
+#### 1. Transportation Mode Icons (Static)
+- **Truck Icon**: Represents road-based transport.
+- **Rail Icon**: Represents train/railway-based transport.
+- **Ship Icon**: Represents maritime/sea-based transport.
+- **Plane Icon**: Represents air-freight transport.
 
-![](images/e43a6a869bf0fda968013bb1385da7ae31300800c623e6c8c9d5dfad73b67a95.jpg)  
-Montly
-
-![](images/adcd53a9a44c1e012db453e4836fa80ee5dc2ddef6547cbb06e2dff565703615.jpg)  
-Twice x week
+#### 2. Frequency Labels (Variable/Placeholder Examples)
+- **Structure**: A rectangular text box placed directly below the icon.
+- **Example Values**: "Daily", "Weekly", "Montly", or "Twice x week".
+- **Functional Use**: In a real VSM, these labels are replaced with the actual supply or delivery frequency identified.
 
 # Information Flow
 
@@ -530,11 +673,20 @@ Information Label
 > Specify the type of information   
 > It is shown above the arrows of the information flow
 
-![](images/2755351d4f6cf24d78370669ef78e803aa85d60a386943a811b477aa2bcd19eb.jpg)
+### Visual Diagram: VSM Information Flow Symbols
+- **Component Type**: Information Flow Notation.
+- **Logic**: These symbols represent the communication and scheduling links that coordinate material flows.
 
-![](images/6ae1924a9640eec58e2da8f40e40d0824aff5820ce303339321f69d7c364c77e.jpg)
+#### 1. Manual Information Flow
+- **Visual Shape**: A thin, straight horizontal arrow pointing to the left.
 
-Schedulazione settimanale
+#### 2. Electronic Information Flow
+- **Visual Shape**: A "lightning" or "zigzag" style arrow pointing to the left.
+
+#### 3. Information Label
+- **Visual Shape**: A simple rectangle containing text.
+- **Text**: "Schedulazione settimanale" (English: Weekly Scheduling).
+
 
 # Timeline
 
@@ -543,30 +695,135 @@ Schedulazione settimanale
 >The low line means that the product is within the process, and it will be worked for different time (it is the time in which the product is processed on the machine)   
 >ln the high part of the line are indicated the waiting times
 
-![](images/943aa031c7f99af8dd21ef4ccd16bc1a3cbfad4f884ebaa1621dffba472d127c.jpg)
+### Visual Diagram: VSM Lead Time Ladder
+- **Component Type**: Time Analysis Notation.
+- **Visual Shape**: A continuous stepped line (alternating crests and troughs) ending in a dual-row summary box.
+- **Functional Meaning**:
+    - **Upper Steps (Crests)**: Represent **Non-Value-Added Time**, which is the time material spends waiting or sitting in inventory between processes.
+    - **Lower Steps (Troughs)**: Represent **Value-Added Time**, which is the actual processing time (Cycle Time) for each production step.
+- **Summary Metrics (Right-hand Box)**:
+    - **Production Lead Time**: The total cumulative time (sum of all steps) a product takes to travel through the entire value stream ($23.5\ \text{days}$ in the example).
+    - **Value-Added Time**: The total sum of only the processing times where value is actively added to the product ($184\ \text{sec}$ in the example).
 
 # 1.Process flow identification (Data box)
 
 # Identification and mapping of the main phases
 
-![](images/ad90fde4794f0b39361d073b6feb2b5f9288de8e749a4d3eaae4d1a745ca965c.jpg)
+### Visual Diagram: VSM Process Mapping and Data Collection Example
+- **Overall Layout**: A horizontal sequence showing the main production phases, associated inventory, physical distances, and the technical Data Boxes for each process.
+
+#### 1. Main Phases and Inventory
+- **Inventory Points (Triangles)**:
+    - **Storage (Start)**: Labeled "coils" with a lead time of "4 days".
+    - **Shipping (End)**: Labeled with quantities "2700L" and "1440R".
+- **Production Processes (Process Boxes)**:
+    - **Stamping**: 1 operator.
+    - **Welding (1)**: 1 operator.
+    - **Welding (2)**: 1 operator.
+    - **Assembly 1**: 1 operator.
+    - **Assembly 2**: 1 operator.
+- **Distances**: Physical distances are indicated between phases (120m, 80m, 30m, 180m, 20m, 60m).
+
+#### 2. Information Collection (Data Boxes)
+- **Structure**: Vertical tables placed under each production process box to collect operational KPIs.
+- **Common Metrics and Sample Values**:
+    - **C/T (Cycle Time)**: Ranges from 1s (Stamping) to 62s (Assembly 1).
+    - **C/O (Changeover Time)**: Varies from 60 min (Stamping) to 0 min (Assembly).
+    - **Uptime**: Availability percentages (e.g., 80%, 90%, 95%).
+    - **FTY (First Time Yield)**: Quality rate (e.g., 0.9, 0.85, 0.95).
+    - **Shifts**: Indicates the work schedule (e.g., "2 shift").
+
+#### 3. Functional Meaning
+- **Identification**: The top row defines the flow and sequence of the main value-adding activities and storage points.
+- **Data Collection**: The Data Boxes provide the quantitative foundation needed to calculate the total Processing Time and identify bottlenecks or quality issues (FTY).
 
 # 2.Material flow identification
 
 >Material flow from supplier to customer
 
-![](images/6aaf56a8ef7989e593fcd1ce54d9e5241f79334100ea0483def5c607e0565752.jpg)
+### Visual Diagram: VSM Material Flow Identification
+- **Overall Layout**: A complete end-to-end representation of the physical material movement from the supplier to the final customer, incorporating inbound/outbound logistics, internal processing steps, and intermediate buffer points.
+
+#### 1. External Logistics (Inbound & Outbound)
+- **Supplier to Plant**: Material is transported via truck on a **Mo + We** (Monday and Wednesday) schedule.
+- **Plant to Customer**: Finished goods are delivered via truck on a **daily** schedule.
+
+#### 2. Internal Material Flow (Push System)
+- **Flow Type**: Represented by striped horizontal arrows between every internal process, signifying a **Push** system where material is moved based on a schedule rather than actual downstream demand.
+- **Process Sequence**:
+    1.  **Stamping**
+    2.  **Welding** (first station)
+    3.  **Welding** (second station)
+    4.  **Assembly 1**
+    5.  **Assembly 2**
+    6.  **Shipping**
+
+#### 3. Inventory and Work-in-Progress (WIP)
+- **Raw Material Storage**: 4 days of **coils** inventory held at the start.
+- **Intermediate Buffers**: Inventory accumulation points (triangles) between processes with specific quantities tracked:
+    - **Post-Storage**: 1 day of coils.
+    - **Post-Stamping**: 4600L / 2400R units.
+    - **Post-Welding 1**: 1100L / 600R units.
+    - **Post-Welding 2**: 1600L / 850R units.
+    - **Post-Assembly 1**: 1200L / 640R units.
+- **Finished Goods**: 2700L / 1440R units stored in the **Shipping** area before final delivery.
 
 # 3.Time information
 
 Timeline Design   
 >Cycle Time, Waiting Time e Lead time
 
-![](images/b6cf32dc15820fa8d183464cbe01975dd089f433ffca92c6bf2d8cfcbff3ed9a.jpg)
+### Visual Diagram: VSM Time Information and Lead Time Ladder
+- **Overall Layout**: A lead time ladder positioned at the bottom of the VSM to differentiate between value-added activity and non-value-added waiting periods.
+
+#### 1. Non-Value-Added Time (Upper Steps)
+- **Definition**: Represents the time materials spend as inventory between processes.
+- **Values (Left to Right)**:
+    - **5 days** (Initial storage)
+    - **7.6 days** (WIP post-stamping)
+    - **1.8 days** (WIP post-welding 1)
+    - **2.7 days** (WIP post-welding 2)
+    - **2.0 days** (WIP post-assembly 1)
+    - **4.5 days** (Final storage before shipping)
+
+#### 2. Value-Added Time (Lower Steps)
+- **Definition**: Represents the actual processing time or Cycle Time ($C/T$) for each manufacturing step.
+- **Values (Left to Right)**:
+    - **1 s** (Stamping)
+    - **39 s** (Welding 1)
+    - **46 s** (Welding 2)
+    - **62 s** (Assembly 1)
+    - **40 s** (Assembly 2)
+
+#### 3. Total Performance Metrics (Summary Boxes)
+- **Total Lead Time ($W/T$)**: **23.6 d** (Sum of all inventory/waiting periods).
+- **Total Processing Time ($P/T$)**: **188 s** (Sum of all individual cycle times).
 
 # 4. Add Information Flows
 
-![](images/d4db4ddd657f15c1ceea86223e54e5de0cf0096386c32182eb9b0b5753123497.jpg)
+### Visual Diagram: VSM Information Flow Integration 
+- **Overall Layout**: The top section of the VSM detailing the communication network between the central control hub, external partners, and the production floor.
+
+#### 1. Centralized Control Hub
+- **Production Planning & Control**: The main rectangular box coordinating all activities.
+- **MRP**: An internal sub-system (computer-assisted process icon) within planning used for resource calculations.
+- **Weekly Production Plan**: A secondary scheduling box that disseminates operational instructions to the shop floor.
+
+#### 2. External Communication Links
+- **Customer-to-Plant**:
+    - **Forecast**: Electronic information flow (lightning arrow).
+    - **Daily Order**: Electronic information flow (lightning arrow).
+- **Plant-to-Supplier**:
+    - **Forecast**: Electronic information flow (lightning arrow).
+    - **Faxback**: Manual information flow (straight arrow).
+
+#### 3. Internal Scheduling and Directives
+- **Directives**: Manual information flow arrows (straight lines) originating from the **weekly production plan** box.
+- **Targets**: These arrows point to every stage of the value stream, including **storage**, **stamping**, **welding** (both stations), **assembly** (both stations), and **shipping**.
+
+#### 4. Functional Meaning
+- **Centralized Coordination**: These flows represent the "brain" of the operation, ensuring that customer demand is translated into actionable supplier orders and internal schedules.
+- **Push Logic**: Information is pushed directly to each workstation from a central source, which typically characterizes a system where processes are managed via a master schedule rather than a pull signal.
 
 # FIRM
 
@@ -656,63 +913,117 @@ Therefore, the available time is 28,800 - 1,200 = 27,600 s/shift
 
 # Example solution
 
-![](images/24aa6489c94c9977d052f16701b7104205b72bd85465092e9429b1b8eb15672e.jpg)
+### Visual Diagram: VSM External Entities - Supplier and Customer
+- **Component Type**: Value Stream Boundary Notation.
+- **Visual Layout**: Standard VSM factory icons representing the starting point (Supplier) and ending point (Customer) of the value stream.
 
-500ft coils
+#### 1. Supplier Symbol (Left)
+- **Visual Shape**: Factory icon with a sawtooth-style roof.
+- **Internal Label**: "Michigan Steel Co."
+- **Attached Data Box**: A separate rectangle positioned below the icon.
+- **Data Box Content**: "**500 ft coils**"
+- **Functional Meaning**: Represents the raw material source and the specific procurement unit (steel coils).
 
-![](images/efb17a877f25729c91d85083088621d88a66251126546bde5f6f6f8dd77cfbd8.jpg)
+#### 2. Customer Symbol (Right)
+- **Visual Shape**: Factory icon with a sawtooth-style roof.
+- **Internal Label**: "State Street Assembly"
+- **Attached Data Box**: A vertical table connected to the base of the icon, divided into five horizontal rows.
+- **Data Box Content**:
+    - **Row 1**: "18,400 pcs/mo" (Total monthly demand volume).
+    - **Row 2**: "- 12,400 'L'" (Specific demand for the Left-side product variant).
+    - **Row 3**: "- 6,400 'R'" (Specific demand for the Right-side product variant).
+    - **Row 4**: "Tray = 20 pieces" (Load unit/packaging standard).
+    - **Row 5**: "2 Shifts" (Customer operational requirement).
+- **Functional Meaning**: Defines the final customer requirements and the mix of product types (L and R) that drive the production schedule.
 
 Insert the Supplier and Customer icons,with the relative Data Boxes containing the total quantities to be supplied for a given period and calculate the necessary daily production and the load unit type/characteristics
 
 # Example solution
 
-![](images/0a96de4bc9b66a63525e9dd27655b50fc68b0d4e44cdb75edb15d75c63c33966.jpg)
+### Visual Diagram: VSM Internal Production Flow (image_fe969e.png)
+- **Component Type**: Internal Process and Material Flow Notation.
+- **Visual Layout**: A horizontal sequence of six process stations and six intermediate inventory points, representing the internal operations of Acme Spa.
 
-500ft coils
+#### 1. Initial Storage and Stamping
+- **Initial Inventory**: Triangle labeled "Coils" and "5 days".
+- **Process Box 1**: Labeled "**STAMPING**" with internal text "**200 T**".
+- **Data Box 1**:
+    - **C/T**: 1 second
+    - **C/O**: 1 hour
+    - **Uptime**: 85%
+    - **Available time**: 27,000 sec.
+    - **EPE**: 2 weeks
+- **Post-Process Inventory**: Triangle labeled "4600 L" and "2400 R".
 
-![](images/6691c95d1886cc2396b24c145bd2f64a5dd5461eef4e377d83b4f227bd16221a.jpg)
+#### 2. Welding Stations
+- **Process Box 2**: Labeled "**S. WELD #1**".
+- **Data Box 2**: C/T = 38 seconds, C/O = 10 minutes, Uptime = 100%, 2 Shifts, 27,000 sec. avail.
+- **Intermediate Inventory**: Triangle labeled "1100 L" and "600 R".
+- **Process Box 3**: Labeled "**S. WELD #2**".
+- **Data Box 3**: C/T = 45 seconds, C/O = 10 minutes, Uptime = 80%, 2 Shifts, 27,000 sec. avail.
+- **Post-Process Inventory**: Triangle labeled "1600 L" and "850 R".
+
+#### 3. Assembly Stations
+- **Process Box 4**: Labeled "**ASSEMBLY #1**".
+- **Data Box 4**: C/T = 61 seconds, C/O = 0, Uptime = 100%, 2 Shifts, 27,000 sec. avail.
+- **Intermediate Inventory**: Triangle labeled "1200 L" and "640 R".
+- **Process Box 5**: Labeled "**ASSEMBLY #2**".
+- **Data Box 5**: C/T = 39 seconds, C/O = 0, Uptime = 100%, 2 Shifts, 27,000 sec. avail.
+- **Final WIP Inventory**: Triangle labeled "2700 L" and "1440 R".
+
+#### 4. Final Stage
+- **Process Box 6**: Labeled "**SHIPPING**" with internal text "**Staging**".
+- **Functional Meaning**: Represents the movement of steering arms through sequential manufacturing phases, quantifying the performance (Data Box) and inventory accumulation (Triangles) at each workstation.
 
 Draw, from left to right, the Process boxes and the corresponding Data Boxes related to the internal operations/stations of the component under analysis (e.g., the production flow of the component)
 
-![](images/5b48d780e2faa34d03b319230d7667effe41a5d26cb47bd456d8d9b46458d80a.jpg)
-
-Coils 5days
-
-![](images/7d89dc7cb5b5381ece2ce40bd7e7e25d0204f3bc39e3bcd5e31212de171a9d7b.jpg)
-
-![](images/abd23f06877c56e9ef83582a74be793d136c41266d720d4f632be07c76b21ce1.jpg)
-
-![](images/734a813f4d91a0a81e606eaf4dcb366ea09d1b89f8e55f86d0d227097ee061e6.jpg)
-
-![](images/9b6116b1d3c35ba3f8b984c6d23d381036e61e5208a4a0b70a93cfc47236f172.jpg)
-
-![](images/c9bcfe8472b1ac4c9b04a0c72b997211041501da7644479307c28a11d557e823.jpg)
-
-![](images/6514d3a5db81e199b0c3158b86569b04cbce32c2085a4cb8d5f8a74be4505160.jpg)
-
-![](images/2373ee346265cc64ae80c02f3602729146a2a7bb04e08bbbcdd3f4c6b50d599c.jpg)
-
-![](images/6d6b484583dd5e419c317237d728a5d33596e1ca5c4c1e611ba0f952255b945b.jpg)
-
-![](images/36d096c456c037c3b0987f9bc73a806e1a94e8e3907a9594f839fbf35b865972.jpg)
-
-![](images/6de912443f588693fe1d0fe4024501e12914c209cfa6893758474002671a3f77.jpg)
-
-![](images/68e2b8143e7a9229ba5bccdd11c114f957aea7a2ab59ab943c333e5ab9fbc376.jpg)
-
-![](images/bf8859f0188d28a00d8ecb593ac5adb51f5c36d870a0382e5940f570019d3ac9.jpg)
-
-![](images/f2e46cea6c8b771d4120739cb1158ae059e18e52e1aa5ed31086989d85c68770.jpg)
-
-![](images/9e86d055c0b2801d92975d42edee775fd6a5920ed21b915390b80d04c1e77ddb.jpg)
-
-![](images/0f47512492ccc59653ffc6134cfb0fbfa38783d1e83db6432ca840fd5d1b2d94.jpg)
-
-![](images/8c01f8c4a0ac8b283c32f16ca9217c6b42e530ee39c7fa76edd633e3e1f71122.jpg)
-
 # Example solution
 
-![](images/06324c87cff28ef9872a42e2d8b221b42393fd8fd556af43859e2fda09b1e634.jpg)
+### Visual Diagram: Integrated Current State Value Stream Map
+- **Component Type**: Comprehensive Current State Value Stream Map (VSM).
+- **Visual Layout**: A top-down orchestration of centralized production control, material process flow, and lead time analysis.
+
+#### 1. External Supply and Demand (Boundary Entities)
+- **Supplier (Michigan Steel Co.)**:
+    - **Inbound Logistics**: Delivery of **500 ft coils** via truck scheduled on a "**Tues. + Thurs.**" basis.
+    - **Communication**: Receives a "**6-week Forecast**" (Electronic/Lightning arrow) and a "**weekly fax**" (Manual/Straight arrow) from Production Control.
+- **Customer (State Street Assembly)**:
+    - **Demand Requirements**: Monthly volume of **18,400 pieces**, comprising **12,400 'L'** and **6,400 'R'** units, packaged in trays of 20 pieces.
+    - **Outbound Logistics**: Final product shipment via truck scheduled "**1x Daily**".
+    - **Communication**: Transmits "**90/60/30 day Forecasts**" and "**Daily Orders**" (Electronic/Lightning arrows) to Production Control.
+
+#### 2. Centralized Information Control Hub
+- **Production Management**: Handled by "**PRODUCTION CONTROL**" utilizing an internal **MRP** system.
+- **Scheduling Output**: Coordinates a "**Weekly Schedule**" which provides manual instructions (straight arrows) to each internal manufacturing station.
+- **Logistics Instruction**: Issues a "**Daily Ship Schedule**" (Electronic/Lightning arrow) directly to the Shipping/Staging area.
+
+#### 3. Internal Material Flow (Push Logic)
+- **Flow Control**: Internal movement between all processes is governed by a **Push system**, indicated by striped horizontal arrows.
+- **Process Sequence and Technical Data**:
+    - **Stamping**: 200T press operation; C/T = 1 second, C/O = 1 hour, Uptime = 85%, EPE = 2 weeks.
+    - **S. Weld #1**: Welding station; C/T = 38 seconds, C/O = 10 minutes, Uptime = 100%, 2 Shifts.
+    - **S. Weld #2**: Welding station; C/T = 45 seconds, C/O = 10 minutes, Uptime = 80%, 2 Shifts.
+    - **Assembly #1**: First assembly stage; C/T = 61 seconds, C/O = 0, Uptime = 100%, 2 Shifts.
+    - **Assembly #2**: Second assembly stage; C/T = 39 seconds, C/O = 0, Uptime = 100%, 2 Shifts.
+    - **Shipping**: Final staging area for goods prior to external dispatch.
+- **Resource Constraints**: Every data box indicates a standard **27,000 sec. avail.** per shift.
+
+#### 4. Inventory Buffers (Triangles)
+- **Stock Levels**: Buffers quantify Work-in-Progress (WIP) accumulation between processing steps:
+    - **Raw Material**: Coils (5 days).
+    - **Post-Stamping**: 4600 L / 2400 R.
+    - **Post-Weld #1**: 1100 L / 600 R.
+    - **Post-Weld #2**: 1600 L / 850 R.
+    - **Post-Assembly 1**: 1200 L / 640 R.
+    - **Finished Goods**: 2700 L / 1440 R (Staging area).
+
+#### 5. Lead Time Ladder
+- **Visual Shape**: A stepped timeline at the map base quantifying time distribution.
+- **Non-Value-Added Time (Crests)**: 5 days, 7,6 days, 1,8 days, 2,7 days, 2,0 days, and 4,5 days.
+- **Value-Added Time (Troughs)**: 1 s, 39 s, 46 s, 62 s, and 40 s.
+- **Performance Summary**:
+    - **D/T (Delivery Time)**: **23,6 d**.
+    - **P/T (Processing Time)**: **188 s**.
 
 Draw the icons for the external handling connections (raw material and finished products) from the warehouse to the Customer and from the Supplier. Represent the mode of transport used (e.g.,Truck shipment) and indicate the frequency of shipments (daily, etc.). Draw the icons representing manual and/or electronic information and communication flow, describing the function/content with the Information icon.
 
@@ -728,7 +1039,31 @@ Stock time = Quantity of stock pieces / daily customer demand
 
 # Example solution
 
-![](images/f227871565647d3615bba7856b19cdbb53957c3665eef0f95064d1e097573171.jpg)  
+### Visual Diagram: Final VSM Performance Summary
+- **Component Type**: Time Analysis and Lead Time Calculation Summary.
+- **Visual Layout**: An integrated lead time ladder at the base of the map with a summary results box in the bottom right corner.
+
+#### 1. Lead Time Ladder Analysis
+- **Non-Value-Added Time (Wait Times)**: Represented by the upper horizontal segments of the ladder, totaling the inventory holding periods:
+    - **5 days** (Initial inventory)
+    - **7.6 days** (Post-Tamping inventory)
+    - **1.8 days** (Post-Weld #1 inventory)
+    - **2.6 days** (Post-Weld #2 inventory)
+    - **2 days** (Post-Assembly #1 inventory)
+    - **4.5 days** (Final Shipping/Staging inventory)
+- **Value-Added Time (Processing Times)**: Represented by the lower horizontal segments of the ladder, totaling the actual production cycle times ($C/T$):
+    - **1 second** (Tamping process)
+    - **38 seconds** (Weld #1 process)
+    - **45 seconds** (Weld #2 process)
+    - **61 seconds** (Assembly #1 process)
+    - **39 seconds** (Assembly #2 process)
+
+#### 2. Summary Metrics Calculation
+- **Production Lead Time**: Aggregated waiting time shown in the final summary box as **23.5 days**.
+- **Value-Added Time**: Aggregated processing time shown in the final summary box as **184 sec.**.
+
+#### 3. Functional Meaning
+- **Current State Assessment**: Provides the final quantitative summary of the value stream's efficiency, comparing the total time the product spends in the system (Lead Time) against the actual time spent in production (Value-Added Time).
 Compute the total Value Added Time and Production Lead Time
 
 # FIRM
@@ -819,10 +1154,15 @@ Warehouse: 4 days of finished arms
 
 # Solution
 
-![](images/7beb4543cecdf1966ec51ffb47d6cad0471d49726f1fafbcc4934ac2306e5877.jpg)
-
-![](images/d66bbee1d7761262d07f547af3da0f4753219bc3826b3d969596f9823644f611.jpg)
-
+### Visual Diagram: TWI Steering Arms VSM
+- **Component Type**: Current State Value Stream Map with parallel processing.
+- **Process Highlights**: 
+    - Parallel paths for Bar Cutting and Joint Finishing.
+    - Outsourced Painting phase (2-day Lead Time).
+    - Multi-operator Assembly station (6 operators).
+- **Summary Results**:
+    - **VAT**: 315 s
+    - **Lead Time**: 48 days
 # IDEF diagram
 
 V ICAM project (Integrated Computer Aided Manufacturing)
@@ -854,12 +1194,53 @@ Title of the diagram
 Number of the diagram   
 Short description of the diagram
 
-![](images/10f4a6f7237aa5fb16af938e3e11f132fbb725966023e096d0d3bb94a06e32b4.jpg)
+### Visual Diagram: IDEF0 Functional Block and ICOM Architecture
+- **Component Type**: Basic Functional Modeling Unit.
+- **Logic**: The diagram follows the ICOM (Input, Control, Output, Mechanism) convention to define a specific activity or function within a system.
+
+#### 1. Central Activity Box
+- **Visual Shape**: A rectangular box centered in the diagram.
+- **Internal Content**: 
+    - "**Activity name**": A verb-phrase label describing the function performed.
+    - "**A0**": The node identifier (index) located in the bottom right corner of the box.
+
+#### 2. Interface Arrows (ICOM)
+- **Input (Left side)**: Arrows entering the left face of the box represent the objects or data consumed or transformed by the activity.
+- **Controls (Top side)**: Arrows entering the top face represent the conditions, rules, or standards that govern the performance of the activity.
+- **Resources / Mechanisms (Bottom side)**: Arrows entering the bottom face represent the means (personnel, tools, machines, or systems) used to perform the activity.
+- **Output (Right side)**: Arrows exiting the right face represent the objects or data produced by the completion of the activity.
+
+#### 3. Diagram Metadata (Footer)
+- **Node**: Identified as "A-0" (Top-level context diagram).
+- **Title**: Placeholder for the process name.
+- **Project Label**: "IDEF0 Diagram".
+- **Numbering**: Designated as "N.: 1".
+
+#### 4. Functional Meaning
+- This layout establishes the context and boundaries of a process, identifying exactly what triggers it, what regulates it, what resources it requires, and what result it provides to the next stage of the system.
 
 # Hierarchy of diagrams
 
-![](images/2e3b36c81782c3ea2061f64d2c286afa3663c963ed7ab2ed410c6fc966151012.jpg)
+### Visual Diagram: IDEF0 Functional Decomposition and Hierarchy
+- **Overall Layout**: A multi-level schematic illustrating the top-down decomposition of functional blocks within an IDEF0 model, moving from a general context to specific details.
 
+**1. Level A-0: Context Diagram (Top Right)**
+- **Visual Elements**: A single activity box labeled "**0**" with node index "**A0**".
+- **Functional Meaning**: Represents the highest level of the system, defining the overall scope, boundaries, and high-level interface (Global Inputs, Controls, Outputs, and Mechanisms).
+
+**2. Level A0: First Decomposition (Middle Left)**
+- **Visual Elements**: The parent "**A0**" box is expanded into a detailed diagram containing four sub-activity boxes numbered **1, 2, 3, and 4**.
+- **Hierarchy Link**: Dotted lines show the parent-child relationship between the A0 context box and this diagram.
+- **Reference Node**: Box **4** is marked with node ID "**A4**" in its lower right corner, identifying it for further decomposition.
+
+**3. Level A4: Second Decomposition (Bottom Right)**
+- **Visual Elements**: The parent "**A4**" box from the previous level is further expanded into a granular diagram containing three sub-activity boxes numbered **1, 2, and 3**.
+- **Hierarchy Link**: Dotted lines indicate that this diagram represents the internal functional detail of the A4 activity.
+
+**4. Core IDEF0 Principles**
+- **Functional Decomposition**: The process of breaking a complex parent activity into more manageable and specific sub-activities.
+- **ICOM Consistency**: Arrows (Inputs, Controls, Outputs, Mechanisms) entering or exiting a parent box must be consistently represented at the boundary of the child diagram to ensure model integrity.
+- **Granularity**: The level of technical detail increases as the hierarchy progresses from the context diagram down to subordinate levels.
 # Activity
 
 The main component of the diagram is the activity
@@ -881,33 +1262,172 @@ The meaning of the arrows depends on their position with respect to the activity
 >the arrows entering from the top represent the constraints (controls) that regulate or affect the execution of the activity   
 >the arrows entering from below indicate the resources (physical tools or people) that make it possible to carry out the activity
 
-![](images/1c5fcb1063b5c88a16ac4592d157094634ad90c8f511753063e09a06815d8d34.jpg)
+### Visual Diagram: IDEF0 Arrow Syntax and Positioning
+- **Component Type**: Standard syntax for functional modeling blocks.
+- **Logic**: The meaning of each arrow is determined by its specific position relative to the activity box.
+
+#### 1. Input (Left Side)
+- **Visual Shape**: A horizontal arrow entering the activity box from the left.
+- **Functional Meaning**: Represents the objects or data that are processed or transformed during the activity.
+- **Annotation**: Includes a "LABEL" linked to the arrow via a zigzag line to identify the specific input.
+
+#### 2. Control (Top Side)
+- **Visual Shape**: A vertical arrow entering the box from the top.
+- **Functional Meaning**: Represents the constraints or controls that regulate and affect how the activity is executed.
+
+#### 3. Output (Right Side)
+- **Visual Shape**: A horizontal arrow exiting the box from the right.
+- **Functional Meaning**: Represents the results or products generated by the completion of the activity.
+
+#### 4. Mechanism (Bottom Side, Upward)
+- **Visual Shape**: A vertical arrow entering the box from the bottom, pointing up.
+- **Functional Meaning**: Indicates the resources, such as people or physical tools, that make it possible to perform the activity.
+
+#### 5. Call (Bottom Side, Downward)
+- **Visual Shape**: A vertical arrow exiting the box from the bottom, pointing down.
+- **Annotation**: Specifically labeled as "CALL" with an associated "LABEL" for reference.
+- **Functional Meaning**: Used to indicate a reference to another diagram or a specialized system element.
 
 # Parallel operations
 
-![](images/571bc6eaf0e69d51aaa397a1a500d1740c1c39a3c6726699a979a88d1f5fac71.jpg)
+### Visual Diagram: IDEF0 Parallel Operations
+- **Component Type**: Control-driven functional branching.
+- **Operational Logic**: Concurrent execution of downstream activities based on a shared dependency.
+
+#### 1. Primary Process (Node 1)
+- Process 1 serves as the prerequisite activity in the sequence.
+- Upon completion, Process 1 generates an output that functions as a synchronization point for the rest of the flow.
+
+#### 2. Control Branching
+- The output arrow exiting Process 1 branches into two distinct paths.
+- Both branched arrows enter the top faces of the subsequent boxes, acting as "Controls" for Process 2 and Process 3.
+- This configuration dictates that once the output of Process 1 is available, both activities 2 and 3 can start simultaneously.
+
+#### 3. Parallel Execution (Nodes 2 and 3)
+- Process 2 and Process 3 are executed in parallel rather than in a serial sequence.
+- Each parallel process generates its own independent output flowing to the right.
+- This structure is used to model system functions that happen at the same time once specific conditions (the output of Node 1) are met.
 
 # Difference between input and control
 
-![](images/6f6af58ed4d88b0b79ad1b0347d9f0af698c7895f7af695ae42117fbdd5db959.jpg)
+### Visual Diagram: IDEF0 Functional Flows - Input vs. Control (image_fe3118.png)
+- **Component Type**: Comparative analysis of functional dependencies.
+- **Logic**: This diagram illustrates how the same output from a parent process can function as either a physical input or a logical control for a subsequent process.
+
+#### 1. Physical Flow: Input (Top Diagram)
+- **Context**: Focuses on the transformation of a physical object.
+- **Process A1 (Drilling)**:
+    - **Input**: "Blank plate" (raw material enters from the left).
+    - **Control**: "Work cycle" (governs the drilling).
+    - **Mechanism**: "Drilling machine".
+    - **Output**: "Drilled plate".
+- **Process A2 (Polishing)**:
+    - **Input**: "Drilled plate" (The output of A1 enters from the **left** side of A2).
+    - **Mechanism**: "Polisher".
+    - **Output**: "Polished plate".
+- **Functional Meaning**: The output of the first stage is the **subject** of the second stage; it is physically processed/transformed further.
+
+#### 2. Logical Flow: Control (Bottom Diagram)
+- **Context**: Focuses on the governance of a production activity.
+- **Process A1 (Design)**:
+    - **Input**: "Template".
+    - **Control**: "Requirements".
+    - **Output**: "Work plan".
+- **Process A2 (Production)**:
+    - **Input**: "Raw materials".
+    - **Control**: "Work plan" (The output of A1 enters from the **top** side of A2).
+    - **Mechanism**: "Equipments".
+    - **Output**: "Finished product".
+- **Functional Meaning**: The output of the first stage acts as a **directive** for the second stage; it dictates *how* the production is executed without being physically incorporated into the product.
+
+#### 3. Key Distinction Summary
+- **Input Connection (Left)**: Represents a material/data dependency where the item is "consumed" or "modified".
+- **Control Connection (Top)**: Represents a logical dependency where the item "constrains" or "regulates" the activity.
 
 Physical flow: input
 
 Logical flow: control
 
-![](images/562208eb0a26b1115c56b4aaf8957b06d9df00a6358ae97c2b11e38ec49b88fb.jpg)
-
 # Example: production management
 
-![](images/2ee4f59fb6727b5d0084757b119be92a40484b3f2b710b8848939e649a57ef92.jpg)
+### Visual Diagram: IDEF0 Production Management Context
+- **Node**: A1
+- **Title**: Production
+- **Focus**: Coordination of manufacturing stages from raw material receipt to final delivery.
+
+#### A11: Raw material inventory
+- **Input**: Current warehouse inventory (starting state).
+- **Control**: Transport document, Customer order (regulatory triggers).
+- **Mechanism**: Warehouse department (responsible resource).
+- **Output**: Updated warehouse inventory (flows to A12 and exits as a record).
+
+#### A12: Production planning
+- **Input**: Updated warehouse inventory, Current employee load.
+- **Control**: Customer production plan (strategic constraint).
+- **Mechanism**: Planning department.
+- **Output**:
+    - **Logical Control**: A shared planning signal that governs A13, A14, and A15.
+    - **Physical Record**: Update employee load.
+
+#### A13: Assembly
+- **Input**: (Implicit material flow from inventory).
+- **Control**: 
+    - Technical documents: Drawings, BOMs, Assembly/Control plans, Tuning procedure.
+    - Planning directive (from A12).
+- **Mechanism**: Production department.
+- **Output**: 
+    - Assembly report.
+    - Physical flow (Assembled components) to Quality Check and Packaging.
+
+#### A14: Quality check
+- **Input**: Assembled components (from A13).
+- **Control**: 
+    - Test procedure.
+    - Planning directive (from A12).
+- **Mechanism**: Quality department.
+- **Output**: Certificate of conformance (validation result).
+
+#### A15: Packaging and delivery
+- **Input**: Verified product (from A14).
+- **Control**: Planning directive (from A12).
+- **Mechanism**: Warehouse department.
+- **Output**: Delivery note (final shipping document).
+
+#### Summary of Flows
+- **Material Path**: Flows linearly from A11 through A15 via internal inputs.
+- **Control Path**: A12 acts as the "brain," providing the necessary constraints for all subsequent manufacturing steps.
+- **Shared Resources**: The Warehouse department supports both the initial (A11) and final (A15) stages of the value chain.
 
 # Observation
 
 In IDEFO there are no decisions,only flows
 
-![](images/c7946b8505f17dc7f3460784781af6528010c4ae5d8dc54a19f06721260c4d01.jpg)
+### Visual Diagram: IDEF0 vs. Flow Charts - Absence of Decisions
+- **Component Type**: Comparison of process modeling logic.
+- **Core Observation**: IDEF0 models do not use decision nodes (diamonds); they represent logic through the differentiation of functional flows.
 
-![](images/90cc9d0122f725bc472126946bc9cad5666fe0145ccef2deddb9d5dbf3423cf2.jpg)
+#### 1. Traditional Flow Chart / Activity Diagram (Top)
+- **Visual Elements**: Sequential boxes connected by arrows, including a diamond-shaped decision node.
+- **Logic**: 
+    - The process starts with "Receive shipment" and proceeds to "Compare shipment with purchase order."
+    - A binary decision point "**Shipment OK?**" explicitly branches the path.
+    - Path **Yes**: Leads to "Catalogue book."
+    - Path **No**: Leads to "Return to vendor."
+- **Meaning**: Represents the temporal sequence and the specific "if-then" choices made during execution.
+
+#### 2. IDEF0 Functional Model (Bottom)
+- **Visual Elements**: Functional blocks with ICOM arrows; no decision symbols are present.
+- **Activity "Receive each book"**:
+    - **Input (Left)**: "Receipt of book" (the physical object to be processed).
+    - **Control (Top)**: "Books ordered" (the rule or reference used to verify the receipt).
+    - **Outputs (Right)**: Two distinct output arrows represent the different results of the activity's internal logic:
+        1. "**Returned book**": Flow for items that do not meet the criteria.
+        2. "**Book, book information**": Flow for items that pass verification, which then becomes an input for the next activity, "**Catalogue book**."
+- **Meaning**: Represents the function's transformation and its possible outcomes. The "decision" is embedded within the function "Receive each book," and the results are expressed simply as different output flows.
+
+#### 3. Key Distinction
+- **Flow Charts**: Focus on the **sequence of steps** and the explicit gates (decisions) that control the flow.
+- **IDEF0**: Focuses on **what the function does** and the data/objects it produces. Logic is handled by having multiple inputs or outputs that represent the different conditions or states of the objects being processed.
 
 # Characteristics
 
@@ -927,7 +1447,28 @@ V Represent the process using the IDEFO diagram using no more than two levels of
 
 # Solution (A-0)
 
-![](images/76c56d64ddd844bba315d29ab00f4008acfc2f9f317161a174eaaa7138375fdc.jpg)
+### Visual Diagram: IDEF0 Context Diagram (A-0) - Breakfast Distribution
+- **Component Type**: Top-level Context Diagram (A-0).
+- **Logic**: Defines the global boundaries and primary interfaces for the hospital breakfast process before further decomposition.
+
+#### 1. Central Activity Box (A0)
+- **Internal Label**: "Breakfast preparation".
+- **Node Identifier**: A0.
+
+#### 2. Interface Arrows (ICOM Architecture)
+- **Input (Left side)**: Represents the raw materials to be processed: "Dry food", "Liquid food", "Jams", and "Sugar packets".
+- **Controls (Top side)**: Represents the regulatory constraints: "Preparation, transportation and delivery instruction".
+- **Output (Right side)**: Represents the final results of the process: "Breakfasts served, clean cabinets".
+- **Mechanisms / Resources (Bottom side)**: Represents the tools and personnel required: "Wheeled cabinets", "Hospital workers", "Kitchen tools", "Freight elevator", and "Dishwasher".
+
+#### 3. Model Metadata
+- **Node**: A-0.
+- **Title**: Breakfast distribution process.
+- **Purpose**: Hospital breakfast distribution process.
+- **Viewpoint**: Responsible for managing hospital meals.
+
+#### 4. Functional Meaning
+- This diagram establishes that the process transforms food supplies into served meals using hospital staff and infrastructure, under specific delivery instructions, and concludes when cabinets are cleaned for the next cycle.
 
 PURPOSE: Hospital breakfast distribution process
 
@@ -935,11 +1476,60 @@ VIEWPOlNT: Responsible for managing hospital meals
 
 # Solution (AO)
 
-![](images/2fdb109c91a91b7f340a838e77f4e577042bf3d92544840175666ac3518da5bb.jpg)
+### Visual Diagram: IDEF0 Functional Decomposition (A0) - Breakfast Distribution
+- **Node**: A0
+- **Title**: Breakfast distribution
+- **Logic**: Decomposes the high-level process into three sequential activities, showing the internal flow of materials and information.
+
+#### A1: Preparation
+- **Inputs**: Raw materials entering from the left: "Dry food", "Liquid food", "Jams", and "Sugar packets".
+- **Control**: "Preparation instructions" (Top).
+- **Mechanisms**: "Wheeled cabinets", "Preparation staff", and "Kitchen tools" (Bottom).
+- **Output**: "Cabinets with breakfast", which functions as the physical input for the next stage (A2).
+
+#### A2: Distribution
+- **Input**: "Cabinets with breakfast" (from A1).
+- **Control**: "Distribution instructions" (Top).
+- **Mechanisms**: "Freight elevator" and "Distribution Staff" (Bottom).
+- **Outputs**: 
+    - "**Breakfasts served**": The primary goal of the process, exiting the diagram.
+    - "**Cabinets to clean**": The byproduct (dirty equipment) which becomes the input for the final stage (A3).
+
+#### A3: Washing
+- **Input**: "Cabinets to clean" (from A2).
+- **Control**: "Washing instruction" (Top).
+- **Mechanisms**: "Dishwasher" and "Washing staff" (Bottom).
+- **Output**: "**Clean cabinets**", exiting the diagram to indicate the completion of the cycle.
+
+#### Summary of the Internal Flow
+- **Sequential Dependency**: The diagram uses a "staircase" layout to show a clear linear sequence where the output of one function is the necessary input for the next.
+- **Resource Specialization**: The mechanisms change across the activities, moving from kitchen tools (A1) to transport infrastructure (A2) and finally cleaning equipment (A3).
+- **Control Specificity**: Each stage is governed by a specific set of instructions, ensuring quality and safety throughout the transformation from raw ingredients to cleaned assets.
 
 # Solution (A1)
 
-![](images/b1a6d4988073ae834336f019a0afdabc2294a1f214e5226b8db7785b60df7109.jpg)
+### Visual Diagram: IDEF0 Functional Decomposition (A1) - Preparation Detail
+- **Node**: A1
+- **Title**: Preparation
+- **Logic**: This diagram breaks down the "Preparation" phase into two distinct sub-activities based on the nature of the food items and the specific timing constraints (evening vs. morning) described in the process.
+
+#### A11: Dry food arrangement
+- **Inputs**: "Dry foods", "Sugar packets", and "Jams".
+- **Control**: "Preparation instructions".
+- **Mechanisms**: "Wheeled cabinets" (acting as the physical base) and "Preparation Staff".
+- **Output**: "**Cabinets with dry food**", which serves as the primary internal input for the next stage.
+
+#### A12: Liquid food arrangement
+- **Inputs**: 
+    - "Cabinets with dry food" (internal flow from A11).
+    - "Liquid food" (new raw material entered during this phase, typically in the morning).
+- **Control**: "Preparation instructions".
+- **Mechanisms**: "Preparation Staff" and "Kitchen tools" (required for heating liquid items).
+- **Output**: "**Cabinets with breakfasts**", representing the completed units ready for distribution (A2).
+
+#### Process Logic
+- **Sequential Dependency**: The diagram illustrates that cabinets must first be staged with dry goods before hot liquids can be added, adhering to the evening/morning schedule constraint.
+- **Shared Resources**: The "Preparation Staff" is a constant resource across both sub-activities, while "Kitchen tools" are specifically allocated to A12 for the thermal processing of liquid foods.
 
 # Exercise: Car repair shop
 
@@ -949,20 +1539,101 @@ From this moment the company is formally engaged in the fulfillment of the order
 
 # Solution (A-0)
 
-![](images/19378087cec127ebf20eb3225bd7fde4b2de87ca66c57771ab1f4ccf122aade6.jpg)
+### Visual Diagram: IDEF0 Context Diagram (A-0) - Order Fulfillment
+- **Node**: A-0
+- **Title**: Order Fulfillment
+- **Logic**: Defines the overall system boundary for the mechanical component production request.
+
+#### 1. Interface Arrows (ICOM)
+- **Input (Left)**: "Raw Materials" (The base resources required for production).
+- **Control (Top)**: "Customer Request" and "Customer Order" (The triggers and regulatory documents).
+- **Mechanisms (Bottom)**: "Technical Department", "Administrative Department", and "Equipments" (The resources executing the process).
+- **Output (Right)**: "Finished Product" and "Invoice" (The final results provided to the customer).
+
+#### 2. Functional Meaning
+- Represents the high-level transformation of raw materials into a finished product and invoice based on customer requirements and orders, utilizing specialized company departments.
 
 # Solution (AO)
 
-![](images/7f5e2017024883046b3bf2be34e0e8d3544ce9a9928cfacac0029da4073281a5.jpg)
+### Visual Diagram: IDEF0 First-Level Decomposition (A0)
+- **Node**: A0
+- **Title**: Order Fulfillment
+- **Logic**: Splits the process into two primary phases: Commercial (Offer) and Operational (Production).
+
+#### A1: Offer Formulation
+- **Control**: "Customer Request".
+- **Mechanisms**: Technical and Administrative Departments.
+- **Output**: "Offer" (This flows forward to act as a control for the next phase).
+
+#### A2: Production
+- **Input**: "Raw Materials".
+- **Control**: "Offer" (from A1) and "Customer Order" (external).
+- **Mechanisms**: Technical/Administrative Departments and Equipment.
+- **Output**: "Finish Product" and "Invoice".
+
+#### Functional Meaning
+- This level establishes that production cannot legally or technically begin until an "Offer" is formulated and a "Customer Order" is received.
 
 # Solution (A1)
 
-![](images/9659498f8dcf18c2b310591b12a71be99809a812d58f8d25d32c55aea5907a8d.jpg)
+### Visual Diagram: IDEF0 Decomposition of A1 - Offer Formulation
+- **Node**: A1
+- **Title**: Offer Formulation
+- **Logic**: Details the internal collaboration between technical and administrative sectors to generate a quote.
+
+#### A11: Process Definition
+- **Control**: "Customer Request".
+- **Mechanism**: Technical Department.
+- **Output**: "**Process Plan**" (A general description of manufacturing steps).
+
+#### A12: Cost Definition
+- **Input**: "Process Plan" (from A11).
+- **Mechanism**: Administrative Department.
+- **Output**: "**Cost Plan**" (Financial valuation of the process).
+
+#### A13: Offer Formulation
+- **Input**: "Cost Plan" (from A12).
+- **Mechanism**: Administrative Department.
+- **Output**: "**Offer**" (The final document sent to the customer).
+
+#### Functional Meaning
+- Shows a linear dependency: costs cannot be defined without a technical process plan, and the offer cannot be finalized without a cost plan.
 
 # Solution (A2)
 
-![](images/71ccf4498b7590c40c58b049f1fb3dbbe1767269e6ad13f4ac9117013b271e69.jpg)  
-【Node :A2  
-Title: 1   
-Production   
-N.: 4
+### Visual Diagram: IDEF0 Decomposition of A2 - Production
+- **Node**: A2
+- **Title**: Production
+- **Logic**: Represents the operational flow from detailed planning to quality control and invoicing.
+
+#### A21: Process Definition
+- **Control**: "Offer" and "Customer Order".
+- **Mechanism**: Technical Dept.
+- **Output**: "**Process Plan**" (Detailed list of operations).
+
+#### A22: Production Planning
+- **Input**: "Process Plan" (from A21).
+- **Output**: "**Production Plan**".
+
+#### A23: Raw Materials Order
+- **Input**: "Process Plan" (from A21).
+- **Mechanism**: Administrative Dept.
+- **Output**: "Raw Materials" (Procured for processing).
+
+#### A24: Processing
+- **Inputs**: "Raw Materials" (from A23) and "Production Plan" (from A22).
+- **Mechanism**: Equipment.
+- **Output**: "**Product**".
+
+#### A25: Quality Controls
+- **Input**: "Product" (from A24).
+- **Control**: "Process Plan" (Used as a reference for specifications from A21).
+- **Output**: "**Finished Product**".
+
+#### A26: Invoicing
+- **Control**: "Finished Product" (The trigger for billing).
+- **Mechanism**: Administrative Dept.
+- **Output**: "**Invoice**".
+
+#### Functional Meaning
+- This diagram highlights the "Process Plan" as a central control hub that dictates material ordering, scheduling, and quality standards.

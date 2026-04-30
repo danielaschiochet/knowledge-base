@@ -164,7 +164,49 @@ Y Assume that the variability of each sub-task can be reduced (identically) so t
 # Solution
 
 $$
-\begin{array}{l} E [ T ] = 6 h, \quad c ^ {2} [ T ] = 2, \quad 4 S u b s u s \\ E [ \pi ] = \frac {5}{5} = 1. 5 h \\ V [ T ] = C ^ {2} [ T ] \cdot E ^ {2} [ T ] = 2 \cdot 3 6 = 7 2 h ^ {2} \rightarrow V (T _ {i}) = \frac {7 2}{5} = 1 8 h ^ {2} \\ \rightarrow c ^ {2} [ T _ {i} ] = \frac {V [ T _ {i} ]}{E ^ {2} [ T _ {i} ]} = \frac {- 1 8}{1 . 5 ^ {2}} = 8 \\ y c ^ {2} [ \tau_ {i} ] = 2 \\ V [ T _ {i} ] = c ^ {2} [ T _ {i} ] \cdot E ^ {2} [ T _ {i} ] = 2 \cdot 1. 5 ^ {2} = 4. 5 h ^ {2} \rightarrow V [ T ] = 4. 5 \cdot 4 = 1 8 h ^ {2} \\ c ^ {2} [ T ] = \frac {V [ T ]}{c ^ {2} [ T ]} = \frac {1 8}{3 6} = 0. 5 \rightarrow \frac {1}{4} O F R _ {1} G _ {1 N S C} c ^ {2} \\ \end{array}
+E[T] = 6 \text{ h}, \qquad c^2[CT] = 2, \text{ 4 subtasks}
+$$
+
+$$
+E[T_i] = \frac{6}{4} = 1.5 \text{ h}
+$$
+
+$$
+V[T] = c^2[T] \cdot E^2[T] = 2 \cdot 36 = 72 \text{ h}^2
+$$
+
+$$
+V[T_i] = \frac{72}{4} = 18 \text{ h}^2
+$$
+
+$$
+c^2[T_i] = \frac{V[T_i]}{E^2[T_i]}
+= \frac{18}{1.5^2}
+= 8
+$$
+
+$$
+\text{If } c^2[T_i] = 2
+$$
+
+$$
+V[T_i] = c^2[T_i] \cdot E^2[T_i]
+= 2 \cdot 1.5^2
+= 4.5 \text{ h}^2
+$$
+
+$$
+V[T] = 4.5 \cdot 4 = 18 \text{ h}^2
+$$
+
+$$
+c^2[T] = \frac{V[T]}{E^2[T]}
+= \frac{18}{36}
+= 0.5
+$$
+
+$$
+\frac{1}{4} \text{ of original } c^2
 $$
 
 # Machine breakdown
@@ -267,7 +309,10 @@ As the utilization factor approaches one, small changes in the factor will have 
 
 > Let's consider a line consisting of 2 machines (M1, M2) with mean process time E[Ts]= 15 min and natural standard deviation equal to δs=3,35 min. Both machines undergoes failures which limit their availability (but in different ways according to the following table). Which machine is to be preferred?
 
-![](images/6c13cae8f29e273318ab750492495aab1a8da8a56fee7875a551ce1e1c762fae.jpg)
+| Machine | Failure type | E[F] | E[R] | C[R] |
+| :--- | :--- | :--- | :--- | :--- |
+| **M1** | Long and infrequent | 744 min | 248 min | 1 |
+| **M2** | Short and frequent | 114 min | 38 min | 1 |
 
 # Example 2
 
@@ -298,15 +343,15 @@ $$
 Consider a job with processing time distribution parameters E[T] = 3 hours and C² = 2   
 V The machine breakdown and repair time characteristic parameters are:
 
-E[月=7 hr and C²[月= 1  
-E[R]= 1 hr and C2[R] = 1
+E[F]=7 hr and C²[F]= 1  
+E[R]= 1 hr and C²[R] = 1
 
-> Find the parameters of the effective processing time: E[Te], VT,and C2[Te]
+> Find the parameters of the effective processing time: E[Te], V[Te],and C²[Te]
 
 # Solution
 
 $$
-\mathrm {(x . 4)} \quad E [ T _ {S} ] = 3 h \quad C _ {s} ^ {2} = 2
+\quad E [ T _ {S} ] = 3 h \quad C _ {s} ^ {2} = 2
 $$
 
 $$
@@ -322,46 +367,56 @@ E [ T _ {e} ] = \frac {E [ T _ {s} ]}{a} = \frac {3}{0 . 8 7 5} = 3. 4 3 h
 $$
 
 $$
-e ^ {2} = c s ^ {2} + \frac {(1 + c ^ {2} [ R ]) a (1 - a) E [ R ]}{E [ T s ]} = 2 + \frac {(1 + 1) \cdot 0 . 8 7 5 (1 - 0 . 8 7 5) \cdot 1}{3} = 2. 0 7 3
+Ce ^ {2} = C s ^ {2} + \frac {(1 + c ^ {2} [ R ]) a (1 - a) E [ R ]}{E [ T s ]} = 2 + \frac {(1 + 1) \cdot 0 . 8 7 5 (1 - 0 . 8 7 5) \cdot 1}{3} = 2. 0 7 3
 $$
 
 $$
-V [ \pi ] = 6 ^ {2} \cdot E ^ {2} [ \pi ] = 2, 0 7 3 \cdot 3, 1 3 ^ {2} = 2 4, 3 9
+V [ Te] = Ce ^ {2} \cdot E[Te] ^ {2} = 2, 0 7 3 \cdot 3, 4 3 ^ {2} = 2 4, 3 9
 $$
 
 # Exercise 2
 
-V Consider M/M/1/ system with a server that has exponential time between breakdowns and exponential repair times   
+V Consider M/M/1/$\infty$ system with a server that has exponential time between breakdowns and exponential repair times   
 Given an arrival rate of 5 jobs per hour, a service rate of 7 jobs per hour, a breakdown rate of once per hour and a mean repair time of 15 minutes, compute the system performance measures of WIP, CTs, and ths
 
 # Solution
 
 $$
-a = \frac {E [ F _ {1} ]}{E [ F _ {1} ] + E [ R _ {1} ]} = 1 / (1 + 0. 2 5) = 0. 8
+a = \frac{E[F_1]}{E[F_1] + E[R_1]}
+= \frac{1}{1 + 0.25}
+= 0.8
 $$
 
 $$
-E [ T _ {e} ] = \frac {E [ T ]}{a} = 0. 1 4 3 / 0. 8 = 0. 1 8 h
+E[T_e] = \frac{E[T]}{a}
+= \frac{0.143}{0.8}
+= 0.18 \text{ h}
 $$
 
 $$
-C ^ {2} \left[ T _ {e} \right] = 1 + [ (1 + 1) ^ {*} 0. 8 ^ {*} (1 - 0. 8) ^ {*} 0. 2 5 ] / 0. 1 4 3 = 1. 5 6
+C^2[T_e]
+= 1 + \frac{[(1+1)\cdot 0.8 \cdot (1-0.8)\cdot 0.25]}{0.143}
+= 1.56
 $$
 
 $$
-u = 5 ^ {*} 0. 1 8 = 0. 9
+u = 5 \cdot 0.18 = 0.9
 $$
 
 $$
-C T _ {q} = [ (1 + 1. 5 6) / 2 ] ^ {*} [ 0. 9 / (1 - 0. 9) ] ^ {*} 0. 1 8 = 2. 0 7
+CT_{q} = \left(\frac{1+1.56}{2}\right)\left(\frac{0.9}{1-0.9}\right)\cdot 0.18 = 2.07
 $$
 
 $$
-C T = C T q + E [ T e ] = 2. 0 7 + 0. 1 8 = 2. 2 5 h
+CT = CT_q + E[T_e]
+= 2.07 + 0.18
+= 2.25 \text{ h}
 $$
 
 $$
-\mathrm {W I P} = \mathrm {T H} ^ {*} \mathrm {C T} = 5 ^ {*} 2. 2 5 = 1 1. 2 5
+WIP = TH \cdot CT
+= 5 \cdot 2.25
+= 11.25
 $$
 
 # Exercise 3
@@ -378,19 +433,51 @@ V Compute the proportion of the time that the machine is idle, down (i.e., under
 
 # Solution
 
-![](images/82228bdf63189a286ad2d828ea0392b477f9a5d4ee02456b34624945291e67ae.jpg)
+### Visual Diagram: State-Transition Network for a System with Failures and Repairs
+- **Component Type**: Continuous-Time Markov Chain (CTMC) / State-transition diagram.
+- **Logic**: Represents a finite capacity system ($N=3$) subject to random failures and repair processes.
+
+---
+
+#### 1. State Definitions
+The diagram consists of 7 discrete states organized into two levels:
+*   **State 0**: The system is empty and idle.
+*   **Level P (Processing)**: States **1P, 2P, 3P**, representing the functioning system with 1, 2, or 3 jobs present.
+*   **Level B (Broken/Blocked)**: States **1B, 2B, 3B**, representing the system in a failed state with 1, 2, or 3 jobs present.
+
+#### 2. Transition Rate Dynamics
+The transitions between states are governed by four parameters:
+
+*   **Arrivals ($\lambda$)**:
+    *   Moves the system from state $n$ to $n+1$.
+    *   Occurs in both the functional level ($0 \to 1P$, $1P \to 2P$, $2P \to 3P$) and the failed level ($1B \to 2B$, $2B \to 3B$).
+*   **Service ($\mu$)**:
+    *   Represents job completion and the reduction of system load.
+    *   Transitions occur only in the upper (P) level: $3P \to 2P$, $2P \to 1P$, and $1P \to 0$.
+*   **Failures ($\alpha$)**:
+    *   Vertical downward transitions from the functional level (P) to the failed level (B): $1P \to 1B$, $2P \to 2B$, $3P \to 3B$.
+*   **Repairs ($\beta$)**:
+    *   Vertical upward transitions from the failed level (B) to the functional level (P): $1B \to 1P$, $2B \to 2P$, $3B \to 3P$.
+
+#### 3. System Constraints
+*   **Maximum Capacity**: The system is limited to 3 jobs. There are no arrival arcs ($\lambda$) exiting states **3P** or **3B**, indicating that further arrivals are blocked and lost.
+*   **Service Interruption**: During a failure (Level B), no $\mu$ arcs are present, signifying that production is suspended until the repair ($\beta$) is complete.
+*   **Steady-State Balance**: The flow rate entering a state must equal the flow rate exiting it. 
+    *   *Example for node 2P*: $(\lambda + \mu + \alpha) p_{2P} = \lambda p_{1P} + \mu p_{3P} + \beta p_{2B}$.
 
 # Solution
 
-![](images/7ccf21330b12f01a966ada664973d81915153ee1e0a9c2bc68965b35321485aa.jpg)
-
-![](images/a2fc9a5ddca3b918f76669a35ae16ffe0fc25bf8281da5ef78a704eaa6921a28.jpg)
+| State | Probability |
+| :--- | :--- |
+| **P0** | 0.14 |
+| **P1P** | 0.17 |
+| **P1B** | 0.02 |
+| **P2P** | 0.23 |
+| **P2B** | 0.03 |
+| **P3P** | 0.33 |
+| **P3B** | 0.08 |
 
 # Solution
-
-![](images/864a003296402132ad49929be3fc9f881f117639766a1fd9f33b770917edfaf5.jpg)
-
-![](images/383fa31c36af37e7195b2ec89230846180af73bf11f75c5f654bf33c4660721d.jpg)
 
 Th= 5*(1-(0.33+0.08)) = 2.95 j/h   
 WIP= (0.17+0.02)+2*(0.23+0.03)+3*(0.33+0.08) = 1.94   

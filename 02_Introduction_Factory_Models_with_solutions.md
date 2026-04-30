@@ -70,7 +70,7 @@ different job types are jobs with different routings
 
 ### Visual Diagram: Factory Routing and Job Flow
 - **Component Type**: Network Flow Diagram.
-- **Logic**: Illustrates how jobs travel through a complex manufacturing system via specific sequences of workstations, defining their routing[cite: 1].
+- **Logic**: Illustrates how jobs travel through a complex manufacturing system via specific sequences of workstations, defining their routing.
 
 #### 1. System Components
 - **Workstations (WS)**: The square boxes labeled "WS" represent the machines or resources where processing operations occur.
@@ -80,7 +80,7 @@ different job types are jobs with different routings
 #### 2. Routing Paths
 - **Material Flow**: Magenta arrows connect the workstations, mapping the physical flow of materials from one station to the next.
 - **Highlighted Sequences**: Distinct colored outlines (orange, green, and pink) group specific sequences of workstations together. The label "**Routing**" points directly to these highlighted paths.
-- **Functional Meaning**: The diagram visually defines a routing as the exact sequence of processing steps a specific job must follow from entry to completion[cite: 1]. It also shows that a factory can have branching and converging paths; jobs that share the exact same highlighted path belong to the same "job type," while different paths represent different job types[cite: 1].
+- **Functional Meaning**: The diagram visually defines a routing as the exact sequence of processing steps a specific job must follow from entry to completion. It also shows that a factory can have branching and converging paths; jobs that share the exact same highlighted path belong to the same "job type," while different paths represent different job types.
 
 # Performance measures
 
@@ -793,6 +793,13 @@ $$
 \mathrm{CT}_{\mathrm{best}}(w) = \begin{cases} 
 T_0 & \text{if } w \leq W_0 \\ 
 w / r_b & \text{otherwise} 
+\end{cases}
+$$
+
+$$
+\mathrm{TH}_{\mathrm{best}}(w) = \begin{cases} 
+w / T_0 & \text{if } w \leq W_0 \\ 
+r_b & \text{otherwise} 
 \end{cases}
 $$
 

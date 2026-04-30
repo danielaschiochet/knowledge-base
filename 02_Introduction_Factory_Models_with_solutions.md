@@ -575,11 +575,17 @@ V Thus at no expense, the factory can maintain its current throughput rate and r
 # Conclusion
 
 $$
-\mathrm{CT}_{\mathrm{best}}(w) = \left\{ \begin{array}{ll} T_0, & \text{if } w \leq W_0 \\ w / r_b, & \text{otherwise.} \end{array} \right.
+\mathrm{CT}_{\mathrm{best}}(w) = \begin{cases} 
+T_0 & \text{if } w \leq W_0 \\ 
+w / r_b & \text{otherwise} 
+\end{cases}
 $$
 
 $$
-\mathrm{TH}_{\mathrm{best}}(w) = \left\{ \begin{array}{ll} w / T_0, & \text{if } w \leq W_0 \\ r_b, & \text{otherwise.} \end{array} \right.
+\mathrm{TH}_{\mathrm{best}}(w) = \begin{cases} 
+w / T_0 & \text{if } w \leq W_0 \\ 
+r_b & \text{otherwise} 
+\end{cases}
 $$
 
 > CT remains constant at the minimum CT (To) as WIP increases and it increases to infinity once the maximum WIP (rb) is reached   
@@ -783,6 +789,10 @@ The values calculated below the table represent the theoretical performance boun
 
 # Solution
 
-$$\mathrm{CT} = \left\{ \begin{array}{ll} T_0, & \text{if } w \leq W_0 \\ w / r_b, & \text{otherwise.} \end{array} \right. \quad \mathrm{TH} = \left\{ \begin{array}{ll} w / T_0, & \text{if } w \leq W_0 \\ r_b, & \text{otherwise.} \end{array} \right.$$
+$$
+\mathrm{CT} = \left\{ \begin{array}{ll} T_0, & \text{if } w \leq W_0 \\ w / r_b, & \text{otherwise.} \end{array} \right. 
+\quad 
+\mathrm{TH} = \left\{ \begin{array}{ll} w / T_0, & \text{if } w \leq W_0 \\ r_b, & \text{otherwise.} \end{array} \right.
+$$
 
 If the WIP exceeds WO, the TH remains constant at value of 0.5 j/min and the CT increases at a rate of WIP/0.5

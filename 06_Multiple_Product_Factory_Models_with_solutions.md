@@ -10,37 +10,37 @@ giulia.bruno@polito.it
 
 # Introduction
 
-> Most manufacturing facilities are setup to produce more than a single product   
-Even in the case of single product facilities,if the product visits a workstation more than once with different processing times at each visit, then the workstation sees the equivalent of multiple products   
-V Such revisiting production schemes are called re-entrant flow systems   
-V Modeling multiple product facilities is not significantly more difficult than modeling single product systems
+Most manufacturing facilities are setup to produce more than a single product   
+> Even in the case of single product facilities,if the product visits a workstation more than once with different processing times at each visit, then the workstation sees the equivalent of multiple products   
+Such revisiting production schemes are called re-entrant flow systems   
+Modeling multiple product facilities is not significantly more difficult than modeling single product systems
 
 # Flow conservation
 
 Job flow needs to be maintained by product type   
-The number of visits to each workstation by product class is needed   
-V Different products can have different probabilistic flows through the production facility as well as diferent processing time characteristics   
+> The number of visits to each workstation by product class is needed   
+Different products can have different probabilistic flows through the production facility as well as diferent processing time characteristics   
 > The number of visits to each workstation by product needs to be developed   
-V This analysis requires the solution of a network flow system of equations by product   
+This analysis requires the solution of a network flow system of equations by product   
 The processing time is assumed to follow the same distribution for each product on each visit to a given workstation
 
 # Product flow rates
 
-V To compute the workload on the workstation, the number of visits to the workstation by each product is computed first   
-> It is necessary to distinguish between products visiting the same workstation
+To compute the workload on the workstation, the number of visits to the workstation by each product is computed first   
+It is necessary to distinguish between products visiting the same workstation
 
-> Xi,k = arrival rate of product type i to workstation k   
-> Xi= vector giving the total arrival rates of product type iinto each station   
-Y Yi,k= external arrival rate of product i into workstation k   
->pjk = probabilitythat an individualitem of product ileaving workstation j goes to workstation k   
-> pi= matrix of these probabilites for product i
+> $λ_{i,k}$ = arrival rate of product type i to workstation k   
+> $λ^i$= vector giving the total arrival rates of product type iinto each station   
+> $\gamma_{i,k}$= external arrival rate of product i into workstation k   
+> $p_{j,k}^i$ = probabilitythat an individualitem of product ileaving workstation j goes to workstation k  
+> $P^i$= matrix of these probabilites for product i
 
 # Product flow rates
 
-> Consider a factory of n workstations where product type ifollows the switching rule defined by routing matrix Pi and assume that the sum of at least one row of Pi is stictly less than one (i.e., jobs exit the network from at least one workstation)   
-Let yi=(Yi,1.., Yi,n) denote a vector consisting of the mean arval rate of type i jobs from an external source to the workstation   
-> Let λi=(i,1..,λi,n) be te (unknown) vector denoting mean arrval rate of all type i jobs to the workstations   
-V The vector 𝜆i is given by: λ=(I-(Pi)T)-1γi where l is an n × n identity matrix and (Pi)T is the transpose of pi
+Consider a factory of n workstations where product type ifollows the switching rule defined by routing matrix Pi and assume that the sum of at least one row of Pi is stictly less than one (i.e., jobs exit the network from at least one workstation)   
+> Let $\gamma^i=(\gamma_{i,1},..., \gamma_{i,n})$ denote a vector consisting of the mean arval rate of type i jobs from an external source to the workstation   
+> Let $λ^i=(λ_{i,1},...,λ_{i,n})$ be te (unknown) vector denoting mean arrval rate of all type i jobs to the workstations   
+> The vector $𝜆^i$ is given by: $λ^i=(I-(P^i)^T)^{-1}γ^i$ where I is an n × n identity matrix and $(P^i)^T$ is the transpose of $P^i$
 
 # Product flow rates
 
@@ -52,19 +52,58 @@ $$
 
 where m is the total number of product types within the factory
 
+# Example
+
 Consider a four-workstation facility that processes two products with each product arriving to the first workstation according to individual Poisson arrival streams, each at a rate of 5 per hour   
-> Product 1 uses only the first three workstations with the routing structure displayed in the firstfigure   
-V Product 2 uses allfour workstations with the routing structure displayed in the second figure
+Product 1 uses only the first three workstations with the routing structure displayed in the firstfigure   
+Product 2 uses all four workstations with the routing structure displayed in the second figure
 
-![](images/8bc0bdf759372ed27aa807e5be2c101c4d9040027f61c9c4371ae6857a1685f8.jpg)
+### Figure 1 - Diagram Description: Three-Node Network with Multiple Feedback Loops
 
-![](images/de047f00c4fd8afe54fe372950b801cdeb4c7b64755191b689e52944cf761b3a.jpg)
+**1. External Input:**
+*   External arrivals enter the system at **Node 1** with a rate of **5**.
+
+**2. Routing from Node 1 (Splitting):**
+*   To Node 2: **3/4**
+*   To Node 3: **1/4**
+
+**3. Routing from Node 2:**
+*   Forward to Node 3: **9/10**
+*   Feedback to Node 1: **1/10**
+
+**4. Routing from Node 3:**
+*   Feedback to Node 1: **1/20**
+*   System Departure: **19/20** (implicit, calculated as 1 - 1/20)
+
+### Figure 2 - Diagram Description: Four-Node Network with Multiple Feedback Loops
+
+**1. External Input:**
+*   External arrivals enter the system at **Node 1** with a rate of **5**.
+
+**2. Routing from Node 1 (Splitting):**
+*   To Node 2: **2/3**
+*   To Node 3: **1/3**
+
+**3. Routing from Node 2 and Node 3 (Merging):**
+*   All processed units from **Node 2** flow into **Node 4** (implicit probability of 1).
+*   All processed units from **Node 3** flow into **Node 4** (implicit probability of 1).
+
+**4. Routing from Node 4 (Feedback & Departure):**
+*   Feedback to Node 2: **2/10**
+*   Feedback to Node 3: **3/10**
+*   Feedback to Node 1: **1/10**
+*   System Departure: **4/10** (implicit, calculated as 1 - 2/10 - 3/10 - 1/10)
 
 # Example
 
-V Assume that there is one machine at each workstation and that the processing time data for the two products are:
+Assume that there is one machine at each workstation and that the processing time data for the two products are:
 
-![](images/ec7c665f76589ebc89a852b67cf8100cc38b694573512cefe5e7370896522e0d.jpg)
+| Workstation $k$ | $E[T_s(1, k)]$ | $C_s^2(1, k)$ | $E[T_s(2, k)]$ | $C_s^2(2, k)$ |
+| :---: | :---: | :---: | :---: | :---: |
+| 1 | 1/14 hr | 0.8 | 1/15 hr | 1.33 |
+| 2 | 1/10 hr | 1.2 | 1/18 hr | 2.00 |
+| 3 | 1/15 hr | 1.5 | 1/12 hr | 1.50 |
+| 4 | - | - | 0.06 hr | 0.75 |
 
 # Example
 
@@ -78,7 +117,7 @@ $$
 \boldsymbol {\lambda} ^ {2} = (6. 2 5, 6. 6 6 7, 5. 8 3 3, 1 2. 5)
 $$
 
-> The total rate into each workstation is the sum of the individual product inflows
+The total rate into each workstation is the sum of the individual product inflows
 
 $$
 \boldsymbol {\lambda} = (1 1. 9 4 0, 1 0. 9 3 4, 1 1. 0 9 6, 1 2. 5)
@@ -86,8 +125,8 @@ $$
 
 # Workstation workload
 
-V Once the workstation arrival rates by product type have been determined, the workload for each workstation can be computed   
-V The workload is the total amount of work required by a workstation per unit of time   
+Once the workstation arrival rates by product type have been determined, the workload for each workstation can be computed   
+The workload is the total amount of work required by a workstation per unit of time   
 > Sum of arrval rate for each product type multiplied by its associated mean processing time
 
 $$
@@ -108,24 +147,22 @@ where ck is the number of identical processors avaible at workstation k
 
 # Example
 
-Y Since there is one machine per workstation, the workload and utilization factors are the same at each workstation so that
+Since there is one machine per workstation, the workload and utilization factors are the same at each workstation so that
 
 $$
 u = (0. 8 2 3 1, 0. 7 9 7 1, 0. 8 3 6 9, 0. 7 5)
 $$
 
-With utiization factors alless than 1.0,the factory can achieve steadystate and further analysis is possible
+With utilization factors alless than 1.0, the factory can achieve steadystate and further analysis is possible
 
 # Service time characteristics
 
-> For workstation k the service time will be the random variable Ts(i,k), whenever Product i is being processed   
+For workstation k the service time will be the random variable Ts(i,k), whenever Product i is being processed   
 The service time for an arbitrary job is the random variable Ts(k).   
-> In the long-run, the probability that a given machine at Workstation k will be processing a Type ijob is λ,k^k   
+In the long-run, the probability that a given machine at Workstation k will be processing a Type i job is $λ_{i,k}$ / $λ_{k}$  
 Ts(k) is a mixture of random variables
 
-$$
-T _ {s} (k) = \left\{ \begin{array}{l l} T _ {s} (1, k) & \text {w i t h p r o b a b i l i t y} \frac {\lambda_ {1 , k}}{\lambda_ {k}} \\ \vdots \\ T _ {s} (m, k) & \text {w i t h p r o b a b i l i t y} \frac {\lambda_ {m , k}}{\lambda_ {k}} \end{array} \right.
-$$
+$$T _ {s} (k) = \begin{cases} T _ {s} (1, k) & \text{with probability } \frac{\lambda _ {1, k}}{\lambda _ {k}} \\ \vdots & \\ T _ {s} (m, k) & \text{with probability } \frac{\lambda _ {m, k}}{\lambda _ {k}} \end{cases}$$
 
 where m is the number of products within the factory
 
@@ -147,13 +184,13 @@ $$
 
 # Service time characteristics
 
-Since E[X2]=E[X]2(1+C²[X]), then
+Since E[X²]=E[X]²(1+C²[X]), then
 
 $$
 \mathrm {C} ^ {2} [ \mathrm {X} ] = \mathrm {E} [ \mathrm {X} ^ {2} ] / \mathrm {E} [ \mathrm {X} ] ^ {2} - 1
 $$
 
-V Coefficient of variation for the service time at workstation k:
+Coefficient of variation for the service time at workstation k:
 
 $$
 C _ {s} ^ {2} (k) = \frac {\sum_ {i = 1} ^ {m} \left(\frac {\lambda_ {i , k}}{\lambda_ {k}}\right) E [ T _ {s} (i , k) ] ^ {2} \left(1 + C _ {s} ^ {2} (i , k)\right)}{(\sum_ {i = 1} ^ {m} \left(\frac {\lambda_ {i , k}}{\lambda_ {k}}\right) E [ T _ {s} (i , k) ]) ^ {2}} - 1
@@ -161,7 +198,7 @@ $$
 
 # Example
 
-V Using the arrival rate and the service time data, the service time for the first workstation is:
+Using the arrival rate and the service time data, the service time for the first workstation is:
 
 $$
 E [ T _ {s} (1) ] = \left(\frac {5 . 6 9 0}{1 1 . 9 4}\right) \frac {1}{1 4} + \left(\frac {6 . 2 5 0}{1 1 . 9 4}\right) \frac {1}{1 5} = 0. 0 6 8 9 h r
@@ -177,14 +214,19 @@ $$
 
 Service time parameters for all the workstations:
 
-![](images/2dae3a311c26a4fda42c541297f359aa56a5a682af9dabe5264f289bc508f801.jpg)
+| Workstation $k$ | $E[T_s(k)]$ | $C_s^2(k)$ |
+| :---: | :---: | :---: |
+| 1 | 0.069 | 1.062 |
+| 2 | 0.073 | 1.678 |
+| 3 | 0.075 | 1.530 |
+| 4 | 0.060 | 0.750 |
 
 # Workstation performance measures
 
 The multiple product facility problem is now reduced to a problem similar to the single product analysis since the workstation composite service time data are now known   
 Consider a factory of n workstations with m diferent job types   
-V Assume that the total arrival rate of job type i to workstation k is given by 𝜆i,k,and the probability that a job of type i leaving workstation j will be routed to workstation k is given by pj,k   
-V The composite routing matrix,P=(pjk) gives the switching probabilities of an arbitrary job and is determined by:
+Assume that the total arrival rate of job type i to workstation k is given by $𝜆_{i,k}$,and the probability that a job of type i leaving workstation j will be routed to workstation k is given by $p^i_{j,k}$   
+The composite routing matrix, $P=(p_{jk})$ gives the switching probabilities of an arbitrary job and is determined by:
 
 $$
 p _ {j k} = \frac {\sum_ {i = 1} ^ {m} \lambda_ {i j} p _ {j k} ^ {i}}{\lambda_ {j}} \quad \mathrm {f o r j , k = 1 , \ldots , n}
@@ -193,22 +235,22 @@ $$
 # Example
 
 We now complete the analysis of the factory   
-V The matrix of probabilities are obtained
+The matrix of probabilities are obtained
 
->For example, the probability of going from Workstation 2 to Workstation 1 is determined as:
+> For example, the probability of going from Workstation 2 to Workstation 1 is determined as:
 
 $$
 p _ {2 1} = \frac {\lambda_ {1 2} p _ {2 1} ^ {1} + \lambda_ {2 2} p _ {2 1} ^ {2}}{\lambda_ {2}} = \frac {4 . 2 6 7 (0 . 1) + 6 . 6 6 7 (0)}{1 0 . 9 3 4} = 0. 0 3 9
 $$
 
-Continuing with the other workstations
+> Continuing with the other workstations
 
 $$
 P = \left[ \begin{array}{c c c c} 0 & 0. 7 0 6 & 0. 2 9 4 & 0 \\ 0. 0 3 9 & 0 & 0. 3 5 1 & 0. 6 1 0 \\ 0. 0 2 4 & 0 & 0 & 0. 5 2 6 \\ 0. 1 0 0 & 0. 2 0 0 & 0. 3 0 0 & 0 \end{array} \right]
 $$
 
-V The analysis required to obtain the mean waiting times in the workstations is the same procedure as for individual product systems once the composite product data and transition probability matrix Phave been developed   
-V The squared coefficient of variation for the arrival streams into each workstation is again obtained by solving the Ca² system of equations
+The analysis required to obtain the mean waiting times in the workstations is the same procedure as for individual product systems once the composite product data and transition probability matrix Phave been developed   
+The squared coefficient of variation for the arrival streams into each workstation is again obtained by solving the Ca² system of equations
 
 $$
 C _ {a} ^ {2} (1) = 0. 0 0 0 5 1 C _ {a} ^ {2} (2) + 0. 0 0 0 1 6 C _ {a} ^ {2} (3) + 0. 0 0 4 5 8 C _ {a} ^ {2} (4) + 0. 9 9 4 3
@@ -240,20 +282,27 @@ $$
 C T _ {s} (\mathfrak {i}, \mathsf {k}) = C T _ {q} (\mathsf {k}) + \mathsf {E} [ T _ {s} (\mathfrak {i}, \mathsf {k}) ]
 $$
 
-》 The cycle time by workstation is given as the composite time for all products visiting that workstation
+# Example
 
-![](images/7f9db1caef94b381f32672121d6cf82e411316ee5210e02435d6e2021cc4f96f.jpg)
+The cycle time by workstation is given as the composite time for all products visiting that workstation
 
-V The total facility performance measures are for the total work in the facility and are not distinguishable by product type   
-> The total system work-in-process is the sum of the workstation WiP's and equals 19.238   
+| Workstation $k$ | $CT_q(k)$ | $CT(k)$ | $WIP(k)$ |
+| :---: | :---: | :---: | :---: |
+| 1 | 0.331 hr | 0.400 hr | 4.772 |
+| 2 | 0.387 hr | 0.460 hr | 5.029 |
+| 3 | 0.502 hr | 0.577 hr | 6.402 |
+| 4 | 0.183 hr | 0.243 hr | 3.036 |
+
+The total facility performance measures are for the total work in the facility and are not distinguishable by product type   
+The total system work-in-process is the sum of the workstation WIP's and equals 19.238   
 The total inflow and, hence, throughput for the system is 10/hr   
-V Thus,the average cycle time in te system for allitems by Little's Law is 19.238/10 = 1.9238 hours
+Thus,the average cycle time in te system for allitems by Little's Law is 19.238/10 = 1.9238 hours
 
 # Mean time spent within the factory
 
 Consider a factory of n workstations with m different job types   
-V Assume that the external arival rate of jobs of type i to workstation k is given by Yi,k,and the total arival rate of Job Type i to workstation is given byi,k   
-> Furthermore assume that the mean time spent waiting for processing in workstation k by an arbitrary job (namely, CTq(k)) has been determined   
+Assume that the external arival rate of jobs of type i to workstation k is given by $\gamma_{i,k}$,and the total arival rate of Job Type i to workstation is given by $\lambda_{i,k}   
+Furthermore assume that the mean time spent waiting for processing in workstation k by an arbitrary job (namely, CTq(k)) has been determined   
 The mean time spent within the factory by a type i job is given by:
 
 $$
@@ -263,7 +312,7 @@ $$
 # Example
 
 System mean cycle times by individual product type   
-V For this example these computations are
+For this example these computations are
 
 $$
 \begin{array}{l} C T ^ {1} = [ 5. 6 9 0 (0. 3 3 0 7 + 0. 0 7 1 4) + 4. 2 6 7 4 (0. 3 8 7 0 + 0. 1) \\ + 5. 2 6 3 2 (0. 5 0 1 5 + 0. 0 6 6 7) ] / 5 = 1. 4 7 1 4 \mathrm {h r} \\ \end{array}
@@ -273,85 +322,131 @@ $$
 \begin{array}{l} C T ^ {2} = [ 6. 2 5 (0. 3 3 0 7 + 0. 0 6 6 7) + 6. 6 6 6 7 (0. 3 8 7 0 + 0. 0 5 5 6) \\ + 5. 8 3 3 3 (0. 5 0 1 5 + 0. 0 8 3 3) + 1 2. 5 (0. 1 8 2 8 + 0. 0 6) ] / 5 = 2. 3 7 6 3 \mathrm {h r} \\ \end{array}
 $$
 
-D These two products are produced in equal quantities, so the average cycle time for the factory is the average of these two individual product cycle times or 1.9238 hours
+These two products are produced in equal quantities, so the average cycle time for the factory is the average of these two individual product cycle times or 1.9238 hours
 
 # Example
 
-V To demonstrate that this modeling approach is adequate for most decision making situations, these analytical results are compared with simulation results   
-Y Allthe critical parameters are close enough for the analytical model to be a usable tool for decision purposes
+To demonstrate that this modeling approach is adequate for most decision making situations, these analytical results are compared with simulation results   
+All the critical parameters are close enough for the analytical model to be a usable tool for decision purposes
 
-![](images/d70c5a36fdd7fc1ae8d116a319ce47781055036426c1cce1972b81cf6fbf4e7e.jpg)
+| Workstation | $CT$ | $WIP$ | $E[T_a]$ | $C^2[T_a]$ | $E[T_d]$ | $C^2[T_d]$ |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| S 1 | 0.398 | 4.744 | 0.084 | 1.001 | 0.084 | 1.050 |
+| A 1 | 0.400 | 4.772 | 0.084 | 1.000 | 0.084 | 1.042 |
+| S 2 | 0.427 | 4.677 | 0.091 | 1.028 | 0.091 | 1.443 |
+| A 2 | 0.460 | 5.029 | 0.091 | 1.021 | 0.091 | 1.440 |
+| S 3 | 0.569 | 6.309 | 0.090 | 1.035 | 0.090 | 1.397 |
+| A 3 | 0.577 | 6.402 | 0.090 | 1.053 | 0.090 | 1.389 |
+| S 4 | 0.248 | 3.107 | 0.080 | 1.330 | 0.080 | 1.044 |
+| A 4 | 0.243 | 3.036 | 0.080 | 1.238 | 0.080 | 0.983 |
+| **S sys** | 1.888 | 18.84 | — | — | — | — |
+| **A sys** | 1.924 | 19.24 | — | — | — | — |
 
 # Exercise 1
 
-> Afactory is composed by three workstations in series,and produces two types of products   
-> The first two workstations have the same processing time for both types of product, both exponentially distributed
+A factory is composed by three workstations in series,and produces two types of products   
+The first two workstations have the same processing time for both types of product, both exponentially distributed
 
 E[Ts(1,1)]= E[Ts(2,1)]= 0.20 h   
 E[Ts(1,2)]= E[Ts(2,2)]= 0.15 h
 
-> The third workstation has two diferent processing times E[Ts(1,3)]=0.14 h and E[Ts(2,3)]=0.25 h, both exponentially distributed   
-V The inter-arrival times of both product types are exponentially distributed: type 1 with average rate of 3,and type 2 with average rate of 1   
+The third workstation has two diferent processing times E[Ts(1,3)]=0.14 h and E[Ts(2,3)]=0.25 h, both exponentially distributed   
+The inter-arrival times of both product types are exponentially distributed: type 1 with average rate of 3,and type 2 with average rate of 1   
 Find the system work in process and cycle time
 
 # Solution
 
-![](images/d0c67164f3047e999448c172df71a2e13936197b0a41f4f022b4f591652c21b3.jpg)
+### Diagram Description: 3-Node Tandem Network with Two Traffic Classes
 
->11 = 3j/h,λ21 = 1 j/h   
-^12 = 3j/h, ^22 = 1 j/h   
-^13 = 3j/h, λ23= 1 j/h
+**1. System Inputs (Node 1):**
+*   **Class 1 (Blue):** Arrival rate $\gamma_1 = 3$.
+*   **Class 2 (Grey):** Arrival rate $\gamma_2 = 1$.
 
-λ1 = 4 j/h, λ2 = 4 j/h,λ3 = 4 j/h
+**2. Workstation 1: M/M/1**
+*   Mean service time: $E[T_s(1)] = 0.20$ hr.
+*   Squared coefficient of variation: $C_s^2(1) = 1$.
 
-# Solution
+**3. Workstation 2: M/M/1**
+*   Mean service time: $E[T_s(2)] = 0.15$ hr.
+*   Squared coefficient of variation: $C_s^2(2) = 1$.
 
-![](images/25a8653b4680d03883d54440d6f46584666afce719c6fbe4fcc4c96a0cf740df.jpg)
+**4. Workstation 3: M/G/1**
+*   **Class 1 (Blue):** $E[T_s(1,3)] = 0.14$ hr, $C_s^2(1,3) = 1$.
+*   **Class 2 (Grey):** $E[T_s(2,3)] = 0.25$ hr, $C_s^2(2,3) = 1$.
 
-WL1 = u1 = λ, E[Ts(1)]= 4*0.20 = 0.8   
-WL2 = u2= ^ E[Ts(2)]= 4*0.15 = 0.6   
-V WL3 = u3= ^13 E[Ts(1,3)] + ^23 E[Ts(2,3)] = 3*0.14+1*0.25= 0.67   
-V E[Ts(3)]=3/4 *0.14 + 1/4*0.25 = 0.1675 h   
-V C²s(3)= [3/4 *0.14² (1+1) + 1/4*0.252 (1+1)/0.1675² -1 = 1.16   
-C²a(1)=C²(2)=C²a(3)=3/*1 + 4*1 = 1
+$$ \lambda_{11} = 3 \text{ j/h}, \quad \lambda_{21} = 1 \text{ j/h} $$
+$$ \lambda_{12} = 3 \text{ j/h}, \quad \lambda_{22} = 1 \text{ j/h} $$
+$$ \lambda_{13} = 3 \text{ j/h}, \quad \lambda_{23} = 1 \text{ j/h} $$
 
-# Solution
+$$ \lambda_1 = 4 \text{ j/h}, \quad \lambda_2 = 4 \text{ j/h}, \quad \lambda_3 = 4 \text{ j/h} $$
 
-![](images/e6922c4e9d529863dbd3a4ec9ad55bc1e10ddb97811789e7784f55f0eb71d501.jpg)
+$$ WL_1 = u_1 = \lambda_1 E[T_s(1)] = 4 \cdot 0.20 = 0.8 $$
 
-CT(1)=u1/(1-u1)*E[Ts(1)] + E[Ts(1)] = 0.8/0.2 * 0.2 + 0.2 = 1 h   
-V WIP(1)= TH*CT(1)=4*1=4 j
+$$ WL_2 = u_2 = \lambda_2 E[T_s(2)] = 4 \cdot 0.15 = 0.6 $$
 
-V CT(2)=u2/(1-u2) * E[Ts(2)] + E[Ts(2)]= 0.6/0.4 * 0.15 + 0.15= 0.375 h   
-WIP(2)= TH*CT(1) = 4*0.375 = 1.5 j
+$$ WL_3 = u_3 = \lambda_{13} E[T_s(1,3)] + \lambda_{23} E[T_s(2,3)] = 3 \cdot 0.14 + 1 \cdot 0.25 = 0.67 $$
 
-V CT(3)= (C²(3) +C2(3)/2 *u3/(1-u3)*E[Ts(3)) + E[Ts(3)]=(1+1.16)/2*0.67/0.33*0.1675+0.1675=0.535h   
-V WIP(3)= TH*CT(3)= 4*0.535= 2.14 j
+$$ E[T_s(3)] = \frac{3}{4} \cdot 0.14 + \frac{1}{4} \cdot 0.25 = 0.1675 \ \text{h} $$
 
-V CT = 1 + 0.375 + 0.535= 1.91 h   
-V WIP = 4 + 1.5 + 2.14 = 7.64 j
+$$ C_s^2(3) = \frac{\left[ \frac{3}{4} \cdot 0.14^2 (1+1) + \frac{1}{4} \cdot 0.25^2 (1+1) \right]}{0.1675^2} - 1 = 1.16 $$
 
-# Solution
+$$ C_a^2(1) = C_a^2(2) = C_a^2(3) = \frac{3}{4} \cdot 1 + \frac{1}{4} \cdot 1 = 1 $$
 
-![](images/0e20b78a41c3bfb22002d9f2e60682fdf559df816afa99cd9da925252c9a0507.jpg)
+$$ CT(1) = \frac{u_1}{1-u_1} \cdot E[T_s(1)] + E[T_s(1)] = \frac{0.8}{0.2} \cdot 0.2 + 0.2 = 1 \ \text{h} $$
 
-V CT1 = [3(0,8+0,2) + 3(0,225+0,15) + 3(0,3675+0,14)/3 = 1.88 h   
-CT² = (0,8+0,2) + (0,225+0,15) + (0,3675+0,25) = 1.99 h   
-V CT =  CT1 + 4 CT² = 1.91 h
+$$ WIP(1) = TH \cdot CT(1) = 4 \cdot 1 = 4 \ \text{j} $$
+
+$$ CT(2) = \frac{u_2}{1-u_2} \cdot E[T_s(2)] + E[T_s(2)] = \frac{0.6}{0.4} \cdot 0.15 + 0.15 = 0.375 \ \text{h} $$
+
+$$ WIP(2) = TH \cdot CT(2) = 4 \cdot 0.375 = 1.5 \ \text{j} $$
+
+$$ CT(3) = \frac{C_a^2(3) + C_s^2(3)}{2} \cdot \frac{u_3}{1-u_3} \cdot E[T_s(3)] + E[T_s(3)] = \frac{1+1.16}{2} \cdot \frac{0.67}{0.33} \cdot 0.1675 + 0.1675 = 0.535 \ \text{h} $$
+
+$$ WIP(3) = TH \cdot CT(3) = 4 \cdot 0.535 = 2.14 \ \text{j} $$
+
+$$ CT = 1 + 0.375 + 0.535 = 1.91 \ \text{h} $$
+
+$$ WIP = 4 + 1.5 + 2.14 = 7.64 \ \text{j} $$
+
+$$ CT^1 = [3(0,8+0,2) + 3(0,225+0,15) + 3(0,3675+0,14)]/3 = 1.88 \ \text{h} $$
+
+$$ CT^2 = (0,8+0,2) + (0,225+0,15) + (0,3675+0,25) = 1.99 \ \text{h} $$
+
+$$ CT = \frac{3}{4} CT^1 + \frac{1}{4} CT^2 = 1.91 \ \text{h} $$
 
 # Exercise 2
 
-V A facility is composed by 3 workstations and produces 2 types of products.   
-V The first product type is processed by WS1 and WS3. Processing times are exponentially distributed, and the average values are O.3 h and O.1 h, respectively. In the 10% of the cases, the product need to be reworked by WS3.   
+A facility is composed by 3 workstations and produces 2 types of products.   
+The first product type is processed by WS1 and WS3. Processing times are exponentially distributed, and the average values are O.3 h and O.1 h, respectively. In the 10% of the cases, the product need to be reworked by WS3.   
 The second product type is processed by WS2 and WS3. Processing times are exponentially distributed, and the average values are 0.4 h and 0.2 h, respectively.   
-V The inter-arrival times of product types are exponentially distributed: type 1 with average rate of 2 j/h, and type 2 with average rate of 1 j/h.   
-V Find the system performance measures.
+The inter-arrival times of product types are exponentially distributed: type 1 with average rate of 2 j/h, and type 2 with average rate of 1 j/h.   
+Find the system performance measures.
 
 # Network topology
 
-![](images/a9dbcc79dbf41b90491b07373c5898ea5afc1c5ef11ea8506b6f727b6899cf76.jpg)
+### Diagram Description: Queueing Network with Multiple Traffic Types and Feedback
 
-![](images/c83d9bc1c7a8137eb13971bc6a17ac50be7a945fd359a80b4614e644dc923561.jpg)
+**1. External Arrivals:**
+*   **Type 1 (Blue):** External arrival rate $\gamma_1 = 2$ j/h.
+*   **Type 2 (Grey):** External arrival rate $\gamma_2 = 1$ j/h.
+
+**2. Node 1 (Upper Left - Type 1 only):**
+*   Mean service time: $E[T_s] = 0.3$ h.
+*   Squared coefficient of variation: $c_s^2 = 1$.
+
+**3. Node 2 (Lower Left - Type 2 only):**
+*   Mean service time: $E[T_s] = 0.4$ h.
+*   Squared coefficient of variation: $c_s^2 = 1$.
+
+**4. Node 3 (Right - Merging and Feedback):**
+*   This node receives processed flow from both Node 1 and Node 2.
+*   **Differentiated Service:**
+    *   For Type 1: $E[T_s(1,3)] = 0.1$ h, $c_s^2(1,3) = 1$.
+    *   For Type 2: $E[T_s(2,3)] = 0.2$ h, $c_s^2(2,3) = 1$.
+*   **Feedback Loop:** A fraction of **0.1** of Type 1 flow is fed back into Node 3 after processing.
+*   **System Departure:** Both flows eventually exit the system after Node 3.
+
+# WS1 analysis
 
 $$
 u = \lambda \cdot E [ T s ] = 2 \cdot 0. 3 = 0. 6
@@ -371,8 +466,6 @@ $$
 
 # WS2 analysis
 
-![](images/c1dcf6ec36194dc0e81076e8f8d6d7d2fb9380f134eca53aced2d9aca85a9f5e.jpg)
-
 $$
 u = \lambda \cdot E [ T s ] = 1 \cdot 0. 4 = 0. 4
 $$
@@ -389,11 +482,8 @@ $$
 c _ {d} ^ {2} = 1
 $$
 
-![](images/711e6ec066c1836926be67498fe1c48f6f45cc05e3c6cb7a32817e2fb77c85fc.jpg)
 
 # WS3 analysis
-
-![](images/530255ba4294c0dae1912f4098e8a9a2d6fa2c2f02703291c3c9f43a171360c8.jpg)
 
 $$
 \lambda_ {3} = \lambda_ {1} + \lambda_ {2} + 0. 1 \lambda_ {1} = 3. 2 \frac {j o b s}{h}
@@ -401,7 +491,11 @@ $$
 
 P=
 
-![](images/6bba7c0fbf2bbe81c17f4c7e651c48f37afd2fd1d6041062638e2cb5d2cd65e7.jpg)
+| | Node 1 | Node 2 | Node 3 |
+| :--- | :---: | :---: | :---: |
+| **Node 1** | 0 | 0 | 1 |
+| **Node 2** | 0 | 0 | 1 |
+| **Node 3** | 0 | 0 | 0.2/3.2 = 0.0625 |
 
 $$
 W L = \lambda_ {1} E [ T s 1 ] + \lambda_ {2} E [ T s 2 ] + 0. 1 \lambda_ {1} E [ T s 1 ] = 2 \cdot 0. 1 + 1 \cdot 0. 2 + 0. 2 \cdot 0. 1 = 0. 4 2
@@ -452,54 +546,147 @@ $$
 # Cellular manufacturing
 
 Group technology is the analysis of processing operations with the goal of determining the similarity of the processing functions and, hence, the grouping of the associated parts for production purposes   
-V Establish sub-factories dedicated to the production of a subset of the total number of part types produced by the factory, where the part types have been grouped by common characteristics   
+> Establish sub-factories dedicated to the production of a subset of the total number of part types produced by the factory, where the part types have been grouped by common characteristics   
 V Thus,the machines of the factory are grouped into cels of machines needed to produce the job type family assigned to that sub-factory   
-V The concept of organizing the factory into sub-factories with the capability to produce a technology group is called cellular manufacturing
+The concept of organizing the factory into sub-factories with the capability to produce a technology group is called cellular manufacturing
 
 # Types of layout
 
 Best layout for combinations of product quantity and variety   
-V Initial step in identifying the possible facility layout configurations   
+Initial step in identifying the possible facility layout configurations   
 Many other parameters are considered, such as the relationships between the workstations,problems in their proximity, etc.
 
-![](images/e8b38b44e1ce3b1fde99dde784df53be27fc86c7104d8aacfcb065e577534ee6.jpg)
+### Diagram Description: Product-Process Matrix (Variety vs. Quantity)
+
+This diagram illustrates the classic trade-off between **Production Variety** (y-axis) and **Production Quantity** (x-axis), identifying the optimal manufacturing layout for different volume-variety combinations.
+
+**1. Fixed Position Layout:**
+*   **Characteristics:** Highest variety, lowest quantity (typically $\approx 1$ unit).
+*   **Context:** Used for unique, large-scale projects where the product remains stationary (e.g., shipbuilding, construction).
+
+**2. Process Layout (Job-shop):**
+*   **Characteristics:** High variety, low quantity (ranging from 1 to 100 units).
+*   **Context:** Organized by function or process; ideal for customized orders with intermittent flow.
+
+**3. Cellular Layout (Batch Production):**
+*   **Characteristics:** Medium variety, medium quantity (ranging from 100 to 10,000 units).
+*   **Context:** Groups dissimilar machines into "cells" to process families of similar parts, balancing flexibility and efficiency.
+
+**4. Product Layout (Mass Production):**
+*   **Characteristics:** Lowest variety, highest quantity (from 10,000 to over 1,000,000 units).
+*   **Categories:**
+    *   **Quantity-based:** Standardized production in large volumes.
+    *   **Flow line:** Continuous or semi-continuous assembly lines.
+*   **Context:** Highly specialized equipment arranged according to the sequence of operations for a specific product.
 
 # Types of layout
 
 Fixed position layout
 
-![](images/b20b5bcf79f972abb6287f2a68bfcf7e69c86a83b590a2bd42a35e62d3d10949.jpg)
+### Diagram Description: Fixed Position Layout
 
-![](images/950b0a16f18e789ec99179043f81e7ba9a8ccd0e43ed32887b4d4f00cac59103.jpg)
+In a **Fixed Position Layout**, the product remains stationary due to its size, weight, or fragility. Instead of the product moving through different workstations, all necessary resources are brought to the product's location.
 
-![](images/58aa6a067fbd543d5a6344057fc3cfa615417ac0f1bc21f8cb0145ebb53fcc64.jpg)
+**1. Schematic Representation (Left):**
+*   **Inputs:** Men (labor), Tools (equipment), and Components (materials) flow into a central **Workplace**.
+*   **Output:** Once assembly is complete, the **Finished product** is moved directly to the store or customer site.
+
+**2. Practical Example: Aircraft Assembly (Right):**
+*   **The Product:** An airplane fuselage remains in a fixed position on the shop floor.
+*   **The Resources:** Workers and mobile equipment are stationed around the product, moving as needed to perform specific tasks in different sections.
+
+**Key Characteristics:**
+*   **Variety:** Highest possible variety (unique projects).
+*   **Quantity:** Lowest volume (typically 1 unit per project).
+*   **Labor:** Highly skilled, decentralized workforce.
+*   **Equipment:** General-purpose and mobile.
 
 Process/Functional layout
 
-![](images/f4ba2cc94b1f1b5cbfc629a58373123d74e018e400e990a16baa64df2e9cfaaa.jpg)
+### Diagram Description: Process / Functional Layout (Job Shop)
+
+In a **Process Layout**, equipment and workstations are grouped together based on the specific function they perform or the process they represent, rather than the sequence of operations needed to make a specific product.
+
+**1. Functional Grouping (Departments):**
+The facility is divided into specialized departments:
+*   **S:** Shaping (6 machines)
+*   **M:** Milling (5 machines)
+*   **D:** Drilling (4 machines)
+*   **G:** Grinding (5 machines)
+*   **A:** Assembly (4 workstations)
+
+**2. Material Flow ("Spaghetti Flow"):**
+*   The arrows trace the routing of different jobs through the factory. 
+*   Because each customized product requires a unique sequence of operations, the material flow is highly complex, non-linear, and crisscrosses between departments. This creates a classic "spaghetti diagram" effect.
+*   All jobs start from and return to a central **Receiving and shipping store**.
+
+**Key Characteristics:**
+*   **Flexibility:** Extremely high. The system can easily handle a wide variety of products and is robust against machine breakdowns (if one milling machine fails, another in the same department can take the load).
+*   **Efficiency:** Lower. It involves high material handling costs, long setup times, complex scheduling, and high Work-In-Process (WIP) inventory.
 
 # Types of layout
 
 Cellular/Group layout
 
-![](images/7f6ff8b23913f35e66bc1ab6311cdd220ac38f6fe6aab9d192342e1214fa0e04.jpg)
+### Diagram Description: Cellular / Group Layout
+
+In a **Cellular Layout**, machines are grouped into autonomous units called "cells" designed to process families of parts with similar manufacturing requirements.
+
+**1. Cell Configurations:**
+The facility is organized into three distinct cells, each following a compact flow:
+*   **Cell 1:** Optimized for a specific sequence (L → L → M → M → D → L → L → A).
+*   **Cell 2:** A larger cell incorporating Grinding (G) and Assembly (A), with designated "floor space available for marketing" or future expansion.
+*   **Cell 3:** A streamlined cell for parts requiring a shorter processing cycle (L → L → M → D → G → G → A).
+
+**2. Resource Legend:**
+*   **L:** Lathe (Tornitura)
+*   **M:** Milling (Fresatura)
+*   **D:** Drilling (Foratura)
+*   **G:** Grinding (Rettifica)
+*   **A:** Assembly (Assemblaggio)
+
+**3. Material Logistics:**
+*   All materials originate from and return to the central **Receiving and shipping** area.
+*   The U-shaped or circular flow within cells minimizes travel distance and material handling compared to a functional layout.
+
+**Key Benefits:**
+*   **Quantity:** Ideal for medium volumes (100–10,000 units).
+*   **Efficiency:** Significant reduction in Work-In-Process (WIP) and setup times.
+*   **Flexibility:** Combines the efficiency of a product line with the variety handling of a process layout.
 
 Product/Line layout
 
-![](images/33c0bc6de94b2f2a0f13df61baf3157b44f1d38031d578b78af1c662d0f7c741.jpg)
+### Diagram Description: Product / Line Layout
+
+In a **Product Layout**, resources are arranged in a fixed sequence based on the specific processing needs of the product. This configuration is the hallmark of **Mass Production**.
+
+**1. Dedicated Production Lines:**
+The image depicts four separate flow lines, each with a standardized, unidirectional path:
+*   **Line 1:** L $\rightarrow$ M $\rightarrow$ D $\rightarrow$ G $\rightarrow$ A
+*   **Line 2:** L $\rightarrow$ L $\rightarrow$ M $\rightarrow$ G $\rightarrow$ A
+*   **Line 3:** L $\rightarrow$ M $\rightarrow$ M $\rightarrow$ D $\rightarrow$ G
+*   **Line 4:** L $\rightarrow$ M $\rightarrow$ G $\rightarrow$ G $\rightarrow$ A
+
+**2. Operations Legend:**
+*   **L:** Lathe (Tornitura)
+*   **M:** Milling (Fresatura)
+*   **D:** Drilling (Foratura)
+*   **G:** Grinding (Rettifica)
+*   **A:** Assembly (Assemblaggio)
+
+**Key Metrics:**
+*   **Quantity:** Very High (Mass Production).
+*   **Variety:** Very Low (Standardized products).
+*   **WIP:** Minimal, as the material flows continuously without intermediate storage.
 
 # Functional layout vs Cellular layout
 
 Functional layout: traditional plant organized according to the function of the machines   
-? Chaotic movement of the pieces in the plant
-
-![](images/f0b0edfc59c2c7f3ab369366e1f2db2147b56b2e06c661b53e0362a09d51fe7f.jpg)
+Chaotic movement of the pieces in the plant
 
 Cellular layout: Plant organized by processing cells   
 Pieces divided into families   
-V Simplification of planning and scheduling
-
-![](images/6515782737329fd8bc92267981de85e8e65def322d6882a066b000f9a819bf27.jpg)
+Simplification of planning and scheduling
 
 # Cellular manufacturing
 
@@ -507,81 +694,109 @@ V Simplification of planning and scheduling
 
 More efficient processing by specializing in a smaller set of parts with as similar as possible processing operations (reduced setup times between part types due to their production similarities and from the learning-curve effects of part specialization)   
 Reduced WIP in each sub-factory since parts only encounter other parts from the same technology group as well as due to a reduction in the service time squared coefficient of variation (C²s)   
-V Reduced material handling requirements since distances the jobs must travel between machines within a cell are usually much smaller than the length of the routes needed within a traditional setting
+Reduced material handling requirements since distances the jobs must travel between machines within a cell are usually much smaller than the length of the routes needed within a traditional setting
 
-V Material handling and facility layout issues are not addressed
+Material handling and facility layout issues are not addressed
 
 # Cellular manufacturing
 
 # Disadvantages
 
-> No economy of scale with respect to the total number of machines needed to produce all technology groups   
-V When a machine goes down there is a greater disruptive effect because there are fewer machines available with which to continue processing   
-V Utilization of machines is not balanced (some groups might have too high a utilization factor and others too low)
+No economy of scale with respect to the total number of machines needed to produce all technology groups   
+When a machine goes down there is a greater disruptive effect because there are fewer machines available with which to continue processing   
+Utilization of machines is not balanced (some groups might have too high a utilization factor and others too low)
 
-V The standard production organization is to have one large production facility with similar machines/operations located together in workstations
-
-V Modeling paradigm followed up to this point
+The standard production organization is to have one large production facility with similar machines/operations located together in workstations
+> Modeling paradigm followed up to this point
 
 # Example: traditional vs. cellular factory
 
-V Consider a manufacturing facility with 4 products and 5 machine types   
+Consider a manufacturing facility with 4 products and 5 machine types   
 Machine usage by job type
 
-![](images/360f8b1e2c48b5776a877de411007b998c1377f04c888e10d5f7a77da6405447.jpg)
+| Job Type | Workstation 1 | Workstation 2 | Workstation 3 | Workstation 4 | Workstation 5 |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| 1 | 1 | 1 | 1 | 0 | 0 |
+| 2 | 1 | 1 | 1 | 0 | 0 |
+| 3 | 0 | 0 | 1 | 1 | 1 |
+| 4 | 0 | 0 | 1 | 1 | 1 |
 
 Each job type requires 4 processing steps   
-V Mean arrival rate for each job type, sequence in which the workstations must be visited, and mean processing time at each step
+Mean arrival rate for each job type, sequence in which the workstations must be visited, and mean processing time at each step
 
-![](images/9539048f1fd65a15ced93899050a9f464a2054a32b676b1455445e5244bf170f.jpg)
+| Job Type | Arrival Rate | WS Seq. (1) | WS Seq. (2) | WS Seq. (3) | WS Seq. (4) | Service T. (1) | Service T. (2) | Service T. (3) | Service T. (4) |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **1** | 0.064/hr | 3 | 1 | 2 | 1 | 8 hr | 6 hr | 4.5 hr | 6 hr |
+| **2** | 0.096/hr | 1 | 2 | 3 | 1 | 5 hr | 6 hr | 8 hr | 4 hr |
+| **3** | 0.080/hr | 4 | 3 | 5 | 4 | 2 hr | 4 hr | 8 hr | 4 hr |
+| **4** | 0.100/hr | 3 | 4 | 5 | 3 | 7 hr | 3 hr | 2 hr | 4 hr |
 
 # Example: traditional vs. cellular factory
 
 Arrival processes exponentially distributed (C²a = 1)   
-Total average rate of of 0.34 j/h
+> Total average rate of of 0.34 j/h
 
-V Processing times follow Erlang-2 distributions (C2 = 1/2)   
-V The number of machines at each workstation are 2,1, 3,1, and 1, respectively   
-> Compare the performances of the traditional model and the cellular model
+Processing times follow Erlang-2 distributions (C²s = 1/2)   
+The number of machines at each workstation are 2,1, 3,1, and 1, respectively   
+Compare the performances of the traditional model and the cellular model
 
 # Traditional factory model
 
-![](images/5c14fa35dbe7d5daf651748912118b83e43037302c6573499b2ca341a47eca80.jpg)
+### Diagram Description: Queueing Network and Job Routing
+
+This diagram graphically represents the routing paths for four different job types within a system composed of 5 workstations. Each line style identifies the specific flow of a traffic class, consistent with the arrival rates and sequences analyzed in the routing table.
+
+**1. External Arrivals (Arrival Rates $\gamma$):**
+*   **Job Type 1:** Arrives at Node 3 with $\gamma_1 = 0.064$.
+*   **Job Type 2:** Arrives at Node 1 with $\gamma_2 = 0.096$.
+*   **Job Type 3:** Arrives at Node 4 with $\gamma_3 = 0.08$.
+*   **Job Type 4:** Arrives at Node 3 with $\gamma_4 = 0.1$.
+
+**2. Traffic Class Routing Paths:**
+*   **Class 1 (Solid Line):** Starts at Node 3 and follows the sequence $3 \rightarrow 1 \rightarrow 2 \rightarrow 1$.
+*   **Class 2 (Dashed Line):** Starts at Node 1 and follows the sequence $1 \rightarrow 2 \rightarrow 3 \rightarrow 1$.
+*   **Class 3 (Upper Dotted/Dashed Line):** Starts at Node 4 and follows the sequence $4 \rightarrow 3 \rightarrow 5 \rightarrow 4$.
+*   **Class 4 (Lower Dot-Dash Line):** Starts at Node 3 and follows the sequence $3 \rightarrow 4 \rightarrow 5 \rightarrow 3$.
+
+**3. Node Interaction and Topology:**
+*   **Node 3 (Central Hub):** Functions as the primary distribution point, receiving external inputs for Job Types 1 and 4, while managing transit flows for Job Types 2 and 3.
+*   **Interaction 1-2:** There is a strong interchange between Nodes 1 and 2 for "Family A" traffic classes (Jobs 1 and 2).
+*   **Interaction 4-5:** Nodes 4 and 5 primarily handle the flows for "Family B" traffic classes (Jobs 3 and 4).
+
+P =
 
 $$
-\angle 1 = 0. 0 6 5 \cdot 6 + 0. 0 6 4 \cdot 6 + 0. 0 9 6 \cdot 5 + 0. 0 3 6 \cdot 4 = 1, 6 3 2
+P = \begin{pmatrix}
+0 & \frac{0,064 + 0,096}{0,32} & 0 & 0 & 0 \\
+\frac{0,064}{0,16} & 0 & \frac{0,096}{0,16} & 0 & 0 \\
+\frac{0,064 + 0,096}{0,44} & 0 & 0 & \frac{0,1}{0,44} & \frac{0,08}{0,44} \\
+0 & 0 & \frac{0,08}{0,26} & 0 & \frac{0,1}{0,26} \\
+0 & 0 & \frac{0,1}{0,18} & \frac{0,08}{0,18} & 0
+\end{pmatrix}
 $$
 
-$$
-u _ {1} = \frac {W L _ {2}}{2} = 0. 8 1 6
-$$
+$$ \lambda_1 = \gamma_1 + \gamma_1 + \gamma_2 + \gamma_2 = 0,32 $$
 
-$$
-E [ T _ {S} (4) ] = \frac {W L _ {1}}{\lambda_ {1}} = \frac {1 . 6 3 2}{0 . 3 2} = 5. 1 h
-$$
+$$ WL_1 = 0,064 \cdot 6 + 0,064 \cdot 6 + 0,096 \cdot 5 + 0,096 \cdot 4 = 1,632 $$
 
-$$
-C _ {3} ^ {2} (1) = \frac {\sum_ {i = 1} ^ {\infty} \left(\frac {\lambda_ {i , 4}}{\lambda_ {i}} (C [ T _ {3} (i , i) ] ^ {2} \cdot (1 + C _ {5} ^ {2} (i , 4))}{\in [ i s (4) ] ^ {2}} - 1\right){5 . 1 ^ {2}} = \frac {0 . 0 6 9 \cdot C ^ {2} (1 + \frac {1}{2}) \cdot 2 + \frac {0 . 0 9 6}{0 . 3 2} \cdot S ^ {2} (1 + \frac {1}{2}) + \frac {0 . 0 9 6}{0 . 3 2} \cdot C ^ {2} (1 + \frac {1}{2})}{1} - 1 = 0. 5 4
-$$
+$$ u_1 = \frac{WL_1}{2} = 0,816 $$
 
-$$
-\begin{array}{r l} & {1 \left( \begin{array}{l l l l l} 1 & 2 & 3 & 4 & 5 \\ 0 & 0. 0 6 5 + 0. 0 8 & 0 & 0 & 0 \\ \frac {0 . 0 6 5}{0 . 1 6} & 0 & \frac {0 . 0 9 5}{0 . 1 6} & 0 & 0 \\ \frac {0 . 0 6 5 + 0 . 0 8}{0 . 3 3} & 0 & 0 & \frac {0 . 1}{0 . 4 4} & \frac {0 . 0 8}{0 . 4 4} \\ 0 & 0 & \frac {0 . 0 8}{0 . 2 6} & 0 & \frac {0 . 1}{0 . 2 6} \\ 0 & 0 & \frac {0 . 1}{0 . 1 8} & \frac {0 . 0 8}{0 . 1 8} & 0 \end{array} \right)} \end{array}
-$$
+$$ E[T_s(1)] = \frac{WL_1}{\lambda_1} = \frac{1,632}{0,32} = 5,1 \text{ h} $$
 
-![](images/b257706165a67e97fabc92f33e6ffa84650473d621ff19dc6e4dac5af1bc1b22.jpg)
+$$ C_s^2(1) = \frac{\sum_{i=1}^m \left( \frac{\lambda_{i,1}}{\lambda_1} (E[T_s(i,1)])^2 \cdot (1 + C_s^2(i,1)) \right)}{E[T_s(1)]^2} - 1 $$
+
+$$ C_s^2(1) = \frac{\frac{0,064}{0,32} \cdot 6^2 (1 + \frac{1}{2}) \cdot 2 + \frac{0,096}{0,32} \cdot 5^2 (1 + \frac{1}{2}) + \frac{0,096}{0,32} \cdot 4^2 (1 + \frac{1}{2})}{5,1^2} - 1 = 0,54 $$
 
 # Traditional factory model
 
 Workload computation for each workstation   
-V Workstation 1 is visited twice by Job Type 1 (6 hours processing on visit 1 and 6 hours processing on visit 2) twice by Job Type 2 (5 hours processing on visit 1 and 4 hours processing on visit 2)   
-V The arival rate is 0.064 jobs/hour for Type 1 and 0.096 jobs/hour for Type 2   
-V Hence the workload of Workstation 1 is
+Workstation 1 is visited twice by Job Type 1 (6 hours processing on visit 1 and 6 hours processing on visit 2) twice by Job Type 2 (5 hours processing on visit 1 and 4 hours processing on visit 2)   
+The arival rate is 0.064 jobs/hour for Type 1 and 0.096 jobs/hour for Type 2   
+Hence the workload of Workstation 1 is
 
-$$
-\mathrm {W L} _ {1} = (6 ^ {*} 0. 0 6 4 + 6 ^ {*} 0. 0 6 4) + (5 ^ {*} 0. 0 9 6 + 4 ^ {*} 0. 0 9 6) = 1. 6 3 2
-$$
+$$ WL_1 = (6 \cdot 0.064 + 6 \cdot 0.064) + (5 \cdot 0.096 + 4 \cdot 0.096) = 1,632 $$
 
-V The utlization factor for Workstation 1,u1, is the workload divided by the number of machines at the workstation
+The utlization factor for Workstation 1,u1, is the workload divided by the number of machines at the workstation
 
 $$
 \mathrm {u} _ {1} = 1. 6 3 2 / 2 = 0. 8 1 6
@@ -589,9 +804,16 @@ $$
 
 # Traditional factory model
 
-Y A similar analysis for the other four workstations yields these results
+A similar analysis for the other four workstations yields these results
 
-![](images/fa2655d4d0f009f0bba20de43f0411302c904f6eaa2e1db9657f97f41615e7a9.jpg)
+| Workstation # | Num Machines | Workload | Utilization |
+| :---: | :---: | :---: | :---: |
+| 1 | 2 | 1.632 | 0.816 |
+| 2 | 1 | 0.864 | 0.864 |
+| 3 | 3 | 2.700 | 0.900 |
+| 4 | 1 | 0.780 | 0.780 |
+| 5 | 1 | 0.840 | 0.840 |
+
 
 # Traditional factory model
 
@@ -600,27 +822,53 @@ Y Job Type 1 uses the machine twice but has the same processing time for each vi
 For Workstation 1, the total arrival rate of jobs is 0.32 per hour (two inflows of Job Type 1 at a rate of O.064 per hour and two inflows of Job Type 2 at a rate of O.096 per hour)   
 Thus, the mean processing time and SCV are computed as
 
+$$ E[S_1] = \left(\frac{0.064}{0.32}\right)6 + \left(\frac{0.064}{0.32}\right)6 + \left(\frac{0.096}{0.32}\right)5 + \left(\frac{0.096}{0.32}\right)4 = 5.100 \text{ hr} $$
+
+$$ E[S_1^2] = 2\left(\frac{0.064}{0.32}\right)6^2(1+1/2) + \left(\frac{0.096}{0.32}\right)5^2(1+1/2) + \left(\frac{0.096}{0.32}\right)4^2(1+1/2) = 40.05 \text{ hr}^2 $$
+
+$$ C_s^2(1) = \frac{E[S_1^2] - E[S_1]^2}{E[S_1]^2} = \frac{40.05 - 26.01}{26.01} = 0.540 $$
+
+# Traditional factory model
+
+A similar analysis for the other four workstations yields these results
+
+| Workstation $k$ | $\lambda_k$ | $E[S_k]$ | $C_s^2(k)$ |
+| :---: | :---: | :---: | :---: |
+| 1 | 0.32/hr | 5.100 hr | 0.540 |
+| 2 | 0.16/hr | 5.400 hr | 0.528 |
+| 3 | 0.44/hr | 6.136 hr | 0.631 |
+| 4 | 0.26/hr | 3.000 hr | 0.603 |
+| 5 | 0.18/hr | 4.667 hr | 1.112 |
+
+# Traditional factory model
+
+Definition of the Routing matrix to compute the SCV of arrivals in each workstation
+
 $$
-\begin{array}{l} E \left[ S _ {1} \right] = \left(\frac {0 . 0 6 4}{0 . 3 2}\right) 6 + \left(\frac {0 . 0 6 4}{0 . 3 2}\right) 6 + \left(\frac {0 . 0 9 6}{0 . 3 2}\right) 5 + \left(\frac {0 . 0 9 6}{0 . 3 2}\right) 4 = 5. 1 0 0 \mathrm {h r} \\ E \left[ S _ {1} ^ {2} \right] = 2 \left(\frac {0 . 0 6 4}{0 . 3 2}\right) 6 ^ {2} (1 + 1 / 2) + \left(\frac {0 . 0 9 6}{0 . 3 2}\right) 5 ^ {2} (1 + 1 / 2) + \left(\frac {0 . 0 9 6}{0 . 3 2}\right) 4 ^ {2} (1 + 1 / 2) = 4 0. 0 5 \mathrm {h r} ^ {2} \\ C _ {s} ^ {2} (1) = \frac {E \left[ S _ {1} ^ {2} \right] - E \left[ S _ {1} \right] ^ {2}}{E \left[ S _ {1} \right] ^ {2}} = \frac {4 0 . 0 5 - 2 6 . 0 1}{2 6 . 0 1} = 0. 5 4 0 \\ \end{array}
+P = \begin{bmatrix} 
+0 & \frac{0.064 + 0.096}{0.32} & 0 & 0 & 0 \\ 
+\frac{0.064}{0.16} & 0 & \frac{0.096}{0.16} & 0 & 0 \\ 
+\frac{0.064 + 0.096}{0.44} & 0 & 0 & \frac{0.1}{0.44} & \frac{0.08}{0.44} \\ 
+0 & 0 & \frac{0.08}{0.26} & 0 & \frac{0.1}{0.26} \\ 
+0 & 0 & \frac{0.1}{0.18} & \frac{0.08}{0.18} & 0 
+\end{bmatrix} 
+$$ 
+
+=
+
+$$
+\begin{bmatrix} 
+0 & 0.5 & 0 & 0 & 0 \\ 
+0.4 & 0 & 0.6 & 0 & 0 \\ 
+0.3636 & 0 & 0 & 0.2273 & 0.1818 \\ 
+0 & 0 & 0.3077 & 0 & 0.3846 \\ 
+0 & 0 & 0.5556 & 0.4444 & 0 
+\end{bmatrix}
 $$
 
 # Traditional factory model
 
-Y A similar analysis for the other four workstations yields these results
-
-![](images/dc55e2f21e363fcf3b34a9cca0f2b54ee0f79a5c98bead4d2eb92cdc1a769736.jpg)
-
-# Traditional factory model
-
-V Definition of the Routing matrix to compute the SCV of arrivals in each workstation
-
-$$
-P = \left[ \begin{array}{c c c c c} 0 & \frac {0 . 0 6 4 + 0 . 0 9 6}{0 . 3 2} & 0 & 0 & 0 \\ \frac {0 . 0 6 4}{0 . 1 6} & 0 & \frac {0 . 0 9 6}{0 . 1 6} & 0 & 0 \\ \frac {0 . 0 6 4 + 0 . 0 9 6}{0 . 4 4} & 0 & 0 & \frac {0 . 1}{0 . 4 4} & \frac {0 . 0 8}{0 . 4 4} \\ 0 & 0 & \frac {0 . 0 8}{0 . 2 6} & 0 & \frac {0 . 1}{0 . 2 6} \\ 0 & 0 & \frac {0 . 1}{0 . 1 8} & \frac {0 . 0 8}{0 . 1 8} & 0 \end{array} \right] = \left[ \begin{array}{c c c c c} 0 & 0. 5 & 0 & 0 & 0 \\ 0. 4 & 0 & 0. 6 & 0 & 0 \\ 0. 3 6 3 6 & 0 & 0 & 0. 2 2 7 3 & 0. 1 8 1 8 \\ 0 & 0 & 0. 3 0 7 7 & 0 & 0. 3 8 4 6 \\ 0 & 0 & 0. 5 5 5 6 & 0. 4 4 4 4 & 0 \end{array} \right]
-$$
-
-# Traditional factory model
-
-V Computation of SCV of arrivals in each workstation
+Computation of SCV of arrivals in each workstation
 
 $$
 C _ {a} ^ {2} (1) = 0. 0 2 0 3 C _ {a} ^ {2} (2) + 0. 0 3 4 6 C _ {a} ^ {2} (3) + 0. 8 8 5 6
@@ -650,7 +898,7 @@ $$
 
 # Traditional factory model
 
-V Performance for Workstation 1
+Performance for Workstation 1
 
 $$
 \begin{array}{l} C T (1) = \left(\frac {C _ {a} ^ {2} (1) + C _ {s} ^ {2} (1)}{2}\right) \left(\frac {u _ {1} ^ {\sqrt {6} - 1}}{2 \left(1 - u _ {1}\right)}\right) E \left[ T _ {s} (1) \right] + E \left[ T _ {s} (1) \right] \\ = \left(\frac {0 . 9 3 6 + 0 . 5 4 0}{2}\right) \left(\frac {0 . 8 1 6 ^ {1 . 4 4 9}}{0 . 3 6 8}\right) 5. 1 0 0 + 5. 1 0 0 = 1 2. 7 2 \mathrm {h r}. \\ \end{array}
@@ -662,29 +910,43 @@ $$
 
 Same analysis for the other workstations
 
-![](images/ff24f6750579741dba4fd0ee0e6ce724c9e4b129f54f0b8f9ff17cb633bb4ca9.jpg)
+| Workstation k | Lambda_k | CT(k) | WIP(k) |
+| :---: | :---: | :---: | :---: |
+| 1 | 0.32/hr | 12.714 hr | 4.068 |
+| 2 | 0.16/hr | 29.557 hr | 4.729 |
+| 3 | 0.44/hr | 19.408 hr | 8.539 |
+| 4 | 0.26/hr | 11.482 hr | 2.985 |
+| 5 | 0.18/hr | 29.718 hr | 5.349 |
 
 The total WIP is 25.67 jobs   
-> The total CT is 25.67/0.34 = 75.5 hours
+The total CT is 25.67/0.34 = 75.5 hours
 
 # Cellular factory model
 
-![](images/d84a2e76cb4996163e09578566e54487d554e986fcd3ab8b3ca611ec0aebb7a5.jpg)
+| Job Type | Workstation 1 | Workstation 2 | Workstation 3 | Workstation 4 | Workstation 5 |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **1** | 1 | 1 | 1 | 0 | 0 |
+| **2** | 1 | 1 | 1 | 0 | 0 |
+| **3** | 0 | 0 | 1 | 1 | 1 |
+| **4** | 0 | 0 | 1 | 1 | 1 |
 
-> From the first table,it is easy to see that a two-group partitioning of the products is possible
+From the first table,it is easy to see that a two-group partitioning of the products is possible
 
->Job Types 1 and 2 in Group 1 produced by Cell 1   
->Job Types 3 and 4 in Group 2 produced in Cell 2
+> Job Types 1 and 2 in Group 1 produced by Cell 1   
+> Job Types 3 and 4 in Group 2 produced in Cell 2
 
 Both groups have Machine 3 requirements with workloads by group of 1.280 and 1.420, respectively, for Groups 1 and 2
 
-> Since both of these cells require at least two machines of Type 3,an additional machine must be purchased to implement the disjoint cellular manufacturing approach
+> Since both of these cells require at least two machines of Type 3, an additional machine must be purchased to implement the disjoint cellular manufacturing approach
 
 # Cellular factory model
 
-V Obtained performance measures by repeating the computations of the traditional factory model
+Obtained performance measures by repeating the computations of the traditional factory model
 
-![](images/60db2a5d73ffab2317a1ce516451272516de5a3ce9653e910a895515fe7c3a52.jpg)
+| | $th$ | $WIP$ | $CT$ |
+| :--- | :---: | :---: | :---: |
+| **Cell 1** | 0.16/hr | 10.543 | 65.896 hr |
+| **Cell 2** | 0.18/hr | 10.943 | 60.792 hr |
 
 These results seem better, but the comparison is not fair since an extra machine had to be purchased to establish the cellular organization   
 To appropriately compare the two factory organizational schemes, the performance measures of the traditional factory layout are recalculated using an additional machine for Workstation 3   
@@ -693,18 +955,21 @@ The recalculation yields a total system WiP of 20.578 for the traditional factor
 # Cellular factory model
 
 One of the keys for cellular manufacturing is the reduction in processing times due to the similarities of jobs being processed on a machine   
-》 For this example, we assume a 25% decrease in the processing time for Machine 3 for both technology groups   
+For this example, we assume a 25% decrease in the processing time for Machine 3 for both technology groups   
 The resulting performance measures for the cellular factory are
 
-![](images/7ddcb466e2d5a51d088ca3a5a9f44d9877326905d72177b8fb20e47dfd66f03e.jpg)
+| | $th$ | $WIP$ | $CT$ |
+| :--- | :---: | :---: | :---: |
+| **Cell 1** | 0.16/hr | 9.848 | 61.548 hr |
+| **Cell 2** | 0.18/hr | 9.785 | 54.359 hr |
 
-V Total WIP = 19.633
+Total WIP = 19.633
 
 # Conclusion
 
-V This example illstrates that a group technology/cellular manufacturing organization of the factory can yield a cycle time reduction when implemented in a logical fashion only if there are resulting reductions in the setup and/or processing times   
+This example illstrates that a group technology/cellular manufacturing organization of the factory can yield a cycle time reduction when implemented in a logical fashion only if there are resulting reductions in the setup and/or processing times   
 The partitioning of the factory into several non-overlapping production cells is not the actual phenomena from which the improvements in the performance measures are gained
 
-V The gains are mainly due to the improvements in production that can be associated with specialization: setup reductions, learning curve effects (reduced processing times), processing simplifications,and improved quality due to specialization
+> The gains are mainly due to the improvements in production that can be associated with specialization: setup reductions, learning curve effects (reduced processing times), processing simplifications,and improved quality due to specialization
 
-> In addition, the material handling/part transportation aspects of the factory may also be more specialized and certainly less travel distance will be realized in a cellular organization
+In addition, the material handling/part transportation aspects of the factory may also be more specialized and certainly less travel distance will be realized in a cellular organization

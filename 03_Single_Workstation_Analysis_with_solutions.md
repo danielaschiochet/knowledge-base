@@ -66,10 +66,6 @@ $$
 >Moderate variability (MV): 0,75 < C < 1,33   
 >High variability (HV): c ≥ 1,33
 
-![](images/7a4a79d9a34147a20ba748a4576ed2fab99f3dcda7b614498ebd34d4019cd7c8.jpg)
-
-![](images/5257b1bd0ccfb1763c5cb9882a5c08db507224d5645dd8654688d8b2af5db7d1.jpg)
-
 Mean Value = 25 min
 
 StDev = 5.65 min
@@ -291,7 +287,7 @@ Downward movements all occur when a service has been completed and these have ra
 >The conditional service rate given that there is a job in the system to be serviced is μ and the resulting downward rates from state n is μ Pn
 
 ### Visual Diagram: State-Transition Network with Transition Rates
-- **Component Type**: Directed birth-death process diagram.
+- **Component Type**: process diagram.
 - **Logic**: Quantifies the movement between system states by assigning specific rates ($\lambda$ and $\mu$) to the transition arcs, enabling the calculation of steady-state probabilities.
 
 ---

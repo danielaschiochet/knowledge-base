@@ -83,3 +83,38 @@ Glossary anchors: ERP, MES, PLM, Horizontal/Vertical integration, loT/IloT, Clou
 · Triangulate: DES results should be consistent with Litle's Law and queueing approximations at comparable u and variability.
 
 Glossary anchors: Factory model (decomposition), Queueing systems (components), Verification vs Validation, Discrete Event Simulation (DES), Transient vs steady state
+
+# 9) Heterogeneous Servers
+
+When modeling a single workstation with heterogeneous servers (where $\mu_{fast} \neq \mu_{slow}$), the following rules must be strictly followed to ensure the accuracy of the Continuous-Time Markov Chain (CTMC).
+
+1. State Space Definition (Micro-States): To avoid the error of "over-aggregation," do not use a simple integer $n$ (total jobs) as the state. Instead, use micro-states that explicitly identify which specific machines are occupied.
+
+0: The system is empty.
+  $1f$: One job is being processed by the fast machine.
+  $1s$: One job is being processed by the slow machine.$2fs$: Two jobs in service (one on fast, one on slow).
+  $2ss$: Two jobs in service (both on slow machines), with the fast machine idle.
+  $3$: All three machines are occupied.
+  $n > 3$: All machines are occupied, plus $n-3$ jobs waiting in the queue.
+
+2. Routing Logic & Reachability: The modeling must reflect the "Fastest-Free" assignment policy while accounting for service-driven transitions.
+   Fastest-Free Rule: If the system is in state $0$ and a job arrives, it must be assigned to the fast machine ($0 \to 1f$).
+   Service Transitions: States like $1s$ and $2ss$ are often unreachable via arrival arcs but must be included because they are reachable via service     completions.
+
+   Example: From state $2fs$, if the fast machine finishes first, the system moves to $1s$ ($2fs \xrightarrow{\mu_f} 1s$).
+   Example: From state $3$, if the fast machine finishes, the system moves to $2ss$ ($3 \xrightarrow{\mu_f} 2ss$).
+
+3.KPI Calculations (Performance Metrics): Performance metrics must be calculated by weighting the steady-state probabilities ($\pi_x$) of the specific micro-states.
+  Work-In-Process (WIP)The total WIP is the weighted sum of the number of jobs $n(x)$ in each micro-state $x$:
+  
+  $$WIP = \sum_{x \in S} n(x) \cdot \pi_x$$
+  
+  Throughput (TH)For systems with a finite capacity $K$, the throughput must account for the blocking probability at the maximum state:
+  
+  $$TH = \lambda \cdot (1 - \pi_K)$$
+  
+  Cycle Time (CT)Calculated using Little’s Law:
+  
+  $$CT = \frac{WIP}{TH}$$
+
+

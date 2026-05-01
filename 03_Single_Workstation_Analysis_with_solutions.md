@@ -2119,11 +2119,3 @@ $$
 C T _ {q} (G / G / 2) \approx \left(\frac {4 + 0 . 2 5}{2}\right) \left(\frac {(0 . 8) ^ {\sqrt {6} - 1}}{2 (1 - 0 . 8)}\right) 0. 4 = 1. 5 4 \mathrm {h r}
 $$
 
----
-
-# Istruzioni per Modellazione Markoviana (CTMC)
-Per ogni analisi di workstation singola o rete di code:
-1. **Granularità**: Non aggregare mai gli stati per numero di job ($n$) se i server sono eterogenei ($\mu_i \neq \mu_j$).
-2. **Micro-stati**: Identificare gli stati con etichette descrittive (es. $0, 1f, 1s, 2fs, 2ss, 3...$).
-3. **Transizioni di Servizio**: Ricordare che stati come $1s$ sono raggiungibili da $2fs$ se il server veloce termina per primo.
-4. **KPI**: Calcolare il WIP come valore atteso basato sui micro-stati: $WIP = \sum_{x \in S} n(x) \cdot \pi_x$, dove $n(x)$ è il numero di job nello stato $x$.

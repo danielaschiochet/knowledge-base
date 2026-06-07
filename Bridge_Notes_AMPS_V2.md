@@ -117,12 +117,12 @@ When modeling a single workstation with heterogeneous servers (where $\mu_{fast}
   
   $$CT = \frac{WIP}{TH}$$
 
-  # 9) Non-identical service rates
+# 10) Non-identical service rates
   
-  Standard routing policy: Once a job is assigned to a machine for processing, it generally remains on that machine until its processing is complete. However, advanced systems may implement a Dynamic Reassignment (or Preemption) policy.
+Standard routing policy: Once a job is assigned to a machine for processing, it generally remains on that machine until its processing is complete. However, advanced systems may implement a Dynamic Reassignment (or Preemption) policy.
   
-  Dynamic Reassignment to Faster Machines: Under this specific policy, if there is no queue of waiting jobs and a faster machine completes its processing and becomes idle, a job currently being processed on a slower machine is immediately moved to the newly available fastest machine to minimize cycle time.
+Dynamic Reassignment to Faster Machines: Under this specific policy, if there is no queue of waiting jobs and a faster machine completes its processing and becomes idle, a job currently being processed on a slower machine is immediately moved to the newly available fastest machine to minimize cycle time.
   
-  When dynamic reassignment is active, certain micro-states (e.g., only the slowest machine is busy) become transient and are bypassed. The state space collapses to prioritize states where the fastest machines are always occupied first.
+When dynamic reassignment is active, certain micro-states (e.g., only the slowest machine is busy) become transient and are bypassed. The state space collapses to prioritize states where the fastest machines are always occupied first.
 
 
